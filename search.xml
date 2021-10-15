@@ -15,10 +15,26 @@
       </tags>
   </entry>
   <entry>
-    <title>Windows 11使用技巧疑难杂症</title>
+    <title>Windows 11使用笔记、疑难杂症</title>
     <url>/posts/c7f49c9e/</url>
-    <content><![CDATA[<p>博主在近日</p>
-<h1 id="疑难杂症"><a href="#疑难杂症" class="headerlink" title="疑难杂症"></a>疑难杂症</h1><h2 id="更新至Windows-11后，进入桌面就开始不停闪屏"><a href="#更新至Windows-11后，进入桌面就开始不停闪屏" class="headerlink" title="更新至Windows 11后，进入桌面就开始不停闪屏"></a>更新至Windows 11后，进入桌面就开始不停闪屏</h2><p>这种情况一般出现于由Win10直接升级至Win11进入桌面后出现，没有开始菜单，桌面不停刷新。解决此问题的方法为，使用快捷键”Ctrl+Shift+Esc”调出任务管理器，点击”文件”→”运行新任务”→输入”Control”并回车调出控制面板，点击”区域和时间”→”更改时区”→下拉菜单点击一下，确定即可。</p>
+    <content><![CDATA[<p>博主在近日将自己的两台电脑分别升级到了Windows 11，本文将会是一个长期使用笔记以及所遭遇的疑难杂症解决方案等。操作系统产品的使用具有一定时效性，本文尽量保证及时更新。</p>
+<span id="more"></span>
+
+<h1 id="升级方式"><a href="#升级方式" class="headerlink" title="升级方式"></a>升级方式</h1><p>升级方式一般以下四种：</p>
+<ul>
+<li><p>全新安装，通过镜像、启动U盘等，都属于这一类；</p>
+</li>
+<li><p>Windows 10用户等待微软推送；</p>
+<blockquote>
+<p>版本必须为2004或者更高；</p>
+</blockquote>
+</li>
+<li><p>使用<a href="https://www.microsoft.com/zh-cn/software-download/windows11">Windows 11安装助手</a>进行升级；</p>
+</li>
+<li><p>购买预装Windows 11的电脑。</p>
+</li>
+</ul>
+<h1 id="疑难杂症"><a href="#疑难杂症" class="headerlink" title="疑难杂症"></a>疑难杂症</h1><h4 id="更新至Windows-11后，进入桌面就开始不停闪屏"><a href="#更新至Windows-11后，进入桌面就开始不停闪屏" class="headerlink" title="更新至Windows 11后，进入桌面就开始不停闪屏"></a>更新至Windows 11后，进入桌面就开始不停闪屏</h4><p>这种情况一般出现于由Win10直接升级至Win11进入桌面后出现，没有开始菜单，桌面不停刷新。解决此问题的方法为，使用快捷键”Ctrl+Shift+Esc”调出任务管理器，点击”文件”→”运行新任务”→输入”Control”并回车调出控制面板，点击”区域和时间”→”更改时区”→下拉菜单点击一下，确定即可。</p>
 <p>导致此问题的原因尚不明确。</p>
 ]]></content>
       <categories>
