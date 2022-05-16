@@ -1,56 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Windows 11使用笔记、疑难杂症</title>
-    <url>/posts/c7f49c9e/</url>
-    <content><![CDATA[<p>博主在近日将自己的两台电脑分别升级到了Windows 11，本文将会是一个长期使用笔记以及所遭遇的疑难杂症解决方案等。操作系统产品的使用具有一定时效性，本文尽量保证及时更新。</p>
-<span id="more"></span>
-
-<h1 id="升级方式"><a href="#升级方式" class="headerlink" title="升级方式"></a>升级方式</h1><p>升级方式一般以下四种：</p>
-<ul>
-<li><p>全新安装，通过镜像、启动U盘等，都属于这一类；</p>
-</li>
-<li><p>Windows 10用户等待微软推送；</p>
-<blockquote>
-<p>版本必须为2004或者更高；</p>
-</blockquote>
-</li>
-<li><p>使用<a href="https://www.microsoft.com/zh-cn/software-download/windows11">Windows 11安装助手</a>进行升级；</p>
-</li>
-<li><p>购买预装Windows 11的电脑。</p>
-</li>
-</ul>
-<h1 id="疑难杂症"><a href="#疑难杂症" class="headerlink" title="疑难杂症"></a>疑难杂症</h1><h4 id="更新至Windows-11后，进入桌面就开始不停闪屏"><a href="#更新至Windows-11后，进入桌面就开始不停闪屏" class="headerlink" title="更新至Windows 11后，进入桌面就开始不停闪屏"></a>更新至Windows 11后，进入桌面就开始不停闪屏</h4><p>这种情况一般出现于由Win10直接升级至Win11进入桌面后出现，没有开始菜单，桌面不停刷新。解决此问题的方法为，使用快捷键”Ctrl+Shift+Esc”调出任务管理器，点击”文件”→”运行新任务”→输入”Control”并回车调出控制面板，点击”区域和时间”→”更改时区”→下拉菜单点击一下，确定即可。</p>
-<p>导致此问题的原因尚不明确。</p>
-]]></content>
-      <categories>
-        <category>折腾</category>
-      </categories>
-      <tags>
-        <tag>Windows 11</tag>
-        <tag>微软</tag>
-        <tag>疑难杂症</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/posts/4a17b156/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>Vaultwarden/Bitwardenrs启用两步验证和QQ邮箱代发验证码</title>
     <url>/posts/c7341afb/</url>
     <content><![CDATA[<p>在使用密码托管服务时，我最初只需要简单的同步，能够供手机使用即可。所以在使用1Password的时候，一直使用的是单机版。随着时间的推移，自己也有多平台需要，这种方式渐渐变的不方便，由于不太想使用1Password的网络服务，在前个月把密码托管逐步迁移到了自建Bitwarden服务。经过将近2个月的使用，个人感受相当良好。虽然有些小问题，但都在可以接受的范围内。</p>
@@ -92,6 +42,38 @@
       </tags>
   </entry>
   <entry>
+    <title>Windows 11使用笔记、疑难杂症</title>
+    <url>/posts/c7f49c9e/</url>
+    <content><![CDATA[<p>博主在近日将自己的两台电脑分别升级到了Windows 11，本文将会是一个长期使用笔记以及所遭遇的疑难杂症解决方案等。操作系统产品的使用具有一定时效性，本文尽量保证及时更新。</p>
+<span id="more"></span>
+
+<h1 id="升级方式"><a href="#升级方式" class="headerlink" title="升级方式"></a>升级方式</h1><p>升级方式一般以下四种：</p>
+<ul>
+<li><p>全新安装，通过镜像、启动U盘等，都属于这一类；</p>
+</li>
+<li><p>Windows 10用户等待微软推送；</p>
+<blockquote>
+<p>版本必须为2004或者更高；</p>
+</blockquote>
+</li>
+<li><p>使用<a href="https://www.microsoft.com/zh-cn/software-download/windows11">Windows 11安装助手</a>进行升级；</p>
+</li>
+<li><p>购买预装Windows 11的电脑。</p>
+</li>
+</ul>
+<h1 id="疑难杂症"><a href="#疑难杂症" class="headerlink" title="疑难杂症"></a>疑难杂症</h1><h4 id="更新至Windows-11后，进入桌面就开始不停闪屏"><a href="#更新至Windows-11后，进入桌面就开始不停闪屏" class="headerlink" title="更新至Windows 11后，进入桌面就开始不停闪屏"></a>更新至Windows 11后，进入桌面就开始不停闪屏</h4><p>这种情况一般出现于由Win10直接升级至Win11进入桌面后出现，没有开始菜单，桌面不停刷新。解决此问题的方法为，使用快捷键”Ctrl+Shift+Esc”调出任务管理器，点击”文件”→”运行新任务”→输入”Control”并回车调出控制面板，点击”区域和时间”→”更改时区”→下拉菜单点击一下，确定即可。</p>
+<p>导致此问题的原因尚不明确。</p>
+]]></content>
+      <categories>
+        <category>折腾</category>
+      </categories>
+      <tags>
+        <tag>Windows 11</tag>
+        <tag>微软</tag>
+        <tag>疑难杂症</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>为Windows 11配置DOH(DNS Over Https)</title>
     <url>/posts/58192ec3/</url>
     <content><![CDATA[<p>Windows 11在22000.51这个版本开始支持DND Over Https(下文简称DOH)，在此之前已经有不少浏览器已经支持DOH，例如Google Chrome和Mozilla Firefox。</p>
@@ -129,5 +111,23 @@
         <tag>DNS</tag>
         <tag>DOH</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/posts/4a17b156/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
   </entry>
 </search>
