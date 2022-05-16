@@ -130,4 +130,45 @@
         <tag>疑难杂症</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Debian 11 搭建 Grasscutter</title>
+    <url>/posts/85f3d684/</url>
+    <content><![CDATA[<p>Grasscutter是一个动漫游戏的服务端，本文仅供学习。</p>
+<h1 id="Debian-11的安装"><a href="#Debian-11的安装" class="headerlink" title="Debian 11的安装"></a>Debian 11的安装</h1><p>这一部分自行解决。</p>
+<h1 id="部署Grasscutter"><a href="#部署Grasscutter" class="headerlink" title="部署Grasscutter"></a>部署Grasscutter</h1><h2 id="1-安装MongoDB"><a href="#1-安装MongoDB" class="headerlink" title="1. 安装MongoDB"></a>1. 安装MongoDB</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">su -</span><br><span class="line">apt update</span><br><span class="line">apt install gnupg</span><br><span class="line">wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | apt-key add -</span><br><span class="line">echo &quot;deb http://repo.mongodb.org/apt/debian buster/mongodb-org/5.0 main&quot; | tee /etc/apt/sources.list.d/mongodb-org-5.0.list</span><br><span class="line">apt update</span><br><span class="line">apt install mongodb-org</span><br><span class="line">systemctl enable mongod --now</span><br></pre></td></tr></table></figure>
+
+<p>数据库文件位置：&#x2F;var&#x2F;lib&#x2F;mongodb</p>
+<p>日志文件位置：&#x2F;var&#x2F;log&#x2F;mongodb</p>
+<span id="more"></span>
+
+<h2 id="2-安装Open-jdk-17"><a href="#2-安装Open-jdk-17" class="headerlink" title="2. 安装Open jdk 17"></a>2. 安装Open jdk 17</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt install -y openjdk-17-jdk</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-拉取Grasscutter库（Dev分支）"><a href="#3-拉取Grasscutter库（Dev分支）" class="headerlink" title="3. 拉取Grasscutter库（Dev分支）"></a>3. 拉取Grasscutter库（Dev分支）</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/Grasscutters/Grasscutter -b development</span><br><span class="line">cd Grasscutter</span><br><span class="line">git clone https://github.com/Koko-boya/Grasscutter_Resources</span><br><span class="line">mkdir resources</span><br><span class="line">\cp -r Grasscutter_Resources/Resources/* resources</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-构建"><a href="#4-构建" class="headerlink" title="4. 构建"></a>4. 构建</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">chmod +x gradlew</span><br><span class="line">./gradlew jar</span><br><span class="line">ls</span><br></pre></td></tr></table></figure>
+
+<p>构建完成后生成一个grasscutter-1.1.2.jar；</p>
+<p>因为更新频繁建议重命名为commit编号便于识别和管理；</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mv grasscutter-1.1.2.jar grasscutter-58df221.jar</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-下载mitmproxy"><a href="#5-下载mitmproxy" class="headerlink" title="5. 下载mitmproxy"></a>5. 下载mitmproxy</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget https://snapshots.mitmproxy.org/8.0.0/mitmproxy-8.0.0-linux.tar.gz</span><br><span class="line">tar zxvf mitmproxy-8.0.0-linux.tar.gz</span><br><span class="line">nohup ./mitmdump -s proxy.py --ssl-insecure --listen-port 12345 --set block_global=false --set tls_version_client_min=UNBOUNDED</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-运行服务端"><a href="#6-运行服务端" class="headerlink" title="6. 运行服务端"></a>6. 运行服务端</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">java -jar grasscutter-58df221.jar</span><br></pre></td></tr></table></figure>
+
+<p>首次运行可能会报错，按Ctrl-C退出后，编辑生成的config.json，填写自己的IP地址或者域名还有端口号，注意不要冲突，然后重新运行。</p>
+<h2 id="7-建立账户"><a href="#7-建立账户" class="headerlink" title="7. 建立账户"></a>7. 建立账户</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//account create &lt;用户名&gt; &lt;UID&gt;</span><br><span class="line">account create test 12345</span><br></pre></td></tr></table></figure>
+
+<p>其余命令可以参考项目Wiki。</p>
+<h2 id="8-登录服务器"><a href="#8-登录服务器" class="headerlink" title="8. 登录服务器"></a>8. 登录服务器</h2><p>个人电脑可以使用系统自带的http代理，也可以使用Clash for windows。</p>
+<h2 id="9-待补充（待续）"><a href="#9-待补充（待续）" class="headerlink" title="9. 待补充（待续）"></a>9. 待补充（待续）</h2><p>待补充。。。</p>
+]]></content>
+      <categories>
+        <category>折腾</category>
+      </categories>
+      <tags>
+        <tag>原神</tag>
+        <tag>Genshin Impact</tag>
+        <tag>Grasscutter</tag>
+      </tags>
+  </entry>
 </search>
