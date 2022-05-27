@@ -1,63 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>为Windows 11配置DOH(DNS Over Https)</title>
-    <url>/posts/58192ec3/</url>
-    <content><![CDATA[<p>Windows 11在22000.51这个版本开始支持DND Over Https(下文简称DOH)，在此之前已经有不少浏览器已经支持DOH，例如Google Chrome和Mozilla Firefox。</p>
-<p>DOH的出现意味着DNS客户端和DNS服务器之间的查询将通过安全的https连接而不再是纯文本，不论隐私还是安全都能够获得有效的提升，尽管这些在当下互联网中都是相对的。</p>
-<span id="more"></span>
-
-<h1 id="Windows-11内置的支持DOH的DNS"><a href="#Windows-11内置的支持DOH的DNS" class="headerlink" title="Windows 11内置的支持DOH的DNS"></a>Windows 11内置的支持DOH的DNS</h1><p>为Windows 11配置DOH并不复杂，但是默认情况下，你只能选择内置的DNS服务商；</p>
-<p>你可以使用下面这个Powershell命令来列出系统当前内置的DNS服务商：</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Get-DNSClientDohServerAddress</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ServerAddress        AllowFallbackToUdp AutoUpgrade DohTemplate</span><br><span class="line">-------------        ------------------ ----------- -----------</span><br><span class="line">149.112.112.112      False              False       https://dns.quad9.net/dns-query</span><br><span class="line">9.9.9.9              False              False       https://dns.quad9.net/dns-query</span><br><span class="line">8.8.8.8              False              False       https://dns.google/dns-query</span><br><span class="line">8.8.4.4              False              False       https://dns.google/dns-query</span><br><span class="line">1.1.1.1              False              False       https://cloudflare-dns.com/dns-query</span><br><span class="line">1.0.0.1              False              False       https://cloudflare-dns.com/dns-query</span><br><span class="line">2001:4860:4860::8844 False              False       https://dns.google/dns-query</span><br><span class="line">2001:4860:4860::8888 False              False       https://dns.google/dns-query</span><br><span class="line">2606:4700:4700::1001 False              False       https://cloudflare-dns.com/dns-query</span><br><span class="line">2606:4700:4700::1111 False              False       https://cloudflare-dns.com/dns-query</span><br><span class="line">2620:fe::fe          False              False       https://dns.quad9.net/dns-query</span><br><span class="line">2620:fe::fe:9        False              False       https://dns.quad9.net/dns-query</span><br></pre></td></tr></table></figure>
-
-<h1 id="添加自定义DNS"><a href="#添加自定义DNS" class="headerlink" title="添加自定义DNS"></a>添加自定义DNS</h1><p>如果你希望使用的DNS并不在此列表中，你也可以通过下面的Powershell命令来添加你自己喜欢的DNS；</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Add-DnsClientDohServerAddress</span> <span class="literal">-ServerAddress</span> <span class="string">&#x27;&lt;resolver-IP-address&gt;&#x27;</span> <span class="literal">-DohTemplate</span> <span class="string">&#x27;&lt;resolver-DoH-template&gt;&#x27;</span> <span class="literal">-AllowFallbackToUdp</span> <span class="variable">$False</span> <span class="literal">-AutoUpgrade</span> <span class="variable">$True</span></span><br></pre></td></tr></table></figure>
-
-<p>例如：</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Add-DnsClientDohServerAddress</span> <span class="literal">-ServerAddress</span> <span class="string">&#x27;223.5.5.5&#x27;</span> <span class="literal">-DohTemplate</span> <span class="string">&#x27;https://dns.alidns.com/dns-query&#x27;</span> <span class="literal">-AllowFallbackToUdp</span> <span class="variable">$False</span> <span class="literal">-AutoUpgrade</span> <span class="variable">$True</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="为当前网络设置DOH"><a href="#为当前网络设置DOH" class="headerlink" title="为当前网络设置DOH"></a>为当前网络设置DOH</h1><ul>
-<li>“Windows 11设置”，选择”网络和Internet”；</li>
-<li>选择”以太网”，编辑”DNS服务器分配”；</li>
-<li>编辑DNS设置为手动，键入你的DNS IP地址；</li>
-<li>将首选的DNS加密设置为”仅加密(通过HTTPS的DNS)”，保存。</li>
-</ul>
-<p>以上设定也将作用于你的WLAN或者Wi-Fi网络。</p>
-<h1 id="三种模式的区别"><a href="#三种模式的区别" class="headerlink" title="三种模式的区别"></a>三种模式的区别</h1><p><strong>仅未加密</strong>：默认选项，到指定DNS服务器的查询全部未加密，通过传统的纯文本查询；</p>
-<p><strong>仅加密（通过HTTPS的DNS）</strong>：所有DNS查询将通过HTTPS传输来获得最有效的保护，但是如果指定DNS服务器如果不支持DOH查询，则不会进行DNS解析；</p>
-<p><strong>已加密的首选，未加密的允许</strong>：将邮箱尝试通过DOH查询，如果目标DNS服务器不支持DNS则改为纯文本查询以获得最佳兼容性。</p>
-]]></content>
-      <categories>
-        <category>折腾</category>
-      </categories>
-      <tags>
-        <tag>Windows 11</tag>
-        <tag>DNS</tag>
-        <tag>DOH</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/posts/4a17b156/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>Vaultwarden/Bitwardenrs启用两步验证和QQ邮箱代发验证码</title>
     <url>/posts/c7341afb/</url>
     <content><![CDATA[<p>在使用密码托管服务时，我最初只需要简单的同步，能够供手机使用即可。所以在使用1Password的时候，一直使用的是单机版。随着时间的推移，自己也有多平台需要，这种方式渐渐变的不方便，由于不太想使用1Password的网络服务，在前个月把密码托管逐步迁移到了自建Bitwarden服务。经过将近2个月的使用，个人感受相当良好。虽然有些小问题，但都在可以接受的范围内。</p>
@@ -99,6 +42,45 @@
       </tags>
   </entry>
   <entry>
+    <title>为Windows 11配置DOH(DNS Over Https)</title>
+    <url>/posts/58192ec3/</url>
+    <content><![CDATA[<p>Windows 11在22000.51这个版本开始支持DND Over Https(下文简称DOH)，在此之前已经有不少浏览器已经支持DOH，例如Google Chrome和Mozilla Firefox。</p>
+<p>DOH的出现意味着DNS客户端和DNS服务器之间的查询将通过安全的https连接而不再是纯文本，不论隐私还是安全都能够获得有效的提升，尽管这些在当下互联网中都是相对的。</p>
+<span id="more"></span>
+
+<h1 id="Windows-11内置的支持DOH的DNS"><a href="#Windows-11内置的支持DOH的DNS" class="headerlink" title="Windows 11内置的支持DOH的DNS"></a>Windows 11内置的支持DOH的DNS</h1><p>为Windows 11配置DOH并不复杂，但是默认情况下，你只能选择内置的DNS服务商；</p>
+<p>你可以使用下面这个Powershell命令来列出系统当前内置的DNS服务商：</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Get-DNSClientDohServerAddress</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ServerAddress        AllowFallbackToUdp AutoUpgrade DohTemplate</span><br><span class="line">-------------        ------------------ ----------- -----------</span><br><span class="line">149.112.112.112      False              False       https://dns.quad9.net/dns-query</span><br><span class="line">9.9.9.9              False              False       https://dns.quad9.net/dns-query</span><br><span class="line">8.8.8.8              False              False       https://dns.google/dns-query</span><br><span class="line">8.8.4.4              False              False       https://dns.google/dns-query</span><br><span class="line">1.1.1.1              False              False       https://cloudflare-dns.com/dns-query</span><br><span class="line">1.0.0.1              False              False       https://cloudflare-dns.com/dns-query</span><br><span class="line">2001:4860:4860::8844 False              False       https://dns.google/dns-query</span><br><span class="line">2001:4860:4860::8888 False              False       https://dns.google/dns-query</span><br><span class="line">2606:4700:4700::1001 False              False       https://cloudflare-dns.com/dns-query</span><br><span class="line">2606:4700:4700::1111 False              False       https://cloudflare-dns.com/dns-query</span><br><span class="line">2620:fe::fe          False              False       https://dns.quad9.net/dns-query</span><br><span class="line">2620:fe::fe:9        False              False       https://dns.quad9.net/dns-query</span><br></pre></td></tr></table></figure>
+
+<h1 id="添加自定义DNS"><a href="#添加自定义DNS" class="headerlink" title="添加自定义DNS"></a>添加自定义DNS</h1><p>如果你希望使用的DNS并不在此列表中，你也可以通过下面的Powershell命令来添加你自己喜欢的DNS；</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Add-DnsClientDohServerAddress</span> <span class="literal">-ServerAddress</span> <span class="string">&#x27;&lt;resolver-IP-address&gt;&#x27;</span> <span class="literal">-DohTemplate</span> <span class="string">&#x27;&lt;resolver-DoH-template&gt;&#x27;</span> <span class="literal">-AllowFallbackToUdp</span> <span class="variable">$False</span> <span class="literal">-AutoUpgrade</span> <span class="variable">$True</span></span><br></pre></td></tr></table></figure>
+
+<p>例如：</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Add-DnsClientDohServerAddress</span> <span class="literal">-ServerAddress</span> <span class="string">&#x27;223.5.5.5&#x27;</span> <span class="literal">-DohTemplate</span> <span class="string">&#x27;https://dns.alidns.com/dns-query&#x27;</span> <span class="literal">-AllowFallbackToUdp</span> <span class="variable">$False</span> <span class="literal">-AutoUpgrade</span> <span class="variable">$True</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="为当前网络设置DOH"><a href="#为当前网络设置DOH" class="headerlink" title="为当前网络设置DOH"></a>为当前网络设置DOH</h1><ul>
+<li>“Windows 11设置”，选择”网络和Internet”；</li>
+<li>选择”以太网”，编辑”DNS服务器分配”；</li>
+<li>编辑DNS设置为手动，键入你的DNS IP地址；</li>
+<li>将首选的DNS加密设置为”仅加密(通过HTTPS的DNS)”，保存。</li>
+</ul>
+<p>以上设定也将作用于你的WLAN或者Wi-Fi网络。</p>
+<h1 id="三种模式的区别"><a href="#三种模式的区别" class="headerlink" title="三种模式的区别"></a>三种模式的区别</h1><p><strong>仅未加密</strong>：默认选项，到指定DNS服务器的查询全部未加密，通过传统的纯文本查询；</p>
+<p><strong>仅加密（通过HTTPS的DNS）</strong>：所有DNS查询将通过HTTPS传输来获得最有效的保护，但是如果指定DNS服务器如果不支持DOH查询，则不会进行DNS解析；</p>
+<p><strong>已加密的首选，未加密的允许</strong>：将邮箱尝试通过DOH查询，如果目标DNS服务器不支持DNS则改为纯文本查询以获得最佳兼容性。</p>
+]]></content>
+      <categories>
+        <category>折腾</category>
+      </categories>
+      <tags>
+        <tag>Windows 11</tag>
+        <tag>DNS</tag>
+        <tag>DOH</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Windows 11使用笔记、疑难杂症</title>
     <url>/posts/c7f49c9e/</url>
     <content><![CDATA[<p>博主在近日将自己的两台电脑分别升级到了Windows 11，本文将会是一个长期使用笔记以及所遭遇的疑难杂症解决方案等。操作系统产品的使用具有一定时效性，本文尽量保证及时更新。</p>
@@ -128,6 +110,43 @@
         <tag>Windows 11</tag>
         <tag>微软</tag>
         <tag>疑难杂症</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>群晖Docker搭建Vaultwarden/Bitwarden开启LiveSync Websocket配置</title>
+    <url>/posts/bc73beb2/</url>
+    <content><![CDATA[<p>自建Bitwarden是目前自托管密码多平台方案相当热门的方案，在网络上也有非常多的教程供参考，不过许多人搭建后都提到过Bitwarden的数据同步很多时候不是实时的，一般需要手动同步或者向下滑动来立刻同步，否则经常会有你在这个客户端建立好密码档案然而并没有在另一个客户端立刻显示。</p>
+<p>对于不同客户端之间的实时同步，Bitwarden官方把这个功能叫做Live Sync，官方的博客中说这是基于Websocket技术来达成的功能；</p>
+<blockquote>
+<p>Live sync works by using a powerful technology called <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API"><em>WebSockets</em></a>. Live sync is now available in all Bitwarden apps, including mobile (mobile uses a different technology called <em>Push Notifications</em>).</p>
+</blockquote>
+<p>在移动平台端，这个功能被叫做Push notification；</p>
+<p>目前通常自建的Bitwarden大多使用的是Rust重构的开源项目Vaultwarden，这个项目也是支持开启Live Sync的，不过网上教程提到的非常少，因为我在这里整理说明下，一下是在群晖Docker上搭建后开启Live Sync的操作，其他平台和搭建方法达成的也都大同小异，自己按需修改。</p>
+<span id="more"></span>
+
+<h1 id="建立反向代理配置文件"><a href="#建立反向代理配置文件" class="headerlink" title="建立反向代理配置文件"></a>建立反向代理配置文件</h1><p>建立一个反向代理配置文件，此文件基于群晖自带的反向代理配置修改，如果你已经使用过群晖的反向代理创建过配置，则该配置会保存在：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DSM6.X  = /etc/nginx/app.d/server.ReverseProxy.conf</span><br><span class="line">DSM7.X  = /etc/nginx/sites-enabled/server.ReverseProxy.conf</span><br></pre></td></tr></table></figure>
+
+<p>文件在这里命名为”bitwarden.conf”，内容如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 5680 ssl http2;</span><br><span class="line">    listen [::]:5680 ssl http2;</span><br><span class="line"></span><br><span class="line">    server_name Bitwarden;</span><br><span class="line"></span><br><span class="line">    include /usr/syno/etc/www/certificate/ReverseProxy_46af64d7-6523-4725-8c3f-88750cad6eb1/cert.conf*;</span><br><span class="line">    include /usr/syno/etc/security-profile/tls-profile/config/ReverseProxy_46af64d7-6523-4725-8c3f-88750cad6eb1.conf*;</span><br><span class="line">    add_header Strict-Transport-Security &quot;max-age=15768000; includeSubdomains; preload&quot; always;</span><br><span class="line">	proxy_ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_connect_timeout 15;</span><br><span class="line">        proxy_read_timeout 15;</span><br><span class="line">        proxy_send_timeout 15;</span><br><span class="line">        proxy_intercept_errors off;</span><br><span class="line">        proxy_http_version 1.1;</span><br><span class="line">        proxy_set_header Host $http_host;</span><br><span class="line">        proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">        proxy_set_header X-Forwarded-Proto $scheme;</span><br><span class="line">        proxy_pass http://localhost:5678;</span><br><span class="line">    &#125;</span><br><span class="line">    location /notifications/hub &#123;</span><br><span class="line">        proxy_set_header Upgrade $http_upgrade;</span><br><span class="line">        proxy_set_header Connection $http_connection;</span><br><span class="line">        proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">        proxy_pass http://localhost:5677;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location /notifications/hub/negotiate &#123;</span><br><span class="line">        proxy_set_header Host $http_host;</span><br><span class="line">        proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">        proxy_set_header X-Forwarded-Proto $scheme;</span><br><span class="line">        proxy_pass http://localhost:5678;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    error_page 403 404 500 502 503 504 /dsm_error_page;</span><br><span class="line"></span><br><span class="line">    location /dsm_error_page &#123;</span><br><span class="line">        internal;</span><br><span class="line">        root /usr/syno/share/nginx;</span><br><span class="line">        rewrite (.*) /error.html break;</span><br><span class="line">        allow all;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上侧配置中，端口5680是最终的访问端口，5678是容器映射的端口，5677是Websocket的端口。</p>
+<h1 id="将配置文件上传至群晖nginx对应配置目录并重启服务"><a href="#将配置文件上传至群晖nginx对应配置目录并重启服务" class="headerlink" title="将配置文件上传至群晖nginx对应配置目录并重启服务"></a>将配置文件上传至群晖nginx对应配置目录并重启服务</h1><p>将”bitwarden.conf”，上传至群晖，右键菜单属性中获取实际路径，复制到上面提到的DSM6.X或者DSM7.X反向代理配置文件目录；以下是基于DSM7.X演示：</p>
+<p><img src="https://s2.loli.net/2022/05/26/I5nRZCfkMTra7dY.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cp /volume1/docker/scripts/bitwarden.conf /etc/nginx/sites-enabled/bitwarden.conf</span><br><span class="line">synow3tool --gen-all &amp;&amp; systemctl reload nginx</span><br></pre></td></tr></table></figure>
+
+<h1 id="测试效果"><a href="#测试效果" class="headerlink" title="测试效果"></a>测试效果</h1><p>2个客户端，一个是Windows客户端，一个是安卓客户端；修改一个项目确认后查看是否实时同步，控制台也同时会有日志产生。<br><img src="https://s2.loli.net/2022/05/26/iCBWhMtd9Jmye6F.gif"></p>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p>[1]: <a href="https://bitwarden.com/blog/live-sync/">https://bitwarden.com/blog/live-sync/</a>	“LiveSyncBitwardenApps”<br>[2]: <a href="https://github.com/andyzhshg/syno-acme/issues/66">https://github.com/andyzhshg/syno-acme/issues/66</a><br>[3]: <a href="https://vaultwarden.discourse.group/t/need-explaining-websocket-and-push-notifications/87/9">https://vaultwarden.discourse.group/t/need-explaining-websocket-and-push-notifications/87/9</a><br>[4]: <a href="https://gist.github.com/nstanke/3949ae1c4706854d8f166d1fb3dadc81">https://gist.github.com/nstanke/3949ae1c4706854d8f166d1fb3dadc81</a><br>[5]: <a href="https://gist.github.com/eizedev/06a6727dc341745a4845fe04ccc97b05">https://gist.github.com/eizedev/06a6727dc341745a4845fe04ccc97b05</a><br>[6]: <a href="https://github.com/dani-garcia/vaultwarden/wiki/Enabling-WebSocket-notifications">https://github.com/dani-garcia/vaultwarden/wiki/Enabling-WebSocket-notifications</a></p>
+]]></content>
+      <categories>
+        <category>折腾</category>
+      </categories>
+      <tags>
+        <tag>Bitwarden</tag>
+        <tag>Vaultwarden</tag>
+        <tag>Websocket</tag>
+        <tag>群晖</tag>
+        <tag>Docker</tag>
       </tags>
   </entry>
   <entry>
@@ -172,41 +191,21 @@
       </tags>
   </entry>
   <entry>
-    <title>群晖Docker搭建Vaultwarden/Bitwarden开启LiveSync Websocket配置</title>
-    <url>/posts/bc73beb2/</url>
-    <content><![CDATA[<p>自建Bitwarden是目前自托管密码多平台方案相当热门的方案，在网络上也有非常多的教程供参考，不过许多人搭建后都提到过Bitwarden的数据同步很多时候不是实时的，一般需要手动同步或者向下滑动来立刻同步，否则经常会有你在这个客户端建立好密码档案然而并没有在另一个客户端立刻显示。</p>
-<p>对于不同客户端之间的实时同步，Bitwarden官方把这个功能叫做Live Sync，官方的博客中说这是基于Websocket技术来达成的功能；</p>
-<blockquote>
-<p>Live sync works by using a powerful technology called <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API"><em>WebSockets</em></a>. Live sync is now available in all Bitwarden apps, including mobile (mobile uses a different technology called <em>Push Notifications</em>).</p>
-</blockquote>
-<p>在移动平台端，这个功能被叫做Push notification；</p>
-<p>目前通常自建的Bitwarden大多使用的是Rust重构的开源项目Vaultwarden，这个项目也是支持开启Live Sync的，不过网上教程提到的非常少，因为我在这里整理说明下，一下是在群晖Docker上搭建后开启Live Sync的操作，其他平台和搭建方法达成的也都大同小异，自己按需修改。</p>
-<span id="more"></span>
+    <title>Hello World</title>
+    <url>/posts/4a17b156/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 
-<h1 id="建立反向代理配置文件"><a href="#建立反向代理配置文件" class="headerlink" title="建立反向代理配置文件"></a>建立反向代理配置文件</h1><p>建立一个反向代理配置文件，此文件基于群晖自带的反向代理配置修改，如果你已经使用过群晖的反向代理创建过配置，则该配置会保存在：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DSM6.X  = /etc/nginx/app.d/server.ReverseProxy.conf</span><br><span class="line">DSM7.X  = /etc/nginx/sites-enabled/server.ReverseProxy.conf</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 
-<p>文件在这里命名为”bitwarden.conf”，内容如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 5680 ssl http2;</span><br><span class="line">    listen [::]:5680 ssl http2;</span><br><span class="line"></span><br><span class="line">    server_name Bitwarden;</span><br><span class="line"></span><br><span class="line">    include /usr/syno/etc/www/certificate/ReverseProxy_46af64d7-6523-4725-8c3f-88750cad6eb1/cert.conf*;</span><br><span class="line">    include /usr/syno/etc/security-profile/tls-profile/config/ReverseProxy_46af64d7-6523-4725-8c3f-88750cad6eb1.conf*;</span><br><span class="line">    add_header Strict-Transport-Security &quot;max-age=15768000; includeSubdomains; preload&quot; always;</span><br><span class="line">	proxy_ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_connect_timeout 15;</span><br><span class="line">        proxy_read_timeout 15;</span><br><span class="line">        proxy_send_timeout 15;</span><br><span class="line">        proxy_intercept_errors off;</span><br><span class="line">        proxy_http_version 1.1;</span><br><span class="line">        proxy_set_header Host $http_host;</span><br><span class="line">        proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">        proxy_set_header X-Forwarded-Proto $scheme;</span><br><span class="line">        proxy_pass http://localhost:5678;</span><br><span class="line">    &#125;</span><br><span class="line">    location /notifications/hub &#123;</span><br><span class="line">        proxy_set_header Upgrade $http_upgrade;</span><br><span class="line">        proxy_set_header Connection $http_connection;</span><br><span class="line">        proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">        proxy_pass http://localhost:5677;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location /notifications/hub/negotiate &#123;</span><br><span class="line">        proxy_set_header Host $http_host;</span><br><span class="line">        proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">        proxy_set_header X-Forwarded-Proto $scheme;</span><br><span class="line">        proxy_pass http://localhost:5678;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    error_page 403 404 500 502 503 504 /dsm_error_page;</span><br><span class="line"></span><br><span class="line">    location /dsm_error_page &#123;</span><br><span class="line">        internal;</span><br><span class="line">        root /usr/syno/share/nginx;</span><br><span class="line">        rewrite (.*) /error.html break;</span><br><span class="line">        allow all;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
 
-<p>上侧配置中，端口5680是最终的访问端口，5678是容器映射的端口，5677是Websocket的端口。</p>
-<h1 id="将配置文件上传至群晖nginx对应配置目录并重启服务"><a href="#将配置文件上传至群晖nginx对应配置目录并重启服务" class="headerlink" title="将配置文件上传至群晖nginx对应配置目录并重启服务"></a>将配置文件上传至群晖nginx对应配置目录并重启服务</h1><p>将”bitwarden.conf”，上传至群晖，右键菜单属性中获取实际路径，复制到上面提到的DSM6.X或者DSM7.X反向代理配置文件目录；以下是基于DSM7.X演示：</p>
-<p><img src="https://s2.loli.net/2022/05/26/I5nRZCfkMTra7dY.png"></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cp /volume1/docker/scripts/bitwarden.conf /etc/nginx/sites-enabled/bitwarden.conf</span><br><span class="line">synow3tool --gen-all &amp;&amp; systemctl reload nginx</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 
-<h1 id="测试效果"><a href="#测试效果" class="headerlink" title="测试效果"></a>测试效果</h1><p>2个客户端，一个是Windows客户端，一个是安卓客户端；修改一个项目确认后查看是否实时同步，控制台也同时会有日志产生。<br><img src="https://s2.loli.net/2022/05/26/iCBWhMtd9Jmye6F.gif"></p>
-<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p>[1]: <a href="https://bitwarden.com/blog/live-sync/">https://bitwarden.com/blog/live-sync/</a>	“LiveSyncBitwardenApps”</p>
-<p>[6]: <a href="https://github.com/dani-garcia/vaultwarden/wiki/Enabling-WebSocket-notifications">https://github.com/dani-garcia/vaultwarden/wiki/Enabling-WebSocket-notifications</a>	“Enabling WebSocket notifications”</p>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
-      <categories>
-        <category>折腾</category>
-      </categories>
-      <tags>
-        <tag>Bitwarden</tag>
-        <tag>Vaultwarden</tag>
-        <tag>Websocket</tag>
-        <tag>群晖</tag>
-        <tag>Docker</tag>
-      </tags>
   </entry>
 </search>

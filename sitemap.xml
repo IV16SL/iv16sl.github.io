@@ -92,27 +92,6 @@
 
   
   <url>
-    <loc>https://blog.iv16sl.xyz/tags/Windows-11/</loc>
-    <lastmod>2022-05-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.iv16sl.xyz/tags/DNS/</loc>
-    <lastmod>2022-05-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.iv16sl.xyz/tags/DOH/</loc>
-    <lastmod>2022-05-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.iv16sl.xyz/tags/Bitwarden/</loc>
     <lastmod>2022-05-27</lastmod>
     <changefreq>weekly</changefreq>
@@ -134,6 +113,27 @@
   </url>
   
   <url>
+    <loc>https://blog.iv16sl.xyz/tags/Windows-11/</loc>
+    <lastmod>2022-05-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.iv16sl.xyz/tags/DNS/</loc>
+    <lastmod>2022-05-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.iv16sl.xyz/tags/DOH/</loc>
+    <lastmod>2022-05-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.iv16sl.xyz/tags/%E5%BE%AE%E8%BD%AF/</loc>
     <lastmod>2022-05-27</lastmod>
     <changefreq>weekly</changefreq>
@@ -142,27 +142,6 @@
   
   <url>
     <loc>https://blog.iv16sl.xyz/tags/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/</loc>
-    <lastmod>2022-05-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.iv16sl.xyz/tags/%E5%8E%9F%E7%A5%9E/</loc>
-    <lastmod>2022-05-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.iv16sl.xyz/tags/Genshin-Impact/</loc>
-    <lastmod>2022-05-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.iv16sl.xyz/tags/Grasscutter/</loc>
     <lastmod>2022-05-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -191,6 +170,27 @@
   
   <url>
     <loc>https://blog.iv16sl.xyz/tags/Docker/</loc>
+    <lastmod>2022-05-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.iv16sl.xyz/tags/%E5%8E%9F%E7%A5%9E/</loc>
+    <lastmod>2022-05-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.iv16sl.xyz/tags/Genshin-Impact/</loc>
+    <lastmod>2022-05-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.iv16sl.xyz/tags/Grasscutter/</loc>
     <lastmod>2022-05-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
