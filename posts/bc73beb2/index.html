@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://s2.loli.net/2022/05/26/I5nRZCfkMTra7dY.png">
 <meta property="og:image" content="https://s2.loli.net/2022/05/26/iCBWhMtd9Jmye6F.gif">
 <meta property="article:published_time" content="2022-05-26T13:27:42.000Z">
-<meta property="article:modified_time" content="2022-05-26T15:00:12.596Z">
+<meta property="article:modified_time" content="2022-05-27T17:06:52.015Z">
 <meta property="article:author" content="IV16SL">
 <meta property="article:tag" content="Bitwarden">
 <meta property="article:tag" content="Vaultwarden">
@@ -151,7 +151,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">建立反向代理配置文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%86%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E8%87%B3%E7%BE%A4%E6%99%96nginx%E5%AF%B9%E5%BA%94%E9%85%8D%E7%BD%AE%E7%9B%AE%E5%BD%95%E5%B9%B6%E9%87%8D%E5%90%AF%E6%9C%8D%E5%8A%A1"><span class="nav-number">2.</span> <span class="nav-text">将配置文件上传至群晖nginx对应配置目录并重启服务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E6%95%88%E6%9E%9C"><span class="nav-number">3.</span> <span class="nav-text">测试效果</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">建立反向代理配置文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%86%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E8%87%B3%E7%BE%A4%E6%99%96nginx%E5%AF%B9%E5%BA%94%E9%85%8D%E7%BD%AE%E7%9B%AE%E5%BD%95%E5%B9%B6%E9%87%8D%E5%90%AF%E6%9C%8D%E5%8A%A1"><span class="nav-number">2.</span> <span class="nav-text">将配置文件上传至群晖nginx对应配置目录并重启服务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E6%95%88%E6%9E%9C"><span class="nav-number">3.</span> <span class="nav-text">测试效果</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">4.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -261,9 +261,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2022-05-26 21:27:42 / 修改时间：23:00:12" itemprop="dateCreated datePublished" datetime="2022-05-26T21:27:42+08:00">2022-05-26</time>
+      <time title="创建时间：2022-05-26 21:27:42" itemprop="dateCreated datePublished" datetime="2022-05-26T21:27:42+08:00">2022-05-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-05-28 01:06:52" itemprop="dateModified" datetime="2022-05-28T01:06:52+08:00">2022-05-28</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -288,7 +294,7 @@
         <p>自建Bitwarden是目前自托管密码多平台方案相当热门的方案，在网络上也有非常多的教程供参考，不过许多人搭建后都提到过Bitwarden的数据同步很多时候不是实时的，一般需要手动同步或者向下滑动来立刻同步，否则经常会有你在这个客户端建立好密码档案然而并没有在另一个客户端立刻显示。</p>
 <p>对于不同客户端之间的实时同步，Bitwarden官方把这个功能叫做Live Sync，官方的博客中说这是基于Websocket技术来达成的功能；</p>
 <blockquote>
-<p>Live sync works by using a powerful technology called <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API"><em>WebSockets</em></a>. Live sync is now available in all Bitwarden apps, including mobile (mobile uses a different technology called <em>Push Notifications</em>).[^1]</p>
+<p>Live sync works by using a powerful technology called <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API"><em>WebSockets</em></a>. Live sync is now available in all Bitwarden apps, including mobile (mobile uses a different technology called <em>Push Notifications</em>).</p>
 </blockquote>
 <p>在移动平台端，这个功能被叫做Push notification；</p>
 <p>目前通常自建的Bitwarden大多使用的是Rust重构的开源项目Vaultwarden，这个项目也是支持开启Live Sync的，不过网上教程提到的非常少，因为我在这里整理说明下，一下是在群晖Docker上搭建后开启Live Sync的操作，其他平台和搭建方法达成的也都大同小异，自己按需修改。</p>
@@ -306,7 +312,8 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cp /volume1/docker/scripts/bitwarden.conf /etc/nginx/sites-enabled/bitwarden.conf</span><br><span class="line">synow3tool --gen-all &amp;&amp; systemctl reload nginx</span><br></pre></td></tr></table></figure>
 
 <h1 id="测试效果"><a href="#测试效果" class="headerlink" title="测试效果"></a>测试效果</h1><p>2个客户端，一个是Windows客户端，一个是安卓客户端；修改一个项目确认后查看是否实时同步，控制台也同时会有日志产生。<br><img src="https://s2.loli.net/2022/05/26/iCBWhMtd9Jmye6F.gif"></p>
-<p>[^1]: [参考]: <a target="_blank" rel="noopener" href="https://bitwarden.com/blog/live-sync/">https://bitwarden.com/blog/live-sync/</a>	“LiveSyncBitwardenApps”</p>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p>[1]: <a target="_blank" rel="noopener" href="https://bitwarden.com/blog/live-sync/">https://bitwarden.com/blog/live-sync/</a>	“LiveSyncBitwardenApps”</p>
+<p>[6]: <a target="_blank" rel="noopener" href="https://github.com/dani-garcia/vaultwarden/wiki/Enabling-WebSocket-notifications">https://github.com/dani-garcia/vaultwarden/wiki/Enabling-WebSocket-notifications</a>	“Enabling WebSocket notifications”</p>
 
     </div>
 
