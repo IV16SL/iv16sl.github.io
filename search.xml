@@ -74,6 +74,45 @@
       </tags>
   </entry>
   <entry>
+    <title>为Windows 11配置DOH(DNS Over Https)</title>
+    <url>/posts/58192ec3/</url>
+    <content><![CDATA[<p>Windows 11在22000.51这个版本开始支持DND Over Https(下文简称DOH)，在此之前已经有不少浏览器已经支持DOH，例如Google Chrome和Mozilla Firefox。</p>
+<p>DOH的出现意味着DNS客户端和DNS服务器之间的查询将通过安全的https连接而不再是纯文本，不论隐私还是安全都能够获得有效的提升，尽管这些在当下互联网中都是相对的。</p>
+<span id="more"></span>
+
+<h1 id="Windows-11内置的支持DOH的DNS"><a href="#Windows-11内置的支持DOH的DNS" class="headerlink" title="Windows 11内置的支持DOH的DNS"></a>Windows 11内置的支持DOH的DNS</h1><p>为Windows 11配置DOH并不复杂，但是默认情况下，你只能选择内置的DNS服务商；</p>
+<p>你可以使用下面这个Powershell命令来列出系统当前内置的DNS服务商：</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Get-DNSClientDohServerAddress</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ServerAddress        AllowFallbackToUdp AutoUpgrade DohTemplate</span><br><span class="line">-------------        ------------------ ----------- -----------</span><br><span class="line">149.112.112.112      False              False       https://dns.quad9.net/dns-query</span><br><span class="line">9.9.9.9              False              False       https://dns.quad9.net/dns-query</span><br><span class="line">8.8.8.8              False              False       https://dns.google/dns-query</span><br><span class="line">8.8.4.4              False              False       https://dns.google/dns-query</span><br><span class="line">1.1.1.1              False              False       https://cloudflare-dns.com/dns-query</span><br><span class="line">1.0.0.1              False              False       https://cloudflare-dns.com/dns-query</span><br><span class="line">2001:4860:4860::8844 False              False       https://dns.google/dns-query</span><br><span class="line">2001:4860:4860::8888 False              False       https://dns.google/dns-query</span><br><span class="line">2606:4700:4700::1001 False              False       https://cloudflare-dns.com/dns-query</span><br><span class="line">2606:4700:4700::1111 False              False       https://cloudflare-dns.com/dns-query</span><br><span class="line">2620:fe::fe          False              False       https://dns.quad9.net/dns-query</span><br><span class="line">2620:fe::fe:9        False              False       https://dns.quad9.net/dns-query</span><br></pre></td></tr></table></figure>
+
+<h1 id="添加自定义DNS"><a href="#添加自定义DNS" class="headerlink" title="添加自定义DNS"></a>添加自定义DNS</h1><p>如果你希望使用的DNS并不在此列表中，你也可以通过下面的Powershell命令来添加你自己喜欢的DNS；</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Add-DnsClientDohServerAddress</span> <span class="literal">-ServerAddress</span> <span class="string">&#x27;&lt;resolver-IP-address&gt;&#x27;</span> <span class="literal">-DohTemplate</span> <span class="string">&#x27;&lt;resolver-DoH-template&gt;&#x27;</span> <span class="literal">-AllowFallbackToUdp</span> <span class="variable">$False</span> <span class="literal">-AutoUpgrade</span> <span class="variable">$True</span></span><br></pre></td></tr></table></figure>
+
+<p>例如：</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Add-DnsClientDohServerAddress</span> <span class="literal">-ServerAddress</span> <span class="string">&#x27;223.5.5.5&#x27;</span> <span class="literal">-DohTemplate</span> <span class="string">&#x27;https://dns.alidns.com/dns-query&#x27;</span> <span class="literal">-AllowFallbackToUdp</span> <span class="variable">$False</span> <span class="literal">-AutoUpgrade</span> <span class="variable">$True</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="为当前网络设置DOH"><a href="#为当前网络设置DOH" class="headerlink" title="为当前网络设置DOH"></a>为当前网络设置DOH</h1><ul>
+<li>“Windows 11设置”，选择”网络和Internet”；</li>
+<li>选择”以太网”，编辑”DNS服务器分配”；</li>
+<li>编辑DNS设置为手动，键入你的DNS IP地址；</li>
+<li>将首选的DNS加密设置为”仅加密(通过HTTPS的DNS)”，保存。</li>
+</ul>
+<p>以上设定也将作用于你的WLAN或者Wi-Fi网络。</p>
+<h1 id="三种模式的区别"><a href="#三种模式的区别" class="headerlink" title="三种模式的区别"></a>三种模式的区别</h1><p><strong>仅未加密</strong>：默认选项，到指定DNS服务器的查询全部未加密，通过传统的纯文本查询；</p>
+<p><strong>仅加密（通过HTTPS的DNS）</strong>：所有DNS查询将通过HTTPS传输来获得最有效的保护，但是如果指定DNS服务器如果不支持DOH查询，则不会进行DNS解析；</p>
+<p><strong>已加密的首选，未加密的允许</strong>：将邮箱尝试通过DOH查询，如果目标DNS服务器不支持DNS则改为纯文本查询以获得最佳兼容性。</p>
+]]></content>
+      <categories>
+        <category>折腾</category>
+      </categories>
+      <tags>
+        <tag>Windows 11</tag>
+        <tag>DNS</tag>
+        <tag>DOH</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Debian 11 搭建 Grasscutter</title>
     <url>/posts/85f3d684/</url>
     <content><![CDATA[<p>Grasscutter是一个动漫游戏的服务端，本文仅供学习。</p>
@@ -112,45 +151,6 @@
         <tag>原神</tag>
         <tag>Genshin Impact</tag>
         <tag>Grasscutter</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>为Windows 11配置DOH(DNS Over Https)</title>
-    <url>/posts/58192ec3/</url>
-    <content><![CDATA[<p>Windows 11在22000.51这个版本开始支持DND Over Https(下文简称DOH)，在此之前已经有不少浏览器已经支持DOH，例如Google Chrome和Mozilla Firefox。</p>
-<p>DOH的出现意味着DNS客户端和DNS服务器之间的查询将通过安全的https连接而不再是纯文本，不论隐私还是安全都能够获得有效的提升，尽管这些在当下互联网中都是相对的。</p>
-<span id="more"></span>
-
-<h1 id="Windows-11内置的支持DOH的DNS"><a href="#Windows-11内置的支持DOH的DNS" class="headerlink" title="Windows 11内置的支持DOH的DNS"></a>Windows 11内置的支持DOH的DNS</h1><p>为Windows 11配置DOH并不复杂，但是默认情况下，你只能选择内置的DNS服务商；</p>
-<p>你可以使用下面这个Powershell命令来列出系统当前内置的DNS服务商：</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Get-DNSClientDohServerAddress</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ServerAddress        AllowFallbackToUdp AutoUpgrade DohTemplate</span><br><span class="line">-------------        ------------------ ----------- -----------</span><br><span class="line">149.112.112.112      False              False       https://dns.quad9.net/dns-query</span><br><span class="line">9.9.9.9              False              False       https://dns.quad9.net/dns-query</span><br><span class="line">8.8.8.8              False              False       https://dns.google/dns-query</span><br><span class="line">8.8.4.4              False              False       https://dns.google/dns-query</span><br><span class="line">1.1.1.1              False              False       https://cloudflare-dns.com/dns-query</span><br><span class="line">1.0.0.1              False              False       https://cloudflare-dns.com/dns-query</span><br><span class="line">2001:4860:4860::8844 False              False       https://dns.google/dns-query</span><br><span class="line">2001:4860:4860::8888 False              False       https://dns.google/dns-query</span><br><span class="line">2606:4700:4700::1001 False              False       https://cloudflare-dns.com/dns-query</span><br><span class="line">2606:4700:4700::1111 False              False       https://cloudflare-dns.com/dns-query</span><br><span class="line">2620:fe::fe          False              False       https://dns.quad9.net/dns-query</span><br><span class="line">2620:fe::fe:9        False              False       https://dns.quad9.net/dns-query</span><br></pre></td></tr></table></figure>
-
-<h1 id="添加自定义DNS"><a href="#添加自定义DNS" class="headerlink" title="添加自定义DNS"></a>添加自定义DNS</h1><p>如果你希望使用的DNS并不在此列表中，你也可以通过下面的Powershell命令来添加你自己喜欢的DNS；</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Add-DnsClientDohServerAddress</span> <span class="literal">-ServerAddress</span> <span class="string">&#x27;&lt;resolver-IP-address&gt;&#x27;</span> <span class="literal">-DohTemplate</span> <span class="string">&#x27;&lt;resolver-DoH-template&gt;&#x27;</span> <span class="literal">-AllowFallbackToUdp</span> <span class="variable">$False</span> <span class="literal">-AutoUpgrade</span> <span class="variable">$True</span></span><br></pre></td></tr></table></figure>
-
-<p>例如：</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Add-DnsClientDohServerAddress</span> <span class="literal">-ServerAddress</span> <span class="string">&#x27;223.5.5.5&#x27;</span> <span class="literal">-DohTemplate</span> <span class="string">&#x27;https://dns.alidns.com/dns-query&#x27;</span> <span class="literal">-AllowFallbackToUdp</span> <span class="variable">$False</span> <span class="literal">-AutoUpgrade</span> <span class="variable">$True</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="为当前网络设置DOH"><a href="#为当前网络设置DOH" class="headerlink" title="为当前网络设置DOH"></a>为当前网络设置DOH</h1><ul>
-<li>“Windows 11设置”，选择”网络和Internet”；</li>
-<li>选择”以太网”，编辑”DNS服务器分配”；</li>
-<li>编辑DNS设置为手动，键入你的DNS IP地址；</li>
-<li>将首选的DNS加密设置为”仅加密(通过HTTPS的DNS)”，保存。</li>
-</ul>
-<p>以上设定也将作用于你的WLAN或者Wi-Fi网络。</p>
-<h1 id="三种模式的区别"><a href="#三种模式的区别" class="headerlink" title="三种模式的区别"></a>三种模式的区别</h1><p><strong>仅未加密</strong>：默认选项，到指定DNS服务器的查询全部未加密，通过传统的纯文本查询；</p>
-<p><strong>仅加密（通过HTTPS的DNS）</strong>：所有DNS查询将通过HTTPS传输来获得最有效的保护，但是如果指定DNS服务器如果不支持DOH查询，则不会进行DNS解析；</p>
-<p><strong>已加密的首选，未加密的允许</strong>：将邮箱尝试通过DOH查询，如果目标DNS服务器不支持DNS则改为纯文本查询以获得最佳兼容性。</p>
-]]></content>
-      <categories>
-        <category>折腾</category>
-      </categories>
-      <tags>
-        <tag>Windows 11</tag>
-        <tag>DNS</tag>
-        <tag>DOH</tag>
       </tags>
   </entry>
   <entry>
