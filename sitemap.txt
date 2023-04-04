@@ -1,3 +1,4 @@
+https://blog.iv16sl.xyz/posts/76534bb9/
 https://blog.iv16sl.xyz/posts/c99a4de6/
 https://blog.iv16sl.xyz/about/
 https://blog.iv16sl.xyz/posts/bc73beb2/
@@ -25,4 +26,8 @@ https://blog.iv16sl.xyz/tags/Websocket/
 https://blog.iv16sl.xyz/tags/%E7%BE%A4%E6%99%96/
 https://blog.iv16sl.xyz/tags/Docker/
 https://blog.iv16sl.xyz/tags/Memos/
+https://blog.iv16sl.xyz/tags/CSS/
+https://blog.iv16sl.xyz/tags/%E5%AF%B9%E8%AF%9D/
+https://blog.iv16sl.xyz/tags/ChatGPT/
 https://blog.iv16sl.xyz/categories/%E6%8A%98%E8%85%BE/
+https://blog.iv16sl.xyz/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/
