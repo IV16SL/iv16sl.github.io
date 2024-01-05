@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
 <meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.0.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
@@ -15,10 +15,10 @@
 
 
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.iv16sl.xyz","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.15.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.iv16sl.xyz","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="自建Bitwarden是目前自托管密码多平台方案相当热门的方案，在网络上也有非常多的教程供参考，不过许多人搭建后都提到过Bitwarden的数据同步很多时候不是实时的，一般需要手动同步或者向下滑动来立刻同步，否则经常会有你在这个客户端建立好密码档案然而并没有在另一个客户端立刻显示。 　　对于不同客户端之间的实时同步，Bitwarden官方把这个功能叫做Live Sync，官方的博客中说这是基于">
 <meta property="og:type" content="article">
@@ -33,10 +33,10 @@
 <meta property="article:modified_time" content="2022-05-27T17:38:25.375Z">
 <meta property="article:author" content="IV16SL">
 <meta property="article:tag" content="Bitwarden">
+<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="群晖">
 <meta property="article:tag" content="Vaultwarden">
 <meta property="article:tag" content="Websocket">
-<meta property="article:tag" content="群晖">
-<meta property="article:tag" content="Docker">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://s2.loli.net/2022/05/26/I5nRZCfkMTra7dY.png">
 
@@ -163,7 +163,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -174,7 +174,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -272,8 +272,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
-        <p>　　自建Bitwarden是目前自托管密码多平台方案相当热门的方案，在网络上也有非常多的教程供参考，不过许多人搭建后都提到过Bitwarden的数据同步很多时候不是实时的，一般需要手动同步或者向下滑动来立刻同步，否则经常会有你在这个客户端建立好密码档案然而并没有在另一个客户端立刻显示。</p>
+    <div class="post-body" itemprop="articleBody"><p>　　自建Bitwarden是目前自托管密码多平台方案相当热门的方案，在网络上也有非常多的教程供参考，不过许多人搭建后都提到过Bitwarden的数据同步很多时候不是实时的，一般需要手动同步或者向下滑动来立刻同步，否则经常会有你在这个客户端建立好密码档案然而并没有在另一个客户端立刻显示。</p>
 <p>　　对于不同客户端之间的实时同步，Bitwarden官方把这个功能叫做Live Sync，官方的博客中说这是基于Websocket技术来达成的功能；</p>
 <blockquote>
 <p>Live sync works by using a powerful technology called <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API"><em>WebSockets</em></a>. Live sync is now available in all Bitwarden apps, including mobile (mobile uses a different technology called <em>Push Notifications</em>).</p>
@@ -322,10 +321,10 @@
 
           <div class="post-tags">
               <a href="/tags/Bitwarden/" rel="tag"><i class="fa fa-tag"></i> Bitwarden</a>
+              <a href="/tags/Docker/" rel="tag"><i class="fa fa-tag"></i> Docker</a>
+              <a href="/tags/%E7%BE%A4%E6%99%96/" rel="tag"><i class="fa fa-tag"></i> 群晖</a>
               <a href="/tags/Vaultwarden/" rel="tag"><i class="fa fa-tag"></i> Vaultwarden</a>
               <a href="/tags/Websocket/" rel="tag"><i class="fa fa-tag"></i> Websocket</a>
-              <a href="/tags/%E7%BE%A4%E6%99%96/" rel="tag"><i class="fa fa-tag"></i> 群晖</a>
-              <a href="/tags/Docker/" rel="tag"><i class="fa fa-tag"></i> Docker</a>
           </div>
 
         
@@ -333,12 +332,12 @@
           <div class="post-nav">
             <div class="post-nav-item">
                 <a href="/posts/85f3d684/" rel="prev" title="Debian 11 搭建 Grasscutter">
-                  <i class="fa fa-chevron-left"></i> Debian 11 搭建 Grasscutter
+                  <i class="fa fa-angle-left"></i> Debian 11 搭建 Grasscutter
                 </a>
             </div>
             <div class="post-nav-item">
                 <a href="/posts/c99a4de6/" rel="next" title="在本地部署Memos以及使用Cloudflare Zero Trust进行外部访问">
-                  在本地部署Memos以及使用Cloudflare Zero Trust进行外部访问 <i class="fa fa-chevron-right"></i>
+                  在本地部署Memos以及使用Cloudflare Zero Trust进行外部访问 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -357,15 +356,14 @@
   <footer class="footer">
     <div class="footer-inner">
 
-
-<div class="copyright">
-  &copy; 
-  <span itemprop="copyrightYear">2023</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">IV16SL</span>
-</div>
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">IV16SL</span>
+  </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
 
@@ -393,6 +391,8 @@
 
   <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
 <script src="/js/third-party/search/local-search.js"></script>
+
+
 
 
 
