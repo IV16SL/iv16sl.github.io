@@ -42,38 +42,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Windows 11使用笔记、疑难杂症</title>
-    <url>/posts/c7f49c9e/</url>
-    <content><![CDATA[<p>博主在近日将自己的两台电脑分别升级到了Windows 11，本文将会是一个长期使用笔记以及所遭遇的疑难杂症解决方案等。操作系统产品的使用具有一定时效性，本文尽量保证及时更新。</p>
-<span id="more"></span>
-
-<h1 id="升级方式"><a href="#升级方式" class="headerlink" title="升级方式"></a>升级方式</h1><p>升级方式一般以下四种：</p>
-<ul>
-<li><p>全新安装，通过镜像、启动U盘等，都属于这一类；</p>
-</li>
-<li><p>Windows 10用户等待微软推送；</p>
-<blockquote>
-<p>版本必须为2004或者更高；</p>
-</blockquote>
-</li>
-<li><p>使用<a href="https://www.microsoft.com/zh-cn/software-download/windows11">Windows 11安装助手</a>进行升级；</p>
-</li>
-<li><p>购买预装Windows 11的电脑。</p>
-</li>
-</ul>
-<h1 id="疑难杂症"><a href="#疑难杂症" class="headerlink" title="疑难杂症"></a>疑难杂症</h1><h4 id="更新至Windows-11后，进入桌面就开始不停闪屏"><a href="#更新至Windows-11后，进入桌面就开始不停闪屏" class="headerlink" title="更新至Windows 11后，进入桌面就开始不停闪屏"></a>更新至Windows 11后，进入桌面就开始不停闪屏</h4><p>这种情况一般出现于由Win10直接升级至Win11进入桌面后出现，没有开始菜单，桌面不停刷新。解决此问题的方法为，使用快捷键”Ctrl+Shift+Esc”调出任务管理器，点击”文件”→”运行新任务”→输入”Control”并回车调出控制面板，点击”区域和时间”→”更改时区”→下拉菜单点击一下，确定即可。</p>
-<p>导致此问题的原因尚不明确。</p>
-]]></content>
-      <categories>
-        <category>折腾</category>
-      </categories>
-      <tags>
-        <tag>Windows 11</tag>
-        <tag>微软</tag>
-        <tag>疑难杂症</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>为Windows 11配置DOH(DNS Over Https)</title>
     <url>/posts/58192ec3/</url>
     <content><![CDATA[<p>Windows 11在22000.51这个版本开始支持DND Over Https(下文简称DOH)，在此之前已经有不少浏览器已经支持DOH，例如Google Chrome和Mozilla Firefox。</p>
@@ -113,30 +81,76 @@
       </tags>
   </entry>
   <entry>
-    <title>在本地部署Memos以及使用Cloudflare Zero Trust进行外部访问</title>
-    <url>/posts/c99a4de6/</url>
-    <content><![CDATA[<p>　　Memos是一个轻量可以自己部署的碎片知识管理系统，有点类似于flomo。支持多标签、多用户、搜索、自定存储等功能。</p>
-<h1 id="在-Docker-中部署"><a href="#在-Docker-中部署" class="headerlink" title="在 Docker 中部署"></a>在 Docker 中部署</h1><p>　　本文使用Docker compose方式部署；</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&quot;3.0&quot;</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">memos:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">neosmemo/memos:latest</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">memos</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">/volume1/docker/memos:/var/opt/memos</span> <span class="comment"># 持久化路径:容器路径</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">5254</span><span class="string">:5230</span>                            <span class="comment"># 外部端口:容器端口</span></span><br></pre></td></tr></table></figure>
-
-<p>　　现在你可以运行<code>docker-compose up -d</code>来启动容器了，访问 <a href="http://localhost:5254/">http://localhost:5254/</a> 就可以访问memos的主页创建账户了。</p>
+    <title>Windows 11使用笔记、疑难杂症</title>
+    <url>/posts/c7f49c9e/</url>
+    <content><![CDATA[<p>博主在近日将自己的两台电脑分别升级到了Windows 11，本文将会是一个长期使用笔记以及所遭遇的疑难杂症解决方案等。操作系统产品的使用具有一定时效性，本文尽量保证及时更新。</p>
 <span id="more"></span>
 
-<h1 id="在-Cloudflare-开通-Zero-Trust-并且创建隧道"><a href="#在-Cloudflare-开通-Zero-Trust-并且创建隧道" class="headerlink" title="在 Cloudflare 开通 Zero Trust 并且创建隧道"></a>在 Cloudflare 开通 Zero Trust 并且创建隧道</h1><p>　　在群辉套件中心添加套件来源 <a href="https://packages.synocommunity.com/%EF%BC%8C%E5%B9%B6%E4%B8%94%E5%AE%89%E8%A3%85%E5%A5%97%E4%BB%B6">https://packages.synocommunity.com/，并且安装套件</a> Cloudflared。</p>
-<p><img src="https://s2.loli.net/2023/04/03/Ljk8oJGEbI9aWKv.png" alt="image-20230401234057185"></p>
-<p><img src="https://s2.loli.net/2023/04/03/Kza24VZYS73y8il.png" alt="image-20230403024320410"></p>
-<p>　　访问 <a href="https://dash.cloudflare.com/">https://dash.cloudflare.com/</a> 并且登录自己的账户，转到 Zero Trust → Access → Tunnels → Create a tunnel，复制自己 Tunnel token，启动群晖的套件，粘贴该 token。</p>
-<p>　　转到 Public Hostname ，然后 Add a public hostname ，添加自己域名和主机。</p>
-<p><img src="https://s2.loli.net/2023/04/03/hG8Oa97ZxrbSRg4.png" alt="image-20230403025156437"></p>
-<p>　　保存设置后网站就可以访问了。</p>
+<h1 id="升级方式"><a href="#升级方式" class="headerlink" title="升级方式"></a>升级方式</h1><p>升级方式一般以下四种：</p>
+<ul>
+<li><p>全新安装，通过镜像、启动U盘等，都属于这一类；</p>
+</li>
+<li><p>Windows 10用户等待微软推送；</p>
+<blockquote>
+<p>版本必须为2004或者更高；</p>
+</blockquote>
+</li>
+<li><p>使用<a href="https://www.microsoft.com/zh-cn/software-download/windows11">Windows 11安装助手</a>进行升级；</p>
+</li>
+<li><p>购买预装Windows 11的电脑。</p>
+</li>
+</ul>
+<h1 id="疑难杂症"><a href="#疑难杂症" class="headerlink" title="疑难杂症"></a>疑难杂症</h1><h4 id="更新至Windows-11后，进入桌面就开始不停闪屏"><a href="#更新至Windows-11后，进入桌面就开始不停闪屏" class="headerlink" title="更新至Windows 11后，进入桌面就开始不停闪屏"></a>更新至Windows 11后，进入桌面就开始不停闪屏</h4><p>这种情况一般出现于由Win10直接升级至Win11进入桌面后出现，没有开始菜单，桌面不停刷新。解决此问题的方法为，使用快捷键”Ctrl+Shift+Esc”调出任务管理器，点击”文件”→”运行新任务”→输入”Control”并回车调出控制面板，点击”区域和时间”→”更改时区”→下拉菜单点击一下，确定即可。</p>
+<p>导致此问题的原因尚不明确。</p>
 ]]></content>
       <categories>
         <category>折腾</category>
       </categories>
       <tags>
-        <tag>Memos</tag>
-        <tag>Docker</tag>
-        <tag>群晖</tag>
+        <tag>Windows 11</tag>
+        <tag>微软</tag>
+        <tag>疑难杂症</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Debian 11 搭建 Grasscutter</title>
+    <url>/posts/85f3d684/</url>
+    <content><![CDATA[<p>Grasscutter是一个动漫游戏的服务端，本文仅供学习。</p>
+<h1 id="Debian-11的安装"><a href="#Debian-11的安装" class="headerlink" title="Debian 11的安装"></a>Debian 11的安装</h1><p>这一部分自行解决。</p>
+<h1 id="部署Grasscutter"><a href="#部署Grasscutter" class="headerlink" title="部署Grasscutter"></a>部署Grasscutter</h1><h2 id="1-安装MongoDB"><a href="#1-安装MongoDB" class="headerlink" title="1. 安装MongoDB"></a>1. 安装MongoDB</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">su -</span><br><span class="line">apt update</span><br><span class="line">apt install gnupg</span><br><span class="line">wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | apt-key add -</span><br><span class="line">echo &quot;deb http://repo.mongodb.org/apt/debian buster/mongodb-org/5.0 main&quot; | tee /etc/apt/sources.list.d/mongodb-org-5.0.list</span><br><span class="line">apt update</span><br><span class="line">apt install mongodb-org</span><br><span class="line">systemctl enable mongod --now</span><br></pre></td></tr></table></figure>
+
+<p>数据库文件位置：&#x2F;var&#x2F;lib&#x2F;mongodb</p>
+<p>日志文件位置：&#x2F;var&#x2F;log&#x2F;mongodb</p>
+<span id="more"></span>
+
+<h2 id="2-安装Open-jdk-17"><a href="#2-安装Open-jdk-17" class="headerlink" title="2. 安装Open jdk 17"></a>2. 安装Open jdk 17</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt install -y openjdk-17-jdk</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-拉取Grasscutter库（Dev分支）"><a href="#3-拉取Grasscutter库（Dev分支）" class="headerlink" title="3. 拉取Grasscutter库（Dev分支）"></a>3. 拉取Grasscutter库（Dev分支）</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/Grasscutters/Grasscutter -b development</span><br><span class="line">cd Grasscutter</span><br><span class="line">git clone https://github.com/Koko-boya/Grasscutter_Resources</span><br><span class="line">mkdir resources</span><br><span class="line">\cp -r Grasscutter_Resources/Resources/* resources</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-构建"><a href="#4-构建" class="headerlink" title="4. 构建"></a>4. 构建</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">chmod +x gradlew</span><br><span class="line">./gradlew jar</span><br><span class="line">ls</span><br></pre></td></tr></table></figure>
+
+<p>构建完成后生成一个grasscutter-1.1.2.jar；</p>
+<p>因为更新频繁建议重命名为commit编号便于识别和管理；</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mv grasscutter-1.1.2.jar grasscutter-58df221.jar</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-下载mitmproxy"><a href="#5-下载mitmproxy" class="headerlink" title="5. 下载mitmproxy"></a>5. 下载mitmproxy</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget https://snapshots.mitmproxy.org/8.0.0/mitmproxy-8.0.0-linux.tar.gz</span><br><span class="line">tar zxvf mitmproxy-8.0.0-linux.tar.gz</span><br><span class="line">nohup ./mitmdump -s proxy.py --ssl-insecure --listen-port 12345 --set block_global=false --set tls_version_client_min=UNBOUNDED</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-运行服务端"><a href="#6-运行服务端" class="headerlink" title="6. 运行服务端"></a>6. 运行服务端</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">java -jar grasscutter-58df221.jar</span><br></pre></td></tr></table></figure>
+
+<p>首次运行可能会报错，按Ctrl-C退出后，编辑生成的config.json，填写自己的IP地址或者域名还有端口号，注意不要冲突，然后重新运行。</p>
+<h2 id="7-建立账户"><a href="#7-建立账户" class="headerlink" title="7. 建立账户"></a>7. 建立账户</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//account create &lt;用户名&gt; &lt;UID&gt;</span><br><span class="line">account create test 12345</span><br></pre></td></tr></table></figure>
+
+<p>其余命令可以参考项目Wiki。</p>
+<h2 id="8-登录服务器"><a href="#8-登录服务器" class="headerlink" title="8. 登录服务器"></a>8. 登录服务器</h2><p>个人电脑可以使用系统自带的http代理，也可以使用Clash for windows。</p>
+<h2 id="9-待补充（待续）"><a href="#9-待补充（待续）" class="headerlink" title="9. 待补充（待续）"></a>9. 待补充（待续）</h2><p>待补充。。。</p>
+]]></content>
+      <categories>
+        <category>折腾</category>
+      </categories>
+      <tags>
+        <tag>原神</tag>
+        <tag>Genshin Impact</tag>
+        <tag>Grasscutter</tag>
       </tags>
   </entry>
   <entry>
@@ -170,10 +184,37 @@
       </categories>
       <tags>
         <tag>Bitwarden</tag>
-        <tag>Docker</tag>
-        <tag>群晖</tag>
         <tag>Vaultwarden</tag>
         <tag>Websocket</tag>
+        <tag>群晖</tag>
+        <tag>Docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在本地部署Memos以及使用Cloudflare Zero Trust进行外部访问</title>
+    <url>/posts/c99a4de6/</url>
+    <content><![CDATA[<p>　　Memos是一个轻量可以自己部署的碎片知识管理系统，有点类似于flomo。支持多标签、多用户、搜索、自定存储等功能。</p>
+<h1 id="在-Docker-中部署"><a href="#在-Docker-中部署" class="headerlink" title="在 Docker 中部署"></a>在 Docker 中部署</h1><p>　　本文使用Docker compose方式部署；</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&quot;3.0&quot;</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">memos:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">neosmemo/memos:latest</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">memos</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">/volume1/docker/memos:/var/opt/memos</span> <span class="comment"># 持久化路径:容器路径</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">5254</span><span class="string">:5230</span>                            <span class="comment"># 外部端口:容器端口</span></span><br></pre></td></tr></table></figure>
+
+<p>　　现在你可以运行<code>docker-compose up -d</code>来启动容器了，访问 <a href="http://localhost:5254/">http://localhost:5254/</a> 就可以访问memos的主页创建账户了。</p>
+<span id="more"></span>
+
+<h1 id="在-Cloudflare-开通-Zero-Trust-并且创建隧道"><a href="#在-Cloudflare-开通-Zero-Trust-并且创建隧道" class="headerlink" title="在 Cloudflare 开通 Zero Trust 并且创建隧道"></a>在 Cloudflare 开通 Zero Trust 并且创建隧道</h1><p>　　在群辉套件中心添加套件来源 <a href="https://packages.synocommunity.com/%EF%BC%8C%E5%B9%B6%E4%B8%94%E5%AE%89%E8%A3%85%E5%A5%97%E4%BB%B6">https://packages.synocommunity.com/，并且安装套件</a> Cloudflared。</p>
+<p><img src="https://s2.loli.net/2023/04/03/Ljk8oJGEbI9aWKv.png" alt="image-20230401234057185"></p>
+<p><img src="https://s2.loli.net/2023/04/03/Kza24VZYS73y8il.png" alt="image-20230403024320410"></p>
+<p>　　访问 <a href="https://dash.cloudflare.com/">https://dash.cloudflare.com/</a> 并且登录自己的账户，转到 Zero Trust → Access → Tunnels → Create a tunnel，复制自己 Tunnel token，启动群晖的套件，粘贴该 token。</p>
+<p>　　转到 Public Hostname ，然后 Add a public hostname ，添加自己域名和主机。</p>
+<p><img src="https://s2.loli.net/2023/04/03/hG8Oa97ZxrbSRg4.png" alt="image-20230403025156437"></p>
+<p>　　保存设置后网站就可以访问了。</p>
+]]></content>
+      <categories>
+        <category>折腾</category>
+      </categories>
+      <tags>
+        <tag>群晖</tag>
+        <tag>Docker</tag>
+        <tag>Memos</tag>
       </tags>
   </entry>
   <entry>
@@ -304,59 +345,6 @@
         <tag>CSS</tag>
         <tag>对话</tag>
         <tag>ChatGPT</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Debian 11 搭建 Grasscutter</title>
-    <url>/posts/85f3d684/</url>
-    <content><![CDATA[<p>Grasscutter是一个动漫游戏的服务端，本文仅供学习。</p>
-<h1 id="Debian-11的安装"><a href="#Debian-11的安装" class="headerlink" title="Debian 11的安装"></a>Debian 11的安装</h1><p>这一部分自行解决。</p>
-<h1 id="部署Grasscutter"><a href="#部署Grasscutter" class="headerlink" title="部署Grasscutter"></a>部署Grasscutter</h1><h2 id="1-安装MongoDB"><a href="#1-安装MongoDB" class="headerlink" title="1. 安装MongoDB"></a>1. 安装MongoDB</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">su -</span><br><span class="line">apt update</span><br><span class="line">apt install gnupg</span><br><span class="line">wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | apt-key add -</span><br><span class="line">echo &quot;deb http://repo.mongodb.org/apt/debian buster/mongodb-org/5.0 main&quot; | tee /etc/apt/sources.list.d/mongodb-org-5.0.list</span><br><span class="line">apt update</span><br><span class="line">apt install mongodb-org</span><br><span class="line">systemctl enable mongod --now</span><br></pre></td></tr></table></figure>
-
-<p>数据库文件位置：&#x2F;var&#x2F;lib&#x2F;mongodb</p>
-<p>日志文件位置：&#x2F;var&#x2F;log&#x2F;mongodb</p>
-<span id="more"></span>
-
-<h2 id="2-安装Open-jdk-17"><a href="#2-安装Open-jdk-17" class="headerlink" title="2. 安装Open jdk 17"></a>2. 安装Open jdk 17</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt install -y openjdk-17-jdk</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-拉取Grasscutter库（Dev分支）"><a href="#3-拉取Grasscutter库（Dev分支）" class="headerlink" title="3. 拉取Grasscutter库（Dev分支）"></a>3. 拉取Grasscutter库（Dev分支）</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/Grasscutters/Grasscutter -b development</span><br><span class="line">cd Grasscutter</span><br><span class="line">git clone https://github.com/Koko-boya/Grasscutter_Resources</span><br><span class="line">mkdir resources</span><br><span class="line">\cp -r Grasscutter_Resources/Resources/* resources</span><br></pre></td></tr></table></figure>
-
-<h2 id="4-构建"><a href="#4-构建" class="headerlink" title="4. 构建"></a>4. 构建</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">chmod +x gradlew</span><br><span class="line">./gradlew jar</span><br><span class="line">ls</span><br></pre></td></tr></table></figure>
-
-<p>构建完成后生成一个grasscutter-1.1.2.jar；</p>
-<p>因为更新频繁建议重命名为commit编号便于识别和管理；</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mv grasscutter-1.1.2.jar grasscutter-58df221.jar</span><br></pre></td></tr></table></figure>
-
-<h2 id="5-下载mitmproxy"><a href="#5-下载mitmproxy" class="headerlink" title="5. 下载mitmproxy"></a>5. 下载mitmproxy</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget https://snapshots.mitmproxy.org/8.0.0/mitmproxy-8.0.0-linux.tar.gz</span><br><span class="line">tar zxvf mitmproxy-8.0.0-linux.tar.gz</span><br><span class="line">nohup ./mitmdump -s proxy.py --ssl-insecure --listen-port 12345 --set block_global=false --set tls_version_client_min=UNBOUNDED</span><br></pre></td></tr></table></figure>
-
-<h2 id="6-运行服务端"><a href="#6-运行服务端" class="headerlink" title="6. 运行服务端"></a>6. 运行服务端</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">java -jar grasscutter-58df221.jar</span><br></pre></td></tr></table></figure>
-
-<p>首次运行可能会报错，按Ctrl-C退出后，编辑生成的config.json，填写自己的IP地址或者域名还有端口号，注意不要冲突，然后重新运行。</p>
-<h2 id="7-建立账户"><a href="#7-建立账户" class="headerlink" title="7. 建立账户"></a>7. 建立账户</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//account create &lt;用户名&gt; &lt;UID&gt;</span><br><span class="line">account create test 12345</span><br></pre></td></tr></table></figure>
-
-<p>其余命令可以参考项目Wiki。</p>
-<h2 id="8-登录服务器"><a href="#8-登录服务器" class="headerlink" title="8. 登录服务器"></a>8. 登录服务器</h2><p>个人电脑可以使用系统自带的http代理，也可以使用Clash for windows。</p>
-<h2 id="9-待补充（待续）"><a href="#9-待补充（待续）" class="headerlink" title="9. 待补充（待续）"></a>9. 待补充（待续）</h2><p>待补充。。。</p>
-]]></content>
-      <categories>
-        <category>折腾</category>
-      </categories>
-      <tags>
-        <tag>原神</tag>
-        <tag>Genshin Impact</tag>
-        <tag>Grasscutter</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/posts/0/</url>
-    <content><![CDATA[<p>&#x3D;&#x3D;⚠  Switch to EXCALIDRAW VIEW in the MORE OPTIONS menu of this document. ⚠&#x3D;&#x3D;</p>
-<p>%%</p>
-<h1 id="Drawing"><a href="#Drawing" class="headerlink" title="Drawing"></a>Drawing</h1><figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;excalidraw&quot;</span><span class="punctuation">,</span><span class="attr">&quot;version&quot;</span><span class="punctuation">:</span><span class="number">2</span><span class="punctuation">,</span><span class="attr">&quot;source&quot;</span><span class="punctuation">:</span><span class="string">&quot;https://github.com/zsviczian/obsidian-excalidraw-plugin/releases/tag/1.8.25&quot;</span><span class="punctuation">,</span><span class="attr">&quot;elements&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;appState&quot;</span><span class="punctuation">:</span><span class="punctuation">&#123;</span><span class="attr">&quot;gridSize&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">null</span></span><span class="punctuation">,</span><span class="attr">&quot;viewBackgroundColor&quot;</span><span class="punctuation">:</span><span class="string">&quot;#ffffff&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-<p>%%</p>
-]]></content>
-      <tags>
-        <tag>excalidraw</tag>
       </tags>
   </entry>
 </search>
