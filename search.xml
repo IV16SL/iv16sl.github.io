@@ -347,4 +347,28 @@
         <tag>ChatGPT</tag>
       </tags>
   </entry>
+  <entry>
+    <title>本周在忙些什么（Y2024W02）</title>
+    <url>/posts/b3cfedb0/</url>
+    <content><![CDATA[<p>  　　因为感觉自己总是忙的不可开交，但是因为各种事情都很细碎，所以有必要整理下自己到底在忙什么，时间都花在哪里了？让我们来看下本周在忙些什么呢？<br>  <span id="more"></span></p>
+<h2 id="个人服务器"><a href="#个人服务器" class="headerlink" title="个人服务器"></a>个人服务器</h2><h3 id="flaresloverr"><a href="#flaresloverr" class="headerlink" title="flaresloverr"></a>flaresloverr</h3><p>　　早前一直遭遇 tekqart 的签到问题，一直没能解决，随着 flaresloverr 的更新，这个问题顺利解决了；<br>详情可以参考：<a href="https://github.com/wjf0214/qd-templates/discussions/45">品技(原91TVG) 模板问题反馈评论区 · wjf0214&#x2F;qd-templates · Discussion #45 (github.com)</a></p>
+<h3 id="FreshRSS"><a href="#FreshRSS" class="headerlink" title="FreshRSS"></a>FreshRSS</h3><p>　　更新到了 1.23.1，开启了邮箱验证功能，并且切换到了官方仓库；对于 RSS，还是一句话，不要订阅太多，你用RSS本来就是为了精准筛选信息，太多你来不及看的，千万不要本末倒置。</p>
+<h3 id="Headscale-derp服务器"><a href="#Headscale-derp服务器" class="headerlink" title="Headscale derp服务器"></a>Headscale derp服务器</h3><p>　　本周遇到的问题，单部署 Headscale，当客户端之间无法直接打洞直连时切换到官方的 derp 服务器，理论上是就近原则，但是实际切换非常谜，导致明明很近延迟却爆炸，因此自己部署了 derp 服务器，删除官方列表。</p>
+<h3 id="Memos"><a href="#Memos" class="headerlink" title="Memos"></a>Memos</h3><p>　　Memos 更新到了0.18.2，但是此版本好像不支持 markdown 表格了，看看后续版本吧 ，最近我总是拿来记录做菜的。</p>
+<h3 id="Bitwarden"><a href="#Bitwarden" class="headerlink" title="Bitwarden"></a>Bitwarden</h3><p>　　将第三方实现“Vaultwarden”更新到了最新，自己编译了最新的 web-vault v2024.1.0，做了少量的修改，新增的使用通行密钥登陆 web-vault，需要后续实现 。</p>
+<h2 id="信息安全"><a href="#信息安全" class="headerlink" title="信息安全"></a>信息安全</h2><p>　　删除了微软、英伟达（非CN）、群晖（非CN）的账户密码，改用通行密钥登陆。<br>轻度学习了下 GunPG 的使用，此前我只用于 Github 提交验证，现在也用于邮件加密。</p>
+<h2 id="电子邮件"><a href="#电子邮件" class="headerlink" title="电子邮件"></a>电子邮件</h2><p>　　开始使用 Thunderbird 作为邮件客户端，并且默认打开端到端加密，启用了 OpenPGP 加密。对于配置上，如果你使用 Gmail 的 IMAP，需要注意 SS&#x2F;SSR 是无法代理 IMAP 协议的，建议可以通过其他手段（比如 Socks5）。</p>
+<h2 id="游戏"><a href="#游戏" class="headerlink" title="游戏"></a>游戏</h2><p>　　本周也只玩了原神，2个号每天玩的细致一点需要2小时了，因此没有想法玩其他游戏，时间不够充裕。自己的号稻妻成就还差1个，不出意外两周内会完成。</p>
+<h2 id="Git-仓库"><a href="#Git-仓库" class="headerlink" title="Git 仓库"></a>Git 仓库</h2><p>　　实际上我只有一个 Scoop 自用仓库托管在 Github，本周也是常规更新和终于修复了 newline 的问题，要养成文件尾 newline 的好习惯，另外每次修改前一定要先拉取仓库，不要等到合并冲突再想起来这个事情。</p>
+<h2 id="剧集"><a href="#剧集" class="headerlink" title="剧集"></a>剧集</h2><p>　　看完了《帝王计划：怪兽遗产》，整体节奏挺好，作为《哥斯拉大战金刚2》的前置，质量我觉得是过关的，但是政治正确的各种要素拉满了，感觉没有必要。<br>还有一部正在看的剧是《繁花》，看了上海话版本，有些很久没听到的词汇感觉格外亲切，剧本身质量也很好，等看完再说说其他。</p>
+]]></content>
+      <categories>
+        <category>本周忙些什么</category>
+      </categories>
+      <tags>
+        <tag>个人服务器</tag>
+        <tag>本周</tag>
+        <tag>RSS</tag>
+      </tags>
+  </entry>
 </search>

@@ -20,30 +20,30 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"blog.iv16sl.xyz","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="在使用密码托管服务时，我最初只需要简单的同步，能够供手机使用即可。所以在使用1Password的时候，一直使用的是单机版。随着时间的推移，自己也有多平台需要，这种方式渐渐变的不方便，由于不太想使用1Password的网络服务，在前个月把密码托管逐步迁移到了自建Bitwarden服务。经过将近2个月的使用，个人感受相当良好。虽然有些小问题，但都在可以接受的范围内。 因为有多平台和外网需要，所以便开放">
+    <meta name="description" content="因为感觉自己总是忙的不可开交，但是因为各种事情都很细碎，所以有必要整理下自己到底在忙什么，时间都花在哪里了？让我们来看下本周在忙些什么呢？">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Vaultwarden&#x2F;Bitwardenrs启用两步验证和QQ邮箱代发验证码">
-<meta property="og:url" content="https://blog.iv16sl.xyz/posts/c7341afb/">
+<meta property="og:title" content="本周在忙些什么（Y2024W02）">
+<meta property="og:url" content="https://blog.iv16sl.xyz/posts/b3cfedb0/">
 <meta property="og:site_name" content="IV16SL&#39;s Blog">
-<meta property="og:description" content="在使用密码托管服务时，我最初只需要简单的同步，能够供手机使用即可。所以在使用1Password的时候，一直使用的是单机版。随着时间的推移，自己也有多平台需要，这种方式渐渐变的不方便，由于不太想使用1Password的网络服务，在前个月把密码托管逐步迁移到了自建Bitwarden服务。经过将近2个月的使用，个人感受相当良好。虽然有些小问题，但都在可以接受的范围内。 因为有多平台和外网需要，所以便开放">
+<meta property="og:description" content="因为感觉自己总是忙的不可开交，但是因为各种事情都很细碎，所以有必要整理下自己到底在忙什么，时间都花在哪里了？让我们来看下本周在忙些什么呢？">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-10-11T14:16:04.000Z">
-<meta property="article:modified_time" content="2021-10-20T11:48:28.751Z">
+<meta property="article:published_time" content="2024-01-13T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-01-14T15:08:30.205Z">
 <meta property="article:author" content="IV16SL">
-<meta property="article:tag" content="Bitwarden">
-<meta property="article:tag" content="QQ邮箱">
-<meta property="article:tag" content="两部验证">
+<meta property="article:tag" content="个人服务器">
+<meta property="article:tag" content="本周">
+<meta property="article:tag" content="RSS">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://blog.iv16sl.xyz/posts/c7341afb/">
+<link rel="canonical" href="https://blog.iv16sl.xyz/posts/b3cfedb0/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.iv16sl.xyz/posts/c7341afb/","path":"posts/c7341afb/","title":"Vaultwarden/Bitwardenrs启用两步验证和QQ邮箱代发验证码"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.iv16sl.xyz/posts/b3cfedb0/","path":"posts/b3cfedb0/","title":"本周在忙些什么（Y2024W02）"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Vaultwarden/Bitwardenrs启用两步验证和QQ邮箱代发验证码 | IV16SL's Blog</title>
+<title>本周在忙些什么（Y2024W02） | IV16SL's Blog</title>
   
 
 
@@ -143,7 +143,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%90%AD%E5%BB%BA%E7%8E%AF%E5%A2%83"><span class="nav-number">1.</span> <span class="nav-text">搭建环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E4%B8%A4%E6%AD%A5%E9%AA%8C%E8%AF%81"><span class="nav-number">2.</span> <span class="nav-text">设置两步验证</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E9%82%AE%E7%AE%B1%E6%9C%8D%E5%8A%A1%E4%BB%A5%E5%8F%8A%E4%BB%A3%E5%8F%91%E9%AA%8C%E8%AF%81%E7%A0%81"><span class="nav-number">3.</span> <span class="nav-text">设置邮箱服务以及代发验证码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TOTP%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%97%B6%E9%97%B4%E4%B8%8D%E5%90%8C%E6%AD%A5"><span class="nav-number">4.</span> <span class="nav-text">TOTP服务端时间不同步</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%AA%E4%BA%BA%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-number">1.</span> <span class="nav-text">个人服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#flaresloverr"><span class="nav-number">1.1.</span> <span class="nav-text">flaresloverr</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FreshRSS"><span class="nav-number">1.2.</span> <span class="nav-text">FreshRSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Headscale-derp%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-number">1.3.</span> <span class="nav-text">Headscale derp服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Memos"><span class="nav-number">1.4.</span> <span class="nav-text">Memos</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bitwarden"><span class="nav-number">1.5.</span> <span class="nav-text">Bitwarden</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8"><span class="nav-number">2.</span> <span class="nav-text">信息安全</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6"><span class="nav-number">3.</span> <span class="nav-text">电子邮件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%B8%E6%88%8F"><span class="nav-number">4.</span> <span class="nav-text">游戏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git-%E4%BB%93%E5%BA%93"><span class="nav-number">5.</span> <span class="nav-text">Git 仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%A7%E9%9B%86"><span class="nav-number">6.</span> <span class="nav-text">剧集</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -210,7 +210,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.iv16sl.xyz/posts/c7341afb/">
+    <link itemprop="mainEntityOfPage" href="https://blog.iv16sl.xyz/posts/b3cfedb0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -223,12 +223,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Vaultwarden/Bitwardenrs启用两步验证和QQ邮箱代发验证码 | IV16SL's Blog">
+      <meta itemprop="name" content="本周在忙些什么（Y2024W02） | IV16SL's Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Vaultwarden/Bitwardenrs启用两步验证和QQ邮箱代发验证码
+          本周在忙些什么（Y2024W02）
         </h1>
 
         <div class="post-meta-container">
@@ -238,15 +238,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2021-10-11 22:16:04" itemprop="dateCreated datePublished" datetime="2021-10-11T22:16:04+08:00">2021-10-11</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2021-10-20 19:48:28" itemprop="dateModified" datetime="2021-10-20T19:48:28+08:00">2021-10-20</time>
+      <time title="创建时间：2024-01-14 00:00:00 / 修改时间：23:08:30" itemprop="dateCreated datePublished" datetime="2024-01-14T00:00:00+08:00">2024-01-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -254,7 +248,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%8A%98%E8%85%BE/" itemprop="url" rel="index"><span itemprop="name">折腾</span></a>
+          <a href="/categories/%E6%9C%AC%E5%91%A8%E5%BF%99%E4%BA%9B%E4%BB%80%E4%B9%88/" itemprop="url" rel="index"><span itemprop="name">本周忙些什么</span></a>
         </span>
     </span>
 
@@ -267,34 +261,17 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>在使用密码托管服务时，我最初只需要简单的同步，能够供手机使用即可。所以在使用1Password的时候，一直使用的是单机版。随着时间的推移，自己也有多平台需要，这种方式渐渐变的不方便，由于不太想使用1Password的网络服务，在前个月把密码托管逐步迁移到了自建Bitwarden服务。经过将近2个月的使用，个人感受相当良好。虽然有些小问题，但都在可以接受的范围内。</p>
-<p>因为有多平台和外网需要，所以便开放了外网，因为安全考虑设置了2步验证并且关闭注册，本文主要说一下开放2步验证以及备用手段即QQ邮箱接收验证码。</p>
-<span id="more"></span>
-
-<h1 id="搭建环境"><a href="#搭建环境" class="headerlink" title="搭建环境"></a>搭建环境</h1><p>我的Bitwarden服务通过Docker搭建在群晖上，虽然这样做有人觉得会存在不少问题，但我觉得人数不多且做好安全措施的话，可以接受这种方法。</p>
-<h1 id="设置两步验证"><a href="#设置两步验证" class="headerlink" title="设置两步验证"></a>设置两步验证</h1><ul>
-<li><p>登录你的Bitwarden密码库网页后台；</p>
-</li>
-<li><p>点击右上角头像→我的账户→两部登录；</p>
-</li>
-<li><p>点击管理验证器应用，准备好Google Authenticator或者Microsoft Authenticator，根据自己的喜好来；</p>
-</li>
-<li><p>使用验证器扫描二维码→填入6位验证码→确定以及保存好恢复代码；</p>
-<blockquote>
-<p>Bitwarden的恢复代码在设置里可以再次查看，请妥善保管。</p>
-</blockquote>
-</li>
-</ul>
-<h1 id="设置邮箱服务以及代发验证码"><a href="#设置邮箱服务以及代发验证码" class="headerlink" title="设置邮箱服务以及代发验证码"></a>设置邮箱服务以及代发验证码</h1><p>我一开始觉得单纯的验证器已经够用，但是我遇到了TOTP服务器时间不正确的问题，一旦客户端和服务端时间差异超过1分钟，你的请求就是被服务端拒绝。保险起见我又多设置了邮箱服务，邮件验证码的有效期10分钟，是个很好的备选方案。</p>
-<p>通过域名加上”&#x2F;admin”访问Bitwarden的管理后台，输入admin token登录；</p>
-<blockquote>
-<p>Admin token在Dockers面板里设置，增加一条环境变量”ADMIN_TOKEN&#x3D;xxx”,xxx表示任意长度字符串，别太短就好，后期长时间不用就把这条删掉以保证安全性。</p>
-</blockquote>
-<p>点击”SMTP Email Settings”,进行如下设置：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Enable: true</span><br><span class="line">Host: smtp.qq.com</span><br><span class="line">Enable Secure SMTP :true</span><br><span class="line">Force TLS :true</span><br><span class="line">Port :465</span><br><span class="line">From Address :user@qq.com #user就是你的用户名,这里不要用不是当前账户的地址，否则可能发送失败</span><br><span class="line">From Name :Bitwarden</span><br><span class="line">Username :user@qq.com #user就是你的用户名</span><br><span class="line">Password :yourpassword #登录QQ邮箱Web页面，账户POP3设置里面生成授权码，需要关闭安全登录才会显示此选项</span><br><span class="line">SMTP Auth mechanism :Plain</span><br><span class="line">SMTP connection timeout :15</span><br></pre></td></tr></table></figure>
-
-<p>随后可以测试发送邮件是否成功，并且回到Bitwarden密码库网络后台的两部登陆中开启电子邮件验证码功能。</p>
-<h1 id="TOTP服务端时间不同步"><a href="#TOTP服务端时间不同步" class="headerlink" title="TOTP服务端时间不同步"></a>TOTP服务端时间不同步</h1><p>我也不知道为何会产生此问题，我最后把群晖的NTP服务器改成了”time.nist.gov”，之后一段时间都暂未遇到此问题。</p>
+    <div class="post-body" itemprop="articleBody"><p>  　　因为感觉自己总是忙的不可开交，但是因为各种事情都很细碎，所以有必要整理下自己到底在忙什么，时间都花在哪里了？让我们来看下本周在忙些什么呢？<br>  <span id="more"></span></p>
+<h2 id="个人服务器"><a href="#个人服务器" class="headerlink" title="个人服务器"></a>个人服务器</h2><h3 id="flaresloverr"><a href="#flaresloverr" class="headerlink" title="flaresloverr"></a>flaresloverr</h3><p>　　早前一直遭遇 tekqart 的签到问题，一直没能解决，随着 flaresloverr 的更新，这个问题顺利解决了；<br>详情可以参考：<a target="_blank" rel="noopener" href="https://github.com/wjf0214/qd-templates/discussions/45">品技(原91TVG) 模板问题反馈评论区 · wjf0214&#x2F;qd-templates · Discussion #45 (github.com)</a></p>
+<h3 id="FreshRSS"><a href="#FreshRSS" class="headerlink" title="FreshRSS"></a>FreshRSS</h3><p>　　更新到了 1.23.1，开启了邮箱验证功能，并且切换到了官方仓库；对于 RSS，还是一句话，不要订阅太多，你用RSS本来就是为了精准筛选信息，太多你来不及看的，千万不要本末倒置。</p>
+<h3 id="Headscale-derp服务器"><a href="#Headscale-derp服务器" class="headerlink" title="Headscale derp服务器"></a>Headscale derp服务器</h3><p>　　本周遇到的问题，单部署 Headscale，当客户端之间无法直接打洞直连时切换到官方的 derp 服务器，理论上是就近原则，但是实际切换非常谜，导致明明很近延迟却爆炸，因此自己部署了 derp 服务器，删除官方列表。</p>
+<h3 id="Memos"><a href="#Memos" class="headerlink" title="Memos"></a>Memos</h3><p>　　Memos 更新到了0.18.2，但是此版本好像不支持 markdown 表格了，看看后续版本吧 ，最近我总是拿来记录做菜的。</p>
+<h3 id="Bitwarden"><a href="#Bitwarden" class="headerlink" title="Bitwarden"></a>Bitwarden</h3><p>　　将第三方实现“Vaultwarden”更新到了最新，自己编译了最新的 web-vault v2024.1.0，做了少量的修改，新增的使用通行密钥登陆 web-vault，需要后续实现 。</p>
+<h2 id="信息安全"><a href="#信息安全" class="headerlink" title="信息安全"></a>信息安全</h2><p>　　删除了微软、英伟达（非CN）、群晖（非CN）的账户密码，改用通行密钥登陆。<br>轻度学习了下 GunPG 的使用，此前我只用于 Github 提交验证，现在也用于邮件加密。</p>
+<h2 id="电子邮件"><a href="#电子邮件" class="headerlink" title="电子邮件"></a>电子邮件</h2><p>　　开始使用 Thunderbird 作为邮件客户端，并且默认打开端到端加密，启用了 OpenPGP 加密。对于配置上，如果你使用 Gmail 的 IMAP，需要注意 SS&#x2F;SSR 是无法代理 IMAP 协议的，建议可以通过其他手段（比如 Socks5）。</p>
+<h2 id="游戏"><a href="#游戏" class="headerlink" title="游戏"></a>游戏</h2><p>　　本周也只玩了原神，2个号每天玩的细致一点需要2小时了，因此没有想法玩其他游戏，时间不够充裕。自己的号稻妻成就还差1个，不出意外两周内会完成。</p>
+<h2 id="Git-仓库"><a href="#Git-仓库" class="headerlink" title="Git 仓库"></a>Git 仓库</h2><p>　　实际上我只有一个 Scoop 自用仓库托管在 Github，本周也是常规更新和终于修复了 newline 的问题，要养成文件尾 newline 的好习惯，另外每次修改前一定要先拉取仓库，不要等到合并冲突再想起来这个事情。</p>
+<h2 id="剧集"><a href="#剧集" class="headerlink" title="剧集"></a>剧集</h2><p>　　看完了《帝王计划：怪兽遗产》，整体节奏挺好，作为《哥斯拉大战金刚2》的前置，质量我觉得是过关的，但是政治正确的各种要素拉满了，感觉没有必要。<br>还有一部正在看的剧是《繁花》，看了上海话版本，有些很久没听到的词汇感觉格外亲切，剧本身质量也很好，等看完再说说其他。</p>
 
     </div>
 
@@ -312,7 +289,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://blog.iv16sl.xyz/posts/c7341afb/" title="Vaultwarden&#x2F;Bitwardenrs启用两步验证和QQ邮箱代发验证码">https://blog.iv16sl.xyz/posts/c7341afb/</a>
+      <a href="https://blog.iv16sl.xyz/posts/b3cfedb0/" title="本周在忙些什么（Y2024W02）">https://blog.iv16sl.xyz/posts/b3cfedb0/</a>
   </li>
   <li class="post-copyright-license">
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -321,23 +298,20 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/Bitwarden/" rel="tag"><i class="fa fa-tag"></i> Bitwarden</a>
-              <a href="/tags/QQ%E9%82%AE%E7%AE%B1/" rel="tag"><i class="fa fa-tag"></i> QQ邮箱</a>
-              <a href="/tags/%E4%B8%A4%E9%83%A8%E9%AA%8C%E8%AF%81/" rel="tag"><i class="fa fa-tag"></i> 两部验证</a>
+              <a href="/tags/%E4%B8%AA%E4%BA%BA%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag"><i class="fa fa-tag"></i> 个人服务器</a>
+              <a href="/tags/%E6%9C%AC%E5%91%A8/" rel="tag"><i class="fa fa-tag"></i> 本周</a>
+              <a href="/tags/RSS/" rel="tag"><i class="fa fa-tag"></i> RSS</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/posts/4a17b156/" rel="prev" title="Hello World">
-                  <i class="fa fa-angle-left"></i> Hello World
+                <a href="/posts/76534bb9/" rel="prev" title="和 ChatGPT 对话怎么修改一个 CSS">
+                  <i class="fa fa-angle-left"></i> 和 ChatGPT 对话怎么修改一个 CSS
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/posts/c7f49c9e/" rel="next" title="Windows 11使用笔记、疑难杂症">
-                  Windows 11使用笔记、疑难杂症 <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>
