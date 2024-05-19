@@ -371,4 +371,30 @@
         <tag>RSS</tag>
       </tags>
   </entry>
+  <entry>
+    <title>记录一次修复Windows-11-Passkey设置无法打开的状况</title>
+    <url>/posts/16a1180a/</url>
+    <content><![CDATA[<p>这个问题存在已久，一直没有找到是因为什么原因导致的，起初我以为是我这个系统的bug，但也只是我的推测，没有实际的证据表明。随着时间越来越久，这个问题也变成了心里的一个疙瘩，偶尔就上Google查一下看有没有其他人遇到这个问题，持续了半年左右。随着昨天我把Edge升级到了<code>Version 125.0.2535.51 (Official build) (64-bit)</code>，偶然之间我打开了Settings→Profiles→Microsoft Wallet，只要是钱包下面这个设置（密码管理也被移到了这个设置下），全部都会直接崩溃，于是我就和Passkey设置崩溃的现象关联起来，开始正式调查这个问题。<br> <span id="more"></span></p>
+<h2 id="崩溃带来的影响"><a href="#崩溃带来的影响" class="headerlink" title="崩溃带来的影响"></a>崩溃带来的影响</h2><p> 据我发现除了影响Windows 11中Passkey的设置，这一点也是我最早注意到的，还影响了Edge和Chrome的密码管理功能，具体是某个版本之后就不得而知了。</p>
+<h2 id="初步的修复"><a href="#初步的修复" class="headerlink" title="初步的修复"></a>初步的修复</h2><p>尝试了以下常见的办法，</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">sfc /scannow</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DISM /Online /Cleanup-Image /ScanHealth</span><br></pre></td></tr></table></figure>
+<p>均没有扫描到错误。<br>为了排除是系统的问题，我特意在Windows Sandbox里测试了下，发现是没有问题的。为了进一步排除，我禁用了Edge所有的扩展，打开密码管理，闪退依旧。但是重置是不可能重置的，会带来更多的麻烦和浪费时间。之后我卸载了Firefox、Google Chrome，问题依旧。已经想到了我使用TPM创建了虚拟智能卡来SSH登录服务器，删掉了，问题没有解决，不得以重新创建。<br>已经学习网上通过重置设置应用来尝试，不过预计到了应该是无法起效的。</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Get-AppxPackage</span> windows.immersivecontrolpanel | <span class="built_in">Reset-AppxPackage</span></span><br></pre></td></tr></table></figure>
+<p>之后重新安装了Webview2，当然也没解决问题，登出Microsoft账户转为本地账户，没有解决问题，重新登录也是。</p>
+<h2 id="查阅日志"><a href="#查阅日志" class="headerlink" title="查阅日志"></a>查阅日志</h2><p> 根据我查看系统日志，发现这个三个现象都有共同之处，就是都依赖<code>webauthn.dll</code>，<br><img src="https://img.iv16sl.xyz/file/0720536a8a0ed4be33c99.png" alt="0720536a8a0ed4be33c99.png"></p>
+<p> <img src="https://img.iv16sl.xyz/file/529602d670e6a210085b8.png" alt="529602d670e6a210085b8.png"><br> 通过这些信息，我不断在Google、Bing和百度上查找，基本只有零零碎碎的几条信息，都看过好几次了，感觉全世界没几个人遇到了这个问题，其中有个用户是替换了<code>webauthn.dll</code>，但是我确定经过我多次对比我的这个文件是没有问题的，而且在sandbox里运行也正常。另一个用户是通过新建一个用户来解决了问题，我并不想使用这种方式，对我来说转移设置和个人文件也非常耗时，也容易出现其他问题，但是给了我一点暗示。</p>
+<h2 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h2><p>本来按照上面那个样子，这个问题其实就又陷入烂尾了，我想着反正就这个功能有问题，也不影响其他使用，要是重装就太麻烦了，日常使用Passkey我也是依赖Bitwarden的，于是就又想搁置这个问题，之后再说吧。<br>但是仔细一想，又有点很不甘心，搞得非常焦虑啊，于是又熬了熬夜，仔细梳理下，中途甚至想覆盖安装了。<br>最后因为想到上面那个用户通过新建用户解决了问题，我看了看自己的账户设置，要不改下PIN码吧，于是改了下注销，此时发生了神奇的事情，我用新的PIN码居然无法登录，需要我重置PIN码，然后重置PIN码后登录界面也能显示自己的邮箱了，此时登录进入设置后，这个问题居然就这么神神呼呼的解决了。</p>
+<h2 id="原因推测"><a href="#原因推测" class="headerlink" title="原因推测"></a>原因推测</h2><p>不负责任的推测可能是因为我这个系统是一路从Windows 10升级上来的，起初用的本地账户密码登录，之后不知道何时登录的微软账户，但是依旧采用了本地密码登录的策略，之后不止某天设置了PIN码登录，由于我设置的PIN码其实和当初的本地密码其实是一样的，后面升级到Windows 11后可能带来了这个冲突问题。</p>
+]]></content>
+      <categories>
+        <category>折腾</category>
+      </categories>
+      <tags>
+        <tag>Windows</tag>
+        <tag>Passkey</tag>
+        <tag>Webauthn</tag>
+      </tags>
+  </entry>
 </search>

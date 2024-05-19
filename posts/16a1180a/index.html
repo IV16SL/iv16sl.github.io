@@ -20,30 +20,33 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"blog.iv16sl.xyz","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.19.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="在使用密码托管服务时，我最初只需要简单的同步，能够供手机使用即可。所以在使用1Password的时候，一直使用的是单机版。随着时间的推移，自己也有多平台需要，这种方式渐渐变的不方便，由于不太想使用1Password的网络服务，在前个月把密码托管逐步迁移到了自建Bitwarden服务。经过将近2个月的使用，个人感受相当良好。虽然有些小问题，但都在可以接受的范围内。 因为有多平台和外网需要，所以便开放">
+    <meta name="description" content="这个问题存在已久，一直没有找到是因为什么原因导致的，起初我以为是我这个系统的bug，但也只是我的推测，没有实际的证据表明。随着时间越来越久，这个问题也变成了心里的一个疙瘩，偶尔就上Google查一下看有没有其他人遇到这个问题，持续了半年左右。随着昨天我把Edge升级到了Version 125.0.2535.51 (Official build) (64-bit)，偶然之间我打开了Settings→">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Vaultwarden&#x2F;Bitwardenrs启用两步验证和QQ邮箱代发验证码">
-<meta property="og:url" content="https://blog.iv16sl.xyz/posts/c7341afb/">
+<meta property="og:title" content="记录一次修复Windows-11-Passkey设置无法打开的状况">
+<meta property="og:url" content="https://blog.iv16sl.xyz/posts/16a1180a/">
 <meta property="og:site_name" content="IV16SL&#39;s Blog">
-<meta property="og:description" content="在使用密码托管服务时，我最初只需要简单的同步，能够供手机使用即可。所以在使用1Password的时候，一直使用的是单机版。随着时间的推移，自己也有多平台需要，这种方式渐渐变的不方便，由于不太想使用1Password的网络服务，在前个月把密码托管逐步迁移到了自建Bitwarden服务。经过将近2个月的使用，个人感受相当良好。虽然有些小问题，但都在可以接受的范围内。 因为有多平台和外网需要，所以便开放">
+<meta property="og:description" content="这个问题存在已久，一直没有找到是因为什么原因导致的，起初我以为是我这个系统的bug，但也只是我的推测，没有实际的证据表明。随着时间越来越久，这个问题也变成了心里的一个疙瘩，偶尔就上Google查一下看有没有其他人遇到这个问题，持续了半年左右。随着昨天我把Edge升级到了Version 125.0.2535.51 (Official build) (64-bit)，偶然之间我打开了Settings→">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-10-11T14:16:04.000Z">
-<meta property="article:modified_time" content="2021-10-20T11:48:28.751Z">
+<meta property="og:image" content="https://img.iv16sl.xyz/file/0720536a8a0ed4be33c99.png">
+<meta property="og:image" content="https://img.iv16sl.xyz/file/529602d670e6a210085b8.png">
+<meta property="article:published_time" content="2024-05-17T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-05-19T16:24:08.035Z">
 <meta property="article:author" content="IV16SL">
-<meta property="article:tag" content="Bitwarden">
-<meta property="article:tag" content="QQ邮箱">
-<meta property="article:tag" content="两部验证">
+<meta property="article:tag" content="Windows">
+<meta property="article:tag" content="Passkey">
+<meta property="article:tag" content="Webauthn">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.iv16sl.xyz/file/0720536a8a0ed4be33c99.png">
 
 
-<link rel="canonical" href="https://blog.iv16sl.xyz/posts/c7341afb/">
+<link rel="canonical" href="https://blog.iv16sl.xyz/posts/16a1180a/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.iv16sl.xyz/posts/c7341afb/","path":"posts/c7341afb/","title":"Vaultwarden/Bitwardenrs启用两步验证和QQ邮箱代发验证码"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.iv16sl.xyz/posts/16a1180a/","path":"posts/16a1180a/","title":"记录一次修复Windows-11-Passkey设置无法打开的状况"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Vaultwarden/Bitwardenrs启用两步验证和QQ邮箱代发验证码 | IV16SL's Blog</title>
+<title>记录一次修复Windows-11-Passkey设置无法打开的状况 | IV16SL's Blog</title>
   
 
 
@@ -143,7 +146,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%90%AD%E5%BB%BA%E7%8E%AF%E5%A2%83"><span class="nav-number">1.</span> <span class="nav-text">搭建环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E4%B8%A4%E6%AD%A5%E9%AA%8C%E8%AF%81"><span class="nav-number">2.</span> <span class="nav-text">设置两步验证</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E9%82%AE%E7%AE%B1%E6%9C%8D%E5%8A%A1%E4%BB%A5%E5%8F%8A%E4%BB%A3%E5%8F%91%E9%AA%8C%E8%AF%81%E7%A0%81"><span class="nav-number">3.</span> <span class="nav-text">设置邮箱服务以及代发验证码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TOTP%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%97%B6%E9%97%B4%E4%B8%8D%E5%90%8C%E6%AD%A5"><span class="nav-number">4.</span> <span class="nav-text">TOTP服务端时间不同步</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B4%A9%E6%BA%83%E5%B8%A6%E6%9D%A5%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="nav-number">1.</span> <span class="nav-text">崩溃带来的影响</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9D%E6%AD%A5%E7%9A%84%E4%BF%AE%E5%A4%8D"><span class="nav-number">2.</span> <span class="nav-text">初步的修复</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E9%98%85%E6%97%A5%E5%BF%97"><span class="nav-number">3.</span> <span class="nav-text">查阅日志</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3"><span class="nav-number">4.</span> <span class="nav-text">问题解决</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E5%9B%A0%E6%8E%A8%E6%B5%8B"><span class="nav-number">5.</span> <span class="nav-text">原因推测</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -210,7 +213,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.iv16sl.xyz/posts/c7341afb/">
+    <link itemprop="mainEntityOfPage" href="https://blog.iv16sl.xyz/posts/16a1180a/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -223,12 +226,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Vaultwarden/Bitwardenrs启用两步验证和QQ邮箱代发验证码 | IV16SL's Blog">
+      <meta itemprop="name" content="记录一次修复Windows-11-Passkey设置无法打开的状况 | IV16SL's Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Vaultwarden/Bitwardenrs启用两步验证和QQ邮箱代发验证码
+          记录一次修复Windows-11-Passkey设置无法打开的状况
         </h1>
 
         <div class="post-meta-container">
@@ -239,14 +242,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2021-10-11 22:16:04" itemprop="dateCreated datePublished" datetime="2021-10-11T22:16:04+08:00">2021-10-11</time>
+      <time title="创建时间：2024-05-18 00:00:00" itemprop="dateCreated datePublished" datetime="2024-05-18T00:00:00+08:00">2024-05-18</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2021-10-20 19:48:28" itemprop="dateModified" datetime="2021-10-20T19:48:28+08:00">2021-10-20</time>
+      <time title="修改时间：2024-05-20 00:24:08" itemprop="dateModified" datetime="2024-05-20T00:24:08+08:00">2024-05-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -267,34 +270,19 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>在使用密码托管服务时，我最初只需要简单的同步，能够供手机使用即可。所以在使用1Password的时候，一直使用的是单机版。随着时间的推移，自己也有多平台需要，这种方式渐渐变的不方便，由于不太想使用1Password的网络服务，在前个月把密码托管逐步迁移到了自建Bitwarden服务。经过将近2个月的使用，个人感受相当良好。虽然有些小问题，但都在可以接受的范围内。</p>
-<p>因为有多平台和外网需要，所以便开放了外网，因为安全考虑设置了2步验证并且关闭注册，本文主要说一下开放2步验证以及备用手段即QQ邮箱接收验证码。</p>
-<span id="more"></span>
+    <div class="post-body" itemprop="articleBody"><p>这个问题存在已久，一直没有找到是因为什么原因导致的，起初我以为是我这个系统的bug，但也只是我的推测，没有实际的证据表明。随着时间越来越久，这个问题也变成了心里的一个疙瘩，偶尔就上Google查一下看有没有其他人遇到这个问题，持续了半年左右。随着昨天我把Edge升级到了<code>Version 125.0.2535.51 (Official build) (64-bit)</code>，偶然之间我打开了Settings→Profiles→Microsoft Wallet，只要是钱包下面这个设置（密码管理也被移到了这个设置下），全部都会直接崩溃，于是我就和Passkey设置崩溃的现象关联起来，开始正式调查这个问题。<br> <span id="more"></span></p>
+<h2 id="崩溃带来的影响"><a href="#崩溃带来的影响" class="headerlink" title="崩溃带来的影响"></a>崩溃带来的影响</h2><p> 据我发现除了影响Windows 11中Passkey的设置，这一点也是我最早注意到的，还影响了Edge和Chrome的密码管理功能，具体是某个版本之后就不得而知了。</p>
+<h2 id="初步的修复"><a href="#初步的修复" class="headerlink" title="初步的修复"></a>初步的修复</h2><p>尝试了以下常见的办法，</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sfc /scannow</span><br></pre></td></tr></table></figure>
 
-<h1 id="搭建环境"><a href="#搭建环境" class="headerlink" title="搭建环境"></a>搭建环境</h1><p>我的Bitwarden服务通过Docker搭建在群晖上，虽然这样做有人觉得会存在不少问题，但我觉得人数不多且做好安全措施的话，可以接受这种方法。</p>
-<h1 id="设置两步验证"><a href="#设置两步验证" class="headerlink" title="设置两步验证"></a>设置两步验证</h1><ul>
-<li><p>登录你的Bitwarden密码库网页后台；</p>
-</li>
-<li><p>点击右上角头像→我的账户→两部登录；</p>
-</li>
-<li><p>点击管理验证器应用，准备好Google Authenticator或者Microsoft Authenticator，根据自己的喜好来；</p>
-</li>
-<li><p>使用验证器扫描二维码→填入6位验证码→确定以及保存好恢复代码；</p>
-<blockquote>
-<p>Bitwarden的恢复代码在设置里可以再次查看，请妥善保管。</p>
-</blockquote>
-</li>
-</ul>
-<h1 id="设置邮箱服务以及代发验证码"><a href="#设置邮箱服务以及代发验证码" class="headerlink" title="设置邮箱服务以及代发验证码"></a>设置邮箱服务以及代发验证码</h1><p>我一开始觉得单纯的验证器已经够用，但是我遇到了TOTP服务器时间不正确的问题，一旦客户端和服务端时间差异超过1分钟，你的请求就是被服务端拒绝。保险起见我又多设置了邮箱服务，邮件验证码的有效期10分钟，是个很好的备选方案。</p>
-<p>通过域名加上”&#x2F;admin”访问Bitwarden的管理后台，输入admin token登录；</p>
-<blockquote>
-<p>Admin token在Dockers面板里设置，增加一条环境变量”ADMIN_TOKEN&#x3D;xxx”,xxx表示任意长度字符串，别太短就好，后期长时间不用就把这条删掉以保证安全性。</p>
-</blockquote>
-<p>点击”SMTP Email Settings”,进行如下设置：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Enable: true</span><br><span class="line">Host: smtp.qq.com</span><br><span class="line">Enable Secure SMTP :true</span><br><span class="line">Force TLS :true</span><br><span class="line">Port :465</span><br><span class="line">From Address :user@qq.com #user就是你的用户名,这里不要用不是当前账户的地址，否则可能发送失败</span><br><span class="line">From Name :Bitwarden</span><br><span class="line">Username :user@qq.com #user就是你的用户名</span><br><span class="line">Password :yourpassword #登录QQ邮箱Web页面，账户POP3设置里面生成授权码，需要关闭安全登录才会显示此选项</span><br><span class="line">SMTP Auth mechanism :Plain</span><br><span class="line">SMTP connection timeout :15</span><br></pre></td></tr></table></figure>
-
-<p>随后可以测试发送邮件是否成功，并且回到Bitwarden密码库网络后台的两部登陆中开启电子邮件验证码功能。</p>
-<h1 id="TOTP服务端时间不同步"><a href="#TOTP服务端时间不同步" class="headerlink" title="TOTP服务端时间不同步"></a>TOTP服务端时间不同步</h1><p>我也不知道为何会产生此问题，我最后把群晖的NTP服务器改成了”time.nist.gov”，之后一段时间都暂未遇到此问题。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DISM /Online /Cleanup-Image /ScanHealth</span><br></pre></td></tr></table></figure>
+<p>均没有扫描到错误。<br>为了排除是系统的问题，我特意在Windows Sandbox里测试了下，发现是没有问题的。为了进一步排除，我禁用了Edge所有的扩展，打开密码管理，闪退依旧。但是重置是不可能重置的，会带来更多的麻烦和浪费时间。之后我卸载了Firefox、Google Chrome，问题依旧。已经想到了我使用TPM创建了虚拟智能卡来SSH登录服务器，删掉了，问题没有解决，不得以重新创建。<br>已经学习网上通过重置设置应用来尝试，不过预计到了应该是无法起效的。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Get-AppxPackage</span> windows.immersivecontrolpanel | <span class="built_in">Reset-AppxPackage</span></span><br></pre></td></tr></table></figure>
+<p>之后重新安装了Webview2，当然也没解决问题，登出Microsoft账户转为本地账户，没有解决问题，重新登录也是。</p>
+<h2 id="查阅日志"><a href="#查阅日志" class="headerlink" title="查阅日志"></a>查阅日志</h2><p> 根据我查看系统日志，发现这个三个现象都有共同之处，就是都依赖<code>webauthn.dll</code>，<br><img src="https://img.iv16sl.xyz/file/0720536a8a0ed4be33c99.png" alt="0720536a8a0ed4be33c99.png"></p>
+<p> <img src="https://img.iv16sl.xyz/file/529602d670e6a210085b8.png" alt="529602d670e6a210085b8.png"><br> 通过这些信息，我不断在Google、Bing和百度上查找，基本只有零零碎碎的几条信息，都看过好几次了，感觉全世界没几个人遇到了这个问题，其中有个用户是替换了<code>webauthn.dll</code>，但是我确定经过我多次对比我的这个文件是没有问题的，而且在sandbox里运行也正常。另一个用户是通过新建一个用户来解决了问题，我并不想使用这种方式，对我来说转移设置和个人文件也非常耗时，也容易出现其他问题，但是给了我一点暗示。</p>
+<h2 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h2><p>本来按照上面那个样子，这个问题其实就又陷入烂尾了，我想着反正就这个功能有问题，也不影响其他使用，要是重装就太麻烦了，日常使用Passkey我也是依赖Bitwarden的，于是就又想搁置这个问题，之后再说吧。<br>但是仔细一想，又有点很不甘心，搞得非常焦虑啊，于是又熬了熬夜，仔细梳理下，中途甚至想覆盖安装了。<br>最后因为想到上面那个用户通过新建用户解决了问题，我看了看自己的账户设置，要不改下PIN码吧，于是改了下注销，此时发生了神奇的事情，我用新的PIN码居然无法登录，需要我重置PIN码，然后重置PIN码后登录界面也能显示自己的邮箱了，此时登录进入设置后，这个问题居然就这么神神呼呼的解决了。</p>
+<h2 id="原因推测"><a href="#原因推测" class="headerlink" title="原因推测"></a>原因推测</h2><p>不负责任的推测可能是因为我这个系统是一路从Windows 10升级上来的，起初用的本地账户密码登录，之后不知道何时登录的微软账户，但是依旧采用了本地密码登录的策略，之后不止某天设置了PIN码登录，由于我设置的PIN码其实和当初的本地密码其实是一样的，后面升级到Windows 11后可能带来了这个冲突问题。</p>
 
     </div>
 
@@ -312,7 +300,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://blog.iv16sl.xyz/posts/c7341afb/" title="Vaultwarden&#x2F;Bitwardenrs启用两步验证和QQ邮箱代发验证码">https://blog.iv16sl.xyz/posts/c7341afb/</a>
+      <a href="https://blog.iv16sl.xyz/posts/16a1180a/" title="记录一次修复Windows-11-Passkey设置无法打开的状况">https://blog.iv16sl.xyz/posts/16a1180a/</a>
   </li>
   <li class="post-copyright-license">
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -321,23 +309,20 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/Bitwarden/" rel="tag"><i class="fa fa-tag"></i> Bitwarden</a>
-              <a href="/tags/QQ%E9%82%AE%E7%AE%B1/" rel="tag"><i class="fa fa-tag"></i> QQ邮箱</a>
-              <a href="/tags/%E4%B8%A4%E9%83%A8%E9%AA%8C%E8%AF%81/" rel="tag"><i class="fa fa-tag"></i> 两部验证</a>
+              <a href="/tags/Windows/" rel="tag"><i class="fa fa-tag"></i> Windows</a>
+              <a href="/tags/Passkey/" rel="tag"><i class="fa fa-tag"></i> Passkey</a>
+              <a href="/tags/Webauthn/" rel="tag"><i class="fa fa-tag"></i> Webauthn</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/posts/4a17b156/" rel="prev" title="Hello World">
-                  <i class="fa fa-angle-left"></i> Hello World
+                <a href="/posts/b3cfedb0/" rel="prev" title="本周在忙些什么（Y2024W02）">
+                  <i class="fa fa-angle-left"></i> 本周在忙些什么（Y2024W02）
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/posts/c7f49c9e/" rel="next" title="Windows 11使用笔记、疑难杂症">
-                  Windows 11使用笔记、疑难杂症 <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>
