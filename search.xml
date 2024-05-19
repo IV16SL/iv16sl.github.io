@@ -372,7 +372,7 @@
       </tags>
   </entry>
   <entry>
-    <title>记录一次修复Windows-11-Passkey设置无法打开的状况</title>
+    <title>记录一次修复Windows 11 Passkey设置无法打开的状况</title>
     <url>/posts/16a1180a/</url>
     <content><![CDATA[<p>这个问题存在已久，一直没有找到是因为什么原因导致的，起初我以为是我这个系统的bug，但也只是我的推测，没有实际的证据表明。随着时间越来越久，这个问题也变成了心里的一个疙瘩，偶尔就上Google查一下看有没有其他人遇到这个问题，持续了半年左右。随着昨天我把Edge升级到了<code>Version 125.0.2535.51 (Official build) (64-bit)</code>，偶然之间我打开了Settings→Profiles→Microsoft Wallet，只要是钱包下面这个设置（密码管理也被移到了这个设置下），全部都会直接崩溃，于是我就和Passkey设置崩溃的现象关联起来，开始正式调查这个问题。<br> <span id="more"></span></p>
 <h2 id="崩溃带来的影响"><a href="#崩溃带来的影响" class="headerlink" title="崩溃带来的影响"></a>崩溃带来的影响</h2><p> 据我发现除了影响Windows 11中Passkey的设置，这一点也是我最早注意到的，还影响了Edge和Chrome的密码管理功能，具体是某个版本之后就不得而知了。</p>
