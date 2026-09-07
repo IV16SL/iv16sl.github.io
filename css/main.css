@@ -705,7 +705,7 @@ pre .caption a:hover {
 }
 pre,
 code {
-  font-family: Source Code Pro, consolas, Menlo, monospace, 'PingFang SC', 'Microsoft YaHei';
+  font-family: PT Mono, Noto Sans CJK SC, consolas, Menlo, monospace, 'PingFang SC', 'Microsoft YaHei';
 }
 code {
   border-radius: 3px;
@@ -1456,7 +1456,7 @@ pre code {
     transition: all 0.2s ease-in-out;
   }
   .links-of-author a::before {
-    background: #c8ffc8;
+    background: #124909;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
