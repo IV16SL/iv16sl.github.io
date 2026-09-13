@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=OPPO+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Noto+Sans+CJK+SC:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Source+Han+Sans+SC:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=smiley-sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Maple+Mono+NF+CN:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.huanjue.me","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.29.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"atom-one-light","dark":"atom-one-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="周日高强度上网冲浪，看到不少博客都有评论系统，就萌发了自己博客也要弄一个的想法，于是说干就干，开始上网找。　　一开始也不知道要找什么，便先从Next主题官网阅读相关文档开始，在 Comment System 页还有导航页 Plugins 内都找到了相关信息，良久后觉得Valine还挺适合，但是好像停更了，还有一些其他问题。最后一番摸索找到了Waline，查了下比较简约，可以在Vercel部署，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记录一次在Hexo Next主题添加Waline评论系统的过程和问题">
+<meta property="og:url" content="https://blog.huanjue.me/posts/6fa8453b/">
+<meta property="og:site_name" content="幻觉的博客">
+<meta property="og:description" content="周日高强度上网冲浪，看到不少博客都有评论系统，就萌发了自己博客也要弄一个的想法，于是说干就干，开始上网找。　　一开始也不知道要找什么，便先从Next主题官网阅读相关文档开始，在 Comment System 页还有导航页 Plugins 内都找到了相关信息，良久后觉得Valine还挺适合，但是好像停更了，还有一些其他问题。最后一番摸索找到了Waline，查了下比较简约，可以在Vercel部署，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.iiii.im/file/47AQrgLM.png">
+<meta property="og:image" content="https://i.iiii.im/file/qKK5RlYV.png">
+<meta property="article:published_time" content="2026-09-13T10:38:53.000Z">
+<meta property="article:modified_time" content="2026-09-13T12:53:54.814Z">
+<meta property="article:author" content="幻觉">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="Next">
+<meta property="article:tag" content="Waline">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.iiii.im/file/47AQrgLM.png">
+
+
+<link rel="canonical" href="https://blog.huanjue.me/posts/6fa8453b/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.huanjue.me/posts/6fa8453b/","path":"posts/6fa8453b/","title":"记录一次在Hexo Next主题添加Waline评论系统的过程和问题"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>记录一次在Hexo Next主题添加Waline评论系统的过程和问题 | 幻觉的博客</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/pangu@7.2.1/dist/browser/pangu.umd.js" integrity="sha256-kRsxecBnwG6mULFPe2E6UKnNm8XfDOuDwCOprjLZuX8=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.5.0/dist/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+<link rel="dns-prefetch" href="https://waline.huanjue.me"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.6.0/style.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-smiley-sans@1.0.0/style.css" />
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">幻觉的博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">宇宙中的一切皆是幻觉</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8Vercel%E4%B8%8A%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="nav-number">1.</span> <span class="nav-text">在Vercel上部署服务端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8Hexo-Next%E4%B8%8A%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6%E5%92%8C%E8%AE%BE%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">在Hexo Next上安装插件和设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo%E5%8D%9A%E5%AE%A2%E9%87%8D%E6%96%B0%E7%94%9F%E6%88%90"><span class="nav-number">3.</span> <span class="nav-text">Hexo博客重新生成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3Waline%E5%9C%A8Next%E6%B7%B1%E8%89%B2%E4%B8%BB%E9%A2%98%E4%B8%8B%E6%B2%A1%E6%9C%89%E7%94%9F%E6%95%88%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">4.</span> <span class="nav-text">解决Waline在Next深色主题下没有生效的问题</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="幻觉"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">幻觉</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:j@huanjue.me" title="E-Mail → mailto:j@huanjue.me" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://x.com/gtxhuanjue" title="X → https:&#x2F;&#x2F;x.com&#x2F;gtxhuanjue" rel="noopener me" target="_blank"><i class="fab fa-x-twitter fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary@2020.11.3/assets/license_badges/big/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+<div class="cc-license animated" itemprop="sponsor">
+  <a href="https://www.netlify.com" class="cc-opacity" title="Deploy with Netlify → https://www.netlify.com" target="_blank"><img width="120" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></a>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.huanjue.me/posts/6fa8453b/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="幻觉">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻觉的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="记录一次在Hexo Next主题添加Waline评论系统的过程和问题 | 幻觉的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          记录一次在Hexo Next主题添加Waline评论系统的过程和问题
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-09-13 18:38:53 / 修改时间：20:53:54" itemprop="dateCreated datePublished" datetime="2026-09-13T18:38:53+08:00">2026-09-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Blog/" itemprop="url" rel="index"><span itemprop="name">Blog</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/posts/6fa8453b/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/posts/6fa8453b/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>　　周日高强度上网冲浪，看到不少博客都有评论系统，就萌发了自己博客也要弄一个的想法，于是说干就干，开始上网找。<br>　　一开始也不知道要找什么，便先从Next主题官网阅读相关文档开始，在 <a target="_blank" rel="noopener" href="https://theme-next.js.org/docs/third-party-services/comments">Comment System</a> 页还有导航页 <a target="_blank" rel="noopener" href="https://theme-next.js.org/plugins/">Plugins</a> 内都找到了相关信息，良久后觉得Valine还挺适合，但是好像停更了，还有一些其他问题。最后一番摸索找到了Waline，查了下比较简约，可以在Vercel部署，那不就非常适合我吗？开干！</p>
+<span id="more"></span>
+
+<h2 id="在Vercel上部署服务端"><a href="#在Vercel上部署服务端" class="headerlink" title="在Vercel上部署服务端"></a>在Vercel上部署服务端</h2><blockquote>
+<p>直接参考<a target="_blank" rel="noopener" href="https://waline.js.org/guide/deploy/vercel.html">官方文档</a> Vercel部署Waline</p>
+</blockquote>
+<p>　　部署完本体后，接着按照文档在Neon上创建数据库，完成后记得在左侧菜单中SQL Editor中用官方仓库的 <a target="_blank" rel="noopener" href="https://github.com/walinejs/waline/blob/main/assets/waline.pgsql">waline.pgsql</a> 创建初始表，不少人少看了这一步，不建表后面会报错。<br>　　完成后需要回到Vercel中Waline的项目中Redeploy，但是这里我在后面遇到了第一个问题，就是时区不对影响了评论的时间，每条都晚8小时，默认用的是GMT时间。比较不幸的是Vercel的TZ环境变量是<a target="_blank" rel="noopener" href="https://vercel.com/docs/environment-variables/reserved-environment-variables">保留变量</a>，用户不可以更改，因此我们改用另外一种办法。<br>　　在Vercel创建项目时，已经替你在GitHub上Fork官方的仓库，打开仓库中的<strong>index.cjs</strong>，在最前面加入<code>process.env.TZ = &#39;Asia/Shanghai&#39;;</code>，然后提交，一定要第一行，然后回到项目执行Redeploy，一般这时候因为你的仓库有新提交，Vercel那里也自动Redelopy了，完成后时区就是GMT+8了。<br>　　最后绑定自己的域名，然后访问 <a target="_blank" rel="noopener" href="https://yourwalineaddress/ui">https://yourwalineaddress/ui</a> 注册管理员账号，并尽快开启两步验证保证安全性。</p>
+<h2 id="在Hexo-Next上安装插件和设置"><a href="#在Hexo-Next上安装插件和设置" class="headerlink" title="在Hexo Next上安装插件和设置"></a>在Hexo Next上安装插件和设置</h2><p>　　转到你博客的根目录下，安装@waline&#x2F;hexo-next插件。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd yourblog</span><br><span class="line">npm install @waline/hexo-next --save</span><br></pre></td></tr></table></figure>
+
+<p>　　安装完成后在博客根目录下的配置文件<code>_config.yml</code>中增加以下设置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"># Waline 评论系统start https://www.npmjs.com/package/@waline/hexo-next</span><br><span class="line">waline:</span><br><span class="line">  enable: true</span><br><span class="line">  serverURL: https://yourwalineaddress</span><br><span class="line"></span><br><span class="line">  # Waline library CDN url, you can set this to your preferred CDN</span><br><span class="line">  # libUrl: https://unpkg.com/@waline/client@v3/dist/waline.umd.js</span><br><span class="line"></span><br><span class="line">  # Waline CSS styles CDN url, you can set this to your preferred CDN</span><br><span class="line">  cssUrl: https://unpkg.com/@waline/client@v3/dist/waline.css</span><br><span class="line"></span><br><span class="line">  # Custom locales 自定义区域设置</span><br><span class="line">  # locale:</span><br><span class="line">  #  placeholder:</span><br><span class="line"></span><br><span class="line">  # 如果为false，评论数将只显示在文章页面，而不是在主页</span><br><span class="line">  commentCount: false</span><br><span class="line"></span><br><span class="line">  # 浏览量统计，注意：您不应该同时启用`waline.pageview`和`leancloud_visitors`。 leancloud_visitors在主题文件夹中</span><br><span class="line">  pageview: false</span><br><span class="line"></span><br><span class="line">  lang: zh-CN</span><br><span class="line">  search: false #禁用表情包搜索</span><br><span class="line">  reaction: false #文章反应</span><br><span class="line">  imageUploader: false #图片上传</span><br><span class="line"></span><br><span class="line">  # Cloudflare turnstile设置，评论区验证</span><br><span class="line">  TURNSTILE_KEY: #Cloudflare turnstile key</span><br><span class="line">  TURNSTILE_SECRET: #Cloudflare turnstile secret</span><br><span class="line"></span><br><span class="line">  # Custom emoji</span><br><span class="line">  # emoji:</span><br><span class="line">  #   - https://unpkg.com/@waline/emojis@1.1.0/weibo</span><br><span class="line">  #   - https://unpkg.com/@waline/emojis@1.1.0/alus</span><br><span class="line">  #   - https://unpkg.com/@waline/emojis@1.1.0/bilibili</span><br><span class="line">  #   - https://unpkg.com/@waline/emojis@1.1.0/qq</span><br><span class="line">  #   - https://unpkg.com/@waline/emojis@1.1.0/tieba</span><br><span class="line">  #   - https://unpkg.com/@waline/emojis@1.1.0/tw-emoji</span><br><span class="line"></span><br><span class="line">  # Comment information, valid meta are nick, mail and link</span><br><span class="line">  # meta:</span><br><span class="line">  #   - nick</span><br><span class="line">  #   - mail</span><br><span class="line">  #   - link</span><br><span class="line"></span><br><span class="line">  # Set required meta field, e.g.: [nick] | [nick, mail] 未登录必填字段</span><br><span class="line">  requiredMeta:</span><br><span class="line">    - nick</span><br><span class="line"></span><br><span class="line">  # Word limit, no limit when setting to 0</span><br><span class="line">  # wordLimit: 0</span><br><span class="line"></span><br><span class="line">  # Whether enable login, can choose from &#x27;enable&#x27;, &#x27;disable&#x27; and &#x27;force&#x27;</span><br><span class="line">  # login: enable</span><br><span class="line"></span><br><span class="line">  # comment per page</span><br><span class="line">  # pageSize: 10</span><br><span class="line"># Waline 评论系统 end</span><br></pre></td></tr></table></figure>
+
+<p>有关于Cloudflare turnstile的设置，需要登录后在Dashboard左侧Application Security中Turnstile申请，请妥善保存Secret。之后前往Vercel项目中Environment Variables，新增<code>TURNSTILE_KEY</code>和<code>TURNSTILE_SECRET</code>两个变量，类型均为Secret，填入在Cloudflare申请到的值。</p>
+<h2 id="Hexo博客重新生成"><a href="#Hexo博客重新生成" class="headerlink" title="Hexo博客重新生成"></a>Hexo博客重新生成</h2><p>　　以上都完成后，在你的博客根目录下运行清理、重新构建、开启本地服务器预览一下效果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+
+<p>　　发一下评论看下时间和效果是否都正常，如果一切都正常的，我遇到了后面一个问题，深色模式不生效的问题。</p>
+<h2 id="解决Waline在Next深色主题下没有生效的问题"><a href="#解决Waline在Next深色主题下没有生效的问题" class="headerlink" title="解决Waline在Next深色主题下没有生效的问题"></a>解决Waline在Next深色主题下没有生效的问题</h2><p>　　正常情况下，Next主题就像<a target="_blank" rel="noopener" href="https://waline.js.org/guide/features/style.html">官方文档</a>所说的，使用<code>@media</code> 选择器通过 <code>prefers-color-scheme</code> 来根据设备颜色模式状态自动切换，我也没有去改动，理论上你只要在配置中加入<code>dark: &#39;auto&#39;</code>就可以生效了，但是我实际遇到的是集中方法都试过了，完全没有效果，我也不知道为什么，始终有个背景色被劫持了。<br>　　最后不得以采用直接修改配置中引用的waline.css，增加如下代码，可自行浏览器Inspect按需修改：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">@media (prefers-color-scheme: dark) &#123;</span><br><span class="line"></span><br><span class="line">  :root &#123;</span><br><span class="line"></span><br><span class="line">    --waline-bg-color: #333333 !important;</span><br><span class="line"></span><br><span class="line">    --waline-color: #eeeeee !important;</span><br><span class="line"></span><br><span class="line">    --waline-border-color: #eeeeee !important;</span><br><span class="line"></span><br><span class="line">    --waline-disable-color: #eeeeee !important;</span><br><span class="line"></span><br><span class="line">    --waline-info-color: #eeeeee !important;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  .wl-editor,</span><br><span class="line"></span><br><span class="line">  .wl-editor:focus,</span><br><span class="line"></span><br><span class="line">  .wl-editor:active,</span><br><span class="line"></span><br><span class="line">  .wl-input,</span><br><span class="line"></span><br><span class="line">  .wl-input:focus &#123;</span><br><span class="line"></span><br><span class="line">    background-color: #333333 !important;</span><br><span class="line"></span><br><span class="line">    background: #333333 !important;</span><br><span class="line"></span><br><span class="line">    color: #eeeeee !important;</span><br><span class="line"></span><br><span class="line">    border-color: #eeeeee !important;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  .wl-btn:disabled &#123;</span><br><span class="line"></span><br><span class="line">    background: #3eaf64 !important;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  .wl-card .wl-meta &gt; span &#123;</span><br><span class="line"></span><br><span class="line">    background: #666 !important;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>　　浅色模式效果：<br><img src="https://i.iiii.im/file/47AQrgLM.png" alt="浅色模式效果"><br>　　深色模式效果：<br><img src="https://i.iiii.im/file/qKK5RlYV.png" alt="深色模式效果"></p>
+<p>　　总的来说，整体效果我还是挺满意的，这套系统也很易用。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>幻觉
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://blog.huanjue.me/posts/6fa8453b/" title="记录一次在Hexo Next主题添加Waline评论系统的过程和问题">https://blog.huanjue.me/posts/6fa8453b/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Hexo/" rel="tag"><i class="fa fa-tag"></i> Hexo</a>
+              <a href="/tags/Next/" rel="tag"><i class="fa fa-tag"></i> Next</a>
+              <a href="/tags/Waline/" rel="tag"><i class="fa fa-tag"></i> Waline</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/16a1180a/" rel="prev" title="记录一次修复Windows 11 Passkey设置无法打开的状况">
+                  <i class="fa fa-angle-left"></i> 记录一次修复Windows 11 Passkey设置无法打开的状况
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">幻觉</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/iv16sl" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline.huanjue.me","cssUrl":"/uploads/waline.css","commentCount":false,"pageview":false,"search":false,"reaction":false,"imageUploader":false,"requiredMeta":["nick"],"turnstileKey":"0x4AAAAAAEyR65row5zUXzfE","el":"#waline","comment":true,"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","path":"/posts/6fa8453b/"}</script>
+<link rel="stylesheet" href="/uploads/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+</body>
+</html>
