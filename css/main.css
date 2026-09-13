@@ -238,7 +238,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: OPPO Sans, Noto Sans CJK SC, Source Han Sans SC, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-family: OPPO Sans, Noto Sans CJK SC, Source Han Sans SC, OPPO Sans, Noto Sans CJK SC, Source Han Sans SC, 'PingFang SC', 'Microsoft YaHei', sans-serif;
   font-weight: bold;
   line-height: 1.5;
   margin: 30px 0 15px;
@@ -1400,7 +1400,7 @@ pre code {
     transition: all 0.2s ease-in-out;
   }
   .links-of-author a::before {
-    background: #752482;
+    background: #900595;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
