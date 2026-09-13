@@ -1,47 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Vaultwarden/Bitwardenrs启用两步验证和QQ邮箱代发验证码</title>
-    <url>/posts/c7341afb/</url>
-    <content><![CDATA[<p>在使用密码托管服务时，我最初只需要简单的同步，能够供手机使用即可。所以在使用1Password的时候，一直使用的是单机版。随着时间的推移，自己也有多平台需要，这种方式渐渐变的不方便，由于不太想使用1Password的网络服务，在前个月把密码托管逐步迁移到了自建Bitwarden服务。经过将近2个月的使用，个人感受相当良好。虽然有些小问题，但都在可以接受的范围内。</p>
-<p>因为有多平台和外网需要，所以便开放了外网，因为安全考虑设置了2步验证并且关闭注册，本文主要说一下开放2步验证以及备用手段即QQ邮箱接收验证码。</p>
-<span id="more"></span>
-
-<h1 id="搭建环境"><a href="#搭建环境" class="headerlink" title="搭建环境"></a>搭建环境</h1><p>我的Bitwarden服务通过Docker搭建在群晖上，虽然这样做有人觉得会存在不少问题，但我觉得人数不多且做好安全措施的话，可以接受这种方法。</p>
-<h1 id="设置两步验证"><a href="#设置两步验证" class="headerlink" title="设置两步验证"></a>设置两步验证</h1><ul>
-<li><p>登录你的Bitwarden密码库网页后台；</p>
-</li>
-<li><p>点击右上角头像→我的账户→两部登录；</p>
-</li>
-<li><p>点击管理验证器应用，准备好Google Authenticator或者Microsoft Authenticator，根据自己的喜好来；</p>
-</li>
-<li><p>使用验证器扫描二维码→填入6位验证码→确定以及保存好恢复代码；</p>
-<blockquote>
-<p>Bitwarden的恢复代码在设置里可以再次查看，请妥善保管。</p>
-</blockquote>
-</li>
-</ul>
-<h1 id="设置邮箱服务以及代发验证码"><a href="#设置邮箱服务以及代发验证码" class="headerlink" title="设置邮箱服务以及代发验证码"></a>设置邮箱服务以及代发验证码</h1><p>我一开始觉得单纯的验证器已经够用，但是我遇到了TOTP服务器时间不正确的问题，一旦客户端和服务端时间差异超过1分钟，你的请求就是被服务端拒绝。保险起见我又多设置了邮箱服务，邮件验证码的有效期10分钟，是个很好的备选方案。</p>
-<p>通过域名加上”&#x2F;admin”访问Bitwarden的管理后台，输入admin token登录；</p>
-<blockquote>
-<p>Admin token在Dockers面板里设置，增加一条环境变量”ADMIN_TOKEN&#x3D;xxx”,xxx表示任意长度字符串，别太短就好，后期长时间不用就把这条删掉以保证安全性。</p>
-</blockquote>
-<p>点击”SMTP Email Settings”,进行如下设置：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Enable: true</span><br><span class="line">Host: smtp.qq.com</span><br><span class="line">Enable Secure SMTP :true</span><br><span class="line">Force TLS :true</span><br><span class="line">Port :465</span><br><span class="line">From Address :user@qq.com #user就是你的用户名,这里不要用不是当前账户的地址，否则可能发送失败</span><br><span class="line">From Name :Bitwarden</span><br><span class="line">Username :user@qq.com #user就是你的用户名</span><br><span class="line">Password :yourpassword #登录QQ邮箱Web页面，账户POP3设置里面生成授权码，需要关闭安全登录才会显示此选项</span><br><span class="line">SMTP Auth mechanism :Plain</span><br><span class="line">SMTP connection timeout :15</span><br></pre></td></tr></table></figure>
-
-<p>随后可以测试发送邮件是否成功，并且回到Bitwarden密码库网络后台的两部登陆中开启电子邮件验证码功能。</p>
-<h1 id="TOTP服务端时间不同步"><a href="#TOTP服务端时间不同步" class="headerlink" title="TOTP服务端时间不同步"></a>TOTP服务端时间不同步</h1><p>我也不知道为何会产生此问题，我最后把群晖的NTP服务器改成了”time.nist.gov”，之后一段时间都暂未遇到此问题。</p>
-]]></content>
-      <categories>
-        <category>折腾</category>
-      </categories>
-      <tags>
-        <tag>Bitwarden</tag>
-        <tag>QQ邮箱</tag>
-        <tag>两部验证</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Windows 11使用笔记、疑难杂症</title>
     <url>/posts/c7f49c9e/</url>
     <content><![CDATA[<p>博主在近日将自己的两台电脑分别升级到了Windows 11，本文将会是一个长期使用笔记以及所遭遇的疑难杂症解决方案等。操作系统产品的使用具有一定时效性，本文尽量保证及时更新。</p>
@@ -147,6 +106,74 @@
         <tag>Websocket</tag>
         <tag>群晖</tag>
         <tag>Docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Debian 11 搭建 Grasscutter</title>
+    <url>/posts/85f3d684/</url>
+    <content><![CDATA[<p>Grasscutter是一个动漫游戏的服务端，本文仅供学习。</p>
+<h1 id="Debian-11的安装"><a href="#Debian-11的安装" class="headerlink" title="Debian 11的安装"></a>Debian 11的安装</h1><p>这一部分自行解决。</p>
+<h1 id="部署Grasscutter"><a href="#部署Grasscutter" class="headerlink" title="部署Grasscutter"></a>部署Grasscutter</h1><h2 id="1-安装MongoDB"><a href="#1-安装MongoDB" class="headerlink" title="1. 安装MongoDB"></a>1. 安装MongoDB</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">su -</span><br><span class="line">apt update</span><br><span class="line">apt install gnupg</span><br><span class="line">wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | apt-key add -</span><br><span class="line">echo &quot;deb http://repo.mongodb.org/apt/debian buster/mongodb-org/5.0 main&quot; | tee /etc/apt/sources.list.d/mongodb-org-5.0.list</span><br><span class="line">apt update</span><br><span class="line">apt install mongodb-org</span><br><span class="line">systemctl enable mongod --now</span><br></pre></td></tr></table></figure>
+
+<p>数据库文件位置：&#x2F;var&#x2F;lib&#x2F;mongodb</p>
+<p>日志文件位置：&#x2F;var&#x2F;log&#x2F;mongodb</p>
+<span id="more"></span>
+
+<h2 id="2-安装Open-jdk-17"><a href="#2-安装Open-jdk-17" class="headerlink" title="2. 安装Open jdk 17"></a>2. 安装Open jdk 17</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt install -y openjdk-17-jdk</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-拉取Grasscutter库（Dev分支）"><a href="#3-拉取Grasscutter库（Dev分支）" class="headerlink" title="3. 拉取Grasscutter库（Dev分支）"></a>3. 拉取Grasscutter库（Dev分支）</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/Grasscutters/Grasscutter -b development</span><br><span class="line">cd Grasscutter</span><br><span class="line">git clone https://github.com/Koko-boya/Grasscutter_Resources</span><br><span class="line">mkdir resources</span><br><span class="line">\cp -r Grasscutter_Resources/Resources/* resources</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-构建"><a href="#4-构建" class="headerlink" title="4. 构建"></a>4. 构建</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">chmod +x gradlew</span><br><span class="line">./gradlew jar</span><br><span class="line">ls</span><br></pre></td></tr></table></figure>
+
+<p>构建完成后生成一个grasscutter-1.1.2.jar；</p>
+<p>因为更新频繁建议重命名为commit编号便于识别和管理；</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mv grasscutter-1.1.2.jar grasscutter-58df221.jar</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-下载mitmproxy"><a href="#5-下载mitmproxy" class="headerlink" title="5. 下载mitmproxy"></a>5. 下载mitmproxy</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget https://snapshots.mitmproxy.org/8.0.0/mitmproxy-8.0.0-linux.tar.gz</span><br><span class="line">tar zxvf mitmproxy-8.0.0-linux.tar.gz</span><br><span class="line">nohup ./mitmdump -s proxy.py --ssl-insecure --listen-port 12345 --set block_global=false --set tls_version_client_min=UNBOUNDED</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-运行服务端"><a href="#6-运行服务端" class="headerlink" title="6. 运行服务端"></a>6. 运行服务端</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">java -jar grasscutter-58df221.jar</span><br></pre></td></tr></table></figure>
+
+<p>首次运行可能会报错，按Ctrl-C退出后，编辑生成的config.json，填写自己的IP地址或者域名还有端口号，注意不要冲突，然后重新运行。</p>
+<h2 id="7-建立账户"><a href="#7-建立账户" class="headerlink" title="7. 建立账户"></a>7. 建立账户</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//account create &lt;用户名&gt; &lt;UID&gt;</span><br><span class="line">account create test 12345</span><br></pre></td></tr></table></figure>
+
+<p>其余命令可以参考项目Wiki。</p>
+<h2 id="8-登录服务器"><a href="#8-登录服务器" class="headerlink" title="8. 登录服务器"></a>8. 登录服务器</h2><p>个人电脑可以使用系统自带的http代理，也可以使用Clash for windows。</p>
+<h2 id="9-待补充（待续）"><a href="#9-待补充（待续）" class="headerlink" title="9. 待补充（待续）"></a>9. 待补充（待续）</h2><p>待补充。。。</p>
+]]></content>
+      <categories>
+        <category>折腾</category>
+      </categories>
+      <tags>
+        <tag>原神</tag>
+        <tag>Genshin Impact</tag>
+        <tag>Grasscutter</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在本地部署Memos以及使用Cloudflare Zero Trust进行外部访问</title>
+    <url>/posts/c99a4de6/</url>
+    <content><![CDATA[<p>　　Memos是一个轻量可以自己部署的碎片知识管理系统，有点类似于flomo。支持多标签、多用户、搜索、自定存储等功能。</p>
+<h1 id="在-Docker-中部署"><a href="#在-Docker-中部署" class="headerlink" title="在 Docker 中部署"></a>在 Docker 中部署</h1><p>　　本文使用Docker compose方式部署；</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&quot;3.0&quot;</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">memos:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">neosmemo/memos:latest</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">memos</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">/volume1/docker/memos:/var/opt/memos</span> <span class="comment"># 持久化路径:容器路径</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">5254</span><span class="string">:5230</span>                            <span class="comment"># 外部端口:容器端口</span></span><br></pre></td></tr></table></figure>
+
+<p>　　现在你可以运行<code>docker-compose up -d</code>来启动容器了，访问 <a href="http://localhost:5254/">http://localhost:5254/</a> 就可以访问memos的主页创建账户了。</p>
+<span id="more"></span>
+
+<h1 id="在-Cloudflare-开通-Zero-Trust-并且创建隧道"><a href="#在-Cloudflare-开通-Zero-Trust-并且创建隧道" class="headerlink" title="在 Cloudflare 开通 Zero Trust 并且创建隧道"></a>在 Cloudflare 开通 Zero Trust 并且创建隧道</h1><p>　　在群辉套件中心添加套件来源 <a href="https://packages.synocommunity.com/%EF%BC%8C%E5%B9%B6%E4%B8%94%E5%AE%89%E8%A3%85%E5%A5%97%E4%BB%B6">https://packages.synocommunity.com/，并且安装套件</a> Cloudflared。</p>
+<p><img src="https://s2.loli.net/2023/04/03/Ljk8oJGEbI9aWKv.png" alt="image-20230401234057185"></p>
+<p><img src="https://s2.loli.net/2023/04/03/Kza24VZYS73y8il.png" alt="image-20230403024320410"></p>
+<p>　　访问 <a href="https://dash.cloudflare.com/">https://dash.cloudflare.com/</a> 并且登录自己的账户，转到 Zero Trust → Access → Tunnels → Create a tunnel，复制自己 Tunnel token，启动群晖的套件，粘贴该 token。</p>
+<p>　　转到 Public Hostname ，然后 Add a public hostname ，添加自己域名和主机。</p>
+<p><img src="https://s2.loli.net/2023/04/03/hG8Oa97ZxrbSRg4.png" alt="image-20230403025156437"></p>
+<p>　　保存设置后网站就可以访问了。</p>
+]]></content>
+      <categories>
+        <category>折腾</category>
+      </categories>
+      <tags>
+        <tag>群晖</tag>
+        <tag>Docker</tag>
+        <tag>Memos</tag>
       </tags>
   </entry>
   <entry>
@@ -262,47 +289,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Debian 11 搭建 Grasscutter</title>
-    <url>/posts/85f3d684/</url>
-    <content><![CDATA[<p>Grasscutter是一个动漫游戏的服务端，本文仅供学习。</p>
-<h1 id="Debian-11的安装"><a href="#Debian-11的安装" class="headerlink" title="Debian 11的安装"></a>Debian 11的安装</h1><p>这一部分自行解决。</p>
-<h1 id="部署Grasscutter"><a href="#部署Grasscutter" class="headerlink" title="部署Grasscutter"></a>部署Grasscutter</h1><h2 id="1-安装MongoDB"><a href="#1-安装MongoDB" class="headerlink" title="1. 安装MongoDB"></a>1. 安装MongoDB</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">su -</span><br><span class="line">apt update</span><br><span class="line">apt install gnupg</span><br><span class="line">wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | apt-key add -</span><br><span class="line">echo &quot;deb http://repo.mongodb.org/apt/debian buster/mongodb-org/5.0 main&quot; | tee /etc/apt/sources.list.d/mongodb-org-5.0.list</span><br><span class="line">apt update</span><br><span class="line">apt install mongodb-org</span><br><span class="line">systemctl enable mongod --now</span><br></pre></td></tr></table></figure>
-
-<p>数据库文件位置：&#x2F;var&#x2F;lib&#x2F;mongodb</p>
-<p>日志文件位置：&#x2F;var&#x2F;log&#x2F;mongodb</p>
-<span id="more"></span>
-
-<h2 id="2-安装Open-jdk-17"><a href="#2-安装Open-jdk-17" class="headerlink" title="2. 安装Open jdk 17"></a>2. 安装Open jdk 17</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt install -y openjdk-17-jdk</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-拉取Grasscutter库（Dev分支）"><a href="#3-拉取Grasscutter库（Dev分支）" class="headerlink" title="3. 拉取Grasscutter库（Dev分支）"></a>3. 拉取Grasscutter库（Dev分支）</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/Grasscutters/Grasscutter -b development</span><br><span class="line">cd Grasscutter</span><br><span class="line">git clone https://github.com/Koko-boya/Grasscutter_Resources</span><br><span class="line">mkdir resources</span><br><span class="line">\cp -r Grasscutter_Resources/Resources/* resources</span><br></pre></td></tr></table></figure>
-
-<h2 id="4-构建"><a href="#4-构建" class="headerlink" title="4. 构建"></a>4. 构建</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">chmod +x gradlew</span><br><span class="line">./gradlew jar</span><br><span class="line">ls</span><br></pre></td></tr></table></figure>
-
-<p>构建完成后生成一个grasscutter-1.1.2.jar；</p>
-<p>因为更新频繁建议重命名为commit编号便于识别和管理；</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mv grasscutter-1.1.2.jar grasscutter-58df221.jar</span><br></pre></td></tr></table></figure>
-
-<h2 id="5-下载mitmproxy"><a href="#5-下载mitmproxy" class="headerlink" title="5. 下载mitmproxy"></a>5. 下载mitmproxy</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget https://snapshots.mitmproxy.org/8.0.0/mitmproxy-8.0.0-linux.tar.gz</span><br><span class="line">tar zxvf mitmproxy-8.0.0-linux.tar.gz</span><br><span class="line">nohup ./mitmdump -s proxy.py --ssl-insecure --listen-port 12345 --set block_global=false --set tls_version_client_min=UNBOUNDED</span><br></pre></td></tr></table></figure>
-
-<h2 id="6-运行服务端"><a href="#6-运行服务端" class="headerlink" title="6. 运行服务端"></a>6. 运行服务端</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">java -jar grasscutter-58df221.jar</span><br></pre></td></tr></table></figure>
-
-<p>首次运行可能会报错，按Ctrl-C退出后，编辑生成的config.json，填写自己的IP地址或者域名还有端口号，注意不要冲突，然后重新运行。</p>
-<h2 id="7-建立账户"><a href="#7-建立账户" class="headerlink" title="7. 建立账户"></a>7. 建立账户</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//account create &lt;用户名&gt; &lt;UID&gt;</span><br><span class="line">account create test 12345</span><br></pre></td></tr></table></figure>
-
-<p>其余命令可以参考项目Wiki。</p>
-<h2 id="8-登录服务器"><a href="#8-登录服务器" class="headerlink" title="8. 登录服务器"></a>8. 登录服务器</h2><p>个人电脑可以使用系统自带的http代理，也可以使用Clash for windows。</p>
-<h2 id="9-待补充（待续）"><a href="#9-待补充（待续）" class="headerlink" title="9. 待补充（待续）"></a>9. 待补充（待续）</h2><p>待补充。。。</p>
-]]></content>
-      <categories>
-        <category>折腾</category>
-      </categories>
-      <tags>
-        <tag>原神</tag>
-        <tag>Genshin Impact</tag>
-        <tag>Grasscutter</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>记录一次修复Windows 11 Passkey设置无法打开的状况</title>
     <url>/posts/16a1180a/</url>
     <content><![CDATA[<p>　　这个问题存在已久，一直没有找到是因为什么原因导致的，起初我以为是我这个系统的bug，但也只是我的推测，没有实际的证据表明。随着时间越来越久，这个问题也变成了心里的一个疙瘩，偶尔就上Google查一下看有没有其他人遇到这个问题，持续了半年左右。随着昨天我把Edge升级到了<code>Version 125.0.2535.51 (Official build) (64-bit)</code>，偶然之间我打开了Settings→Profiles→Microsoft Wallet，只要是钱包下面这个设置（密码管理也被移到了这个设置下），全部都会直接崩溃，于是我就和Passkey设置崩溃的现象关联起来，开始正式调查这个问题。</p>
@@ -333,33 +319,6 @@
       </tags>
   </entry>
   <entry>
-    <title>在本地部署Memos以及使用Cloudflare Zero Trust进行外部访问</title>
-    <url>/posts/c99a4de6/</url>
-    <content><![CDATA[<p>　　Memos是一个轻量可以自己部署的碎片知识管理系统，有点类似于flomo。支持多标签、多用户、搜索、自定存储等功能。</p>
-<h1 id="在-Docker-中部署"><a href="#在-Docker-中部署" class="headerlink" title="在 Docker 中部署"></a>在 Docker 中部署</h1><p>　　本文使用Docker compose方式部署；</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&quot;3.0&quot;</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">memos:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">neosmemo/memos:latest</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">memos</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">/volume1/docker/memos:/var/opt/memos</span> <span class="comment"># 持久化路径:容器路径</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">5254</span><span class="string">:5230</span>                            <span class="comment"># 外部端口:容器端口</span></span><br></pre></td></tr></table></figure>
-
-<p>　　现在你可以运行<code>docker-compose up -d</code>来启动容器了，访问 <a href="http://localhost:5254/">http://localhost:5254/</a> 就可以访问memos的主页创建账户了。</p>
-<span id="more"></span>
-
-<h1 id="在-Cloudflare-开通-Zero-Trust-并且创建隧道"><a href="#在-Cloudflare-开通-Zero-Trust-并且创建隧道" class="headerlink" title="在 Cloudflare 开通 Zero Trust 并且创建隧道"></a>在 Cloudflare 开通 Zero Trust 并且创建隧道</h1><p>　　在群辉套件中心添加套件来源 <a href="https://packages.synocommunity.com/%EF%BC%8C%E5%B9%B6%E4%B8%94%E5%AE%89%E8%A3%85%E5%A5%97%E4%BB%B6">https://packages.synocommunity.com/，并且安装套件</a> Cloudflared。</p>
-<p><img src="https://s2.loli.net/2023/04/03/Ljk8oJGEbI9aWKv.png" alt="image-20230401234057185"></p>
-<p><img src="https://s2.loli.net/2023/04/03/Kza24VZYS73y8il.png" alt="image-20230403024320410"></p>
-<p>　　访问 <a href="https://dash.cloudflare.com/">https://dash.cloudflare.com/</a> 并且登录自己的账户，转到 Zero Trust → Access → Tunnels → Create a tunnel，复制自己 Tunnel token，启动群晖的套件，粘贴该 token。</p>
-<p>　　转到 Public Hostname ，然后 Add a public hostname ，添加自己域名和主机。</p>
-<p><img src="https://s2.loli.net/2023/04/03/hG8Oa97ZxrbSRg4.png" alt="image-20230403025156437"></p>
-<p>　　保存设置后网站就可以访问了。</p>
-]]></content>
-      <categories>
-        <category>折腾</category>
-      </categories>
-      <tags>
-        <tag>群晖</tag>
-        <tag>Docker</tag>
-        <tag>Memos</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hello World</title>
     <url>/posts/4a17b156/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -376,6 +335,47 @@
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>Vaultwarden/Bitwardenrs启用两步验证和QQ邮箱代发验证码</title>
+    <url>/posts/c7341afb/</url>
+    <content><![CDATA[<p>在使用密码托管服务时，我最初只需要简单的同步，能够供手机使用即可。所以在使用1Password的时候，一直使用的是单机版。随着时间的推移，自己也有多平台需要，这种方式渐渐变的不方便，由于不太想使用1Password的网络服务，在前个月把密码托管逐步迁移到了自建Bitwarden服务。经过将近2个月的使用，个人感受相当良好。虽然有些小问题，但都在可以接受的范围内。</p>
+<p>因为有多平台和外网需要，所以便开放了外网，因为安全考虑设置了2步验证并且关闭注册，本文主要说一下开放2步验证以及备用手段即QQ邮箱接收验证码。</p>
+<span id="more"></span>
+
+<h1 id="搭建环境"><a href="#搭建环境" class="headerlink" title="搭建环境"></a>搭建环境</h1><p>我的Bitwarden服务通过Docker搭建在群晖上，虽然这样做有人觉得会存在不少问题，但我觉得人数不多且做好安全措施的话，可以接受这种方法。</p>
+<h1 id="设置两步验证"><a href="#设置两步验证" class="headerlink" title="设置两步验证"></a>设置两步验证</h1><ul>
+<li><p>登录你的Bitwarden密码库网页后台；</p>
+</li>
+<li><p>点击右上角头像→我的账户→两部登录；</p>
+</li>
+<li><p>点击管理验证器应用，准备好Google Authenticator或者Microsoft Authenticator，根据自己的喜好来；</p>
+</li>
+<li><p>使用验证器扫描二维码→填入6位验证码→确定以及保存好恢复代码；</p>
+<blockquote>
+<p>Bitwarden的恢复代码在设置里可以再次查看，请妥善保管。</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="设置邮箱服务以及代发验证码"><a href="#设置邮箱服务以及代发验证码" class="headerlink" title="设置邮箱服务以及代发验证码"></a>设置邮箱服务以及代发验证码</h1><p>我一开始觉得单纯的验证器已经够用，但是我遇到了TOTP服务器时间不正确的问题，一旦客户端和服务端时间差异超过1分钟，你的请求就是被服务端拒绝。保险起见我又多设置了邮箱服务，邮件验证码的有效期10分钟，是个很好的备选方案。</p>
+<p>通过域名加上”&#x2F;admin”访问Bitwarden的管理后台，输入admin token登录；</p>
+<blockquote>
+<p>Admin token在Dockers面板里设置，增加一条环境变量”ADMIN_TOKEN&#x3D;xxx”,xxx表示任意长度字符串，别太短就好，后期长时间不用就把这条删掉以保证安全性。</p>
+</blockquote>
+<p>点击”SMTP Email Settings”,进行如下设置：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Enable: true</span><br><span class="line">Host: smtp.qq.com</span><br><span class="line">Enable Secure SMTP :true</span><br><span class="line">Force TLS :true</span><br><span class="line">Port :465</span><br><span class="line">From Address :user@qq.com #user就是你的用户名,这里不要用不是当前账户的地址，否则可能发送失败</span><br><span class="line">From Name :Bitwarden</span><br><span class="line">Username :user@qq.com #user就是你的用户名</span><br><span class="line">Password :yourpassword #登录QQ邮箱Web页面，账户POP3设置里面生成授权码，需要关闭安全登录才会显示此选项</span><br><span class="line">SMTP Auth mechanism :Plain</span><br><span class="line">SMTP connection timeout :15</span><br></pre></td></tr></table></figure>
+
+<p>随后可以测试发送邮件是否成功，并且回到Bitwarden密码库网络后台的两部登陆中开启电子邮件验证码功能。</p>
+<h1 id="TOTP服务端时间不同步"><a href="#TOTP服务端时间不同步" class="headerlink" title="TOTP服务端时间不同步"></a>TOTP服务端时间不同步</h1><p>我也不知道为何会产生此问题，我最后把群晖的NTP服务器改成了”time.nist.gov”，之后一段时间都暂未遇到此问题。</p>
+]]></content>
+      <categories>
+        <category>折腾</category>
+      </categories>
+      <tags>
+        <tag>Bitwarden</tag>
+        <tag>QQ邮箱</tag>
+        <tag>两部验证</tag>
+      </tags>
   </entry>
   <entry>
     <title>本周在忙些什么（Y2024W02）</title>
