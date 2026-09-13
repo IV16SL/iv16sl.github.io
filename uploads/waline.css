@@ -1199,4 +1199,10 @@ a {
     color: #eeeeee !important;
     border-color: #eeeeee !important;
   }
+  .wl-btn:disabled {
+    background: #3eaf64 !important;
+  }
+  .wl-card .wl-meta > span {
+    background: #666 !important;
+  }
 }
