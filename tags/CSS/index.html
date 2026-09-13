@@ -63,7 +63,7 @@
 
 
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.6.0/style.css" />
+<link rel="dns-prefetch" href="https://waline.huanjue.me"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.6.0/style.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-smiley-sans@1.0.0/style.css" />
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
@@ -291,6 +291,17 @@
 <noscript>
   <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
 </noscript>
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline.huanjue.me","cssUrl":"https://unpkg.com/@waline/client@v3/dist/waline.css","commentCount":false,"pageview":false,"search":false,"reaction":false,"imageUploader":false,"requiredMeta":["nick"],"el":"#waline","comment":true,"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","path":"/tags/CSS/"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
 
 </body>
 </html>
