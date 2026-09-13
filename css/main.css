@@ -1400,7 +1400,7 @@ pre code {
     transition: all 0.2s ease-in-out;
   }
   .links-of-author a::before {
-    background: #c7de11;
+    background: #f6c8ff;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -3060,13 +3060,6 @@ header.header {
 @import url("https://fontsapi.zeoseven.com/442/main/result.css");
 @font-face {
   font-family: 'OPPO Sans';
-  font-weight: 400;
   font-display: swap;
   src: url("https://code.oppo.com/content/dam/oppo/common/fonts/font2/new-font/OPPOSansOS2-5000-Regular.woff2") format('woff2');
-}
-@font-face {
-  font-family: 'OPPO Sans';
-  font-weight: 500;
-  font-display: swap;
-  src: url("https://code.oppo.com/content/dam/oppo/common/fonts/font2/new-font/OPPOSansOS2-5000-Medium.woff2") format('woff2');
 }
