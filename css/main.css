@@ -1456,7 +1456,7 @@ pre code {
     transition: all 0.2s ease-in-out;
   }
   .links-of-author a::before {
-    background: #90ff6c;
+    background: #ee8604;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -3114,7 +3114,3 @@ header.header {
   src: url("/fonts/pricedown.ttf");
 }
 @import url("https://fontsapi.zeoseven.com/442/main/result.css");
-body {
-  font-family: "Maple Mono NF CN";
-  font-weight: normal;
-}
