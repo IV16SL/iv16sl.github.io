@@ -42,61 +42,44 @@
       </tags>
   </entry>
   <entry>
-    <title>Windows 11使用笔记、疑难杂症</title>
-    <url>/posts/c7f49c9e/</url>
-    <content><![CDATA[<p>博主在近日将自己的两台电脑分别升级到了Windows 11，本文将会是一个长期使用笔记以及所遭遇的疑难杂症解决方案等。操作系统产品的使用具有一定时效性，本文尽量保证及时更新。</p>
+    <title>Debian 11 搭建 Grasscutter</title>
+    <url>/posts/85f3d684/</url>
+    <content><![CDATA[<p>Grasscutter是一个动漫游戏的服务端，本文仅供学习。</p>
+<h1 id="Debian-11的安装"><a href="#Debian-11的安装" class="headerlink" title="Debian 11的安装"></a>Debian 11的安装</h1><p>这一部分自行解决。</p>
+<h1 id="部署Grasscutter"><a href="#部署Grasscutter" class="headerlink" title="部署Grasscutter"></a>部署Grasscutter</h1><h2 id="1-安装MongoDB"><a href="#1-安装MongoDB" class="headerlink" title="1. 安装MongoDB"></a>1. 安装MongoDB</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">su -</span><br><span class="line">apt update</span><br><span class="line">apt install gnupg</span><br><span class="line">wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | apt-key add -</span><br><span class="line">echo &quot;deb http://repo.mongodb.org/apt/debian buster/mongodb-org/5.0 main&quot; | tee /etc/apt/sources.list.d/mongodb-org-5.0.list</span><br><span class="line">apt update</span><br><span class="line">apt install mongodb-org</span><br><span class="line">systemctl enable mongod --now</span><br></pre></td></tr></table></figure>
+
+<p>数据库文件位置：&#x2F;var&#x2F;lib&#x2F;mongodb</p>
+<p>日志文件位置：&#x2F;var&#x2F;log&#x2F;mongodb</p>
 <span id="more"></span>
 
-<h1 id="升级方式"><a href="#升级方式" class="headerlink" title="升级方式"></a>升级方式</h1><p>升级方式一般以下四种：</p>
-<ul>
-<li><p>全新安装，通过镜像、启动U盘等，都属于这一类；</p>
-</li>
-<li><p>Windows 10用户等待微软推送；</p>
-<blockquote>
-<p>版本必须为2004或者更高；</p>
-</blockquote>
-</li>
-<li><p>使用<a href="https://www.microsoft.com/zh-cn/software-download/windows11">Windows 11安装助手</a>进行升级；</p>
-</li>
-<li><p>购买预装Windows 11的电脑。</p>
-</li>
-</ul>
-<h1 id="疑难杂症"><a href="#疑难杂症" class="headerlink" title="疑难杂症"></a>疑难杂症</h1><h4 id="更新至Windows-11后，进入桌面就开始不停闪屏"><a href="#更新至Windows-11后，进入桌面就开始不停闪屏" class="headerlink" title="更新至Windows 11后，进入桌面就开始不停闪屏"></a>更新至Windows 11后，进入桌面就开始不停闪屏</h4><p>这种情况一般出现于由Win10直接升级至Win11进入桌面后出现，没有开始菜单，桌面不停刷新。解决此问题的方法为，使用快捷键”Ctrl+Shift+Esc”调出任务管理器，点击”文件”→”运行新任务”→输入”Control”并回车调出控制面板，点击”区域和时间”→”更改时区”→下拉菜单点击一下，确定即可。</p>
-<p>导致此问题的原因尚不明确。</p>
+<h2 id="2-安装Open-jdk-17"><a href="#2-安装Open-jdk-17" class="headerlink" title="2. 安装Open jdk 17"></a>2. 安装Open jdk 17</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt install -y openjdk-17-jdk</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-拉取Grasscutter库（Dev分支）"><a href="#3-拉取Grasscutter库（Dev分支）" class="headerlink" title="3. 拉取Grasscutter库（Dev分支）"></a>3. 拉取Grasscutter库（Dev分支）</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/Grasscutters/Grasscutter -b development</span><br><span class="line">cd Grasscutter</span><br><span class="line">git clone https://github.com/Koko-boya/Grasscutter_Resources</span><br><span class="line">mkdir resources</span><br><span class="line">\cp -r Grasscutter_Resources/Resources/* resources</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-构建"><a href="#4-构建" class="headerlink" title="4. 构建"></a>4. 构建</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">chmod +x gradlew</span><br><span class="line">./gradlew jar</span><br><span class="line">ls</span><br></pre></td></tr></table></figure>
+
+<p>构建完成后生成一个grasscutter-1.1.2.jar；</p>
+<p>因为更新频繁建议重命名为commit编号便于识别和管理；</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mv grasscutter-1.1.2.jar grasscutter-58df221.jar</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-下载mitmproxy"><a href="#5-下载mitmproxy" class="headerlink" title="5. 下载mitmproxy"></a>5. 下载mitmproxy</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget https://snapshots.mitmproxy.org/8.0.0/mitmproxy-8.0.0-linux.tar.gz</span><br><span class="line">tar zxvf mitmproxy-8.0.0-linux.tar.gz</span><br><span class="line">nohup ./mitmdump -s proxy.py --ssl-insecure --listen-port 12345 --set block_global=false --set tls_version_client_min=UNBOUNDED</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-运行服务端"><a href="#6-运行服务端" class="headerlink" title="6. 运行服务端"></a>6. 运行服务端</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">java -jar grasscutter-58df221.jar</span><br></pre></td></tr></table></figure>
+
+<p>首次运行可能会报错，按Ctrl-C退出后，编辑生成的config.json，填写自己的IP地址或者域名还有端口号，注意不要冲突，然后重新运行。</p>
+<h2 id="7-建立账户"><a href="#7-建立账户" class="headerlink" title="7. 建立账户"></a>7. 建立账户</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//account create &lt;用户名&gt; &lt;UID&gt;</span><br><span class="line">account create test 12345</span><br></pre></td></tr></table></figure>
+
+<p>其余命令可以参考项目Wiki。</p>
+<h2 id="8-登录服务器"><a href="#8-登录服务器" class="headerlink" title="8. 登录服务器"></a>8. 登录服务器</h2><p>个人电脑可以使用系统自带的http代理，也可以使用Clash for windows。</p>
+<h2 id="9-待补充（待续）"><a href="#9-待补充（待续）" class="headerlink" title="9. 待补充（待续）"></a>9. 待补充（待续）</h2><p>待补充。。。</p>
 ]]></content>
       <categories>
-        <category>OS</category>
+        <category>Video Games</category>
       </categories>
       <tags>
-        <tag>Windows 11</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在本地部署Memos以及使用Cloudflare Zero Trust进行外部访问</title>
-    <url>/posts/c99a4de6/</url>
-    <content><![CDATA[<p>　　Memos是一个轻量可以自己部署的碎片知识管理系统，有点类似于flomo。支持多标签、多用户、搜索、自定存储等功能。</p>
-<h1 id="在-Docker-中部署"><a href="#在-Docker-中部署" class="headerlink" title="在 Docker 中部署"></a>在 Docker 中部署</h1><p>　　本文使用Docker compose方式部署；</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&quot;3.0&quot;</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">memos:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">neosmemo/memos:latest</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">memos</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">/volume1/docker/memos:/var/opt/memos</span> <span class="comment"># 持久化路径:容器路径</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">5254</span><span class="string">:5230</span> <span class="comment"># 外部端口:容器端口</span></span><br></pre></td></tr></table></figure>
-
-<p>　　现在你可以运行<code>docker-compose up -d</code>来启动容器了，访问 <a href="http://localhost:5254/">http://localhost:5254/</a> 就可以访问memos的主页创建账户了。</p>
-<span id="more"></span>
-
-<h1 id="在-Cloudflare-开通-Zero-Trust-并且创建隧道"><a href="#在-Cloudflare-开通-Zero-Trust-并且创建隧道" class="headerlink" title="在 Cloudflare 开通 Zero Trust 并且创建隧道"></a>在 Cloudflare 开通 Zero Trust 并且创建隧道</h1><p>　　在群辉套件中心添加套件来源 <a href="https://packages.synocommunity.com/%EF%BC%8C%E5%B9%B6%E4%B8%94%E5%AE%89%E8%A3%85%E5%A5%97%E4%BB%B6">https://packages.synocommunity.com/，并且安装套件</a> Cloudflared。</p>
-<p><img src="https://s2.loli.net/2023/04/03/Ljk8oJGEbI9aWKv.png" alt="image-20230401234057185"></p>
-<p><img src="https://s2.loli.net/2023/04/03/Kza24VZYS73y8il.png" alt="image-20230403024320410"></p>
-<p>　　访问 <a href="https://dash.cloudflare.com/">https://dash.cloudflare.com/</a> 并且登录自己的账户，转到 Zero Trust → Access → Tunnels → Create a tunnel，复制自己 Tunnel token，启动群晖的套件，粘贴该 token。</p>
-<p>　　转到 Public Hostname ，然后 Add a public hostname ，添加自己域名和主机。</p>
-<p><img src="https://s2.loli.net/2023/04/03/hG8Oa97ZxrbSRg4.png" alt="image-20230403025156437"></p>
-<p>　　保存设置后网站就可以访问了。</p>
-]]></content>
-      <categories>
-        <category>Network</category>
-      </categories>
-      <tags>
-        <tag>Memos</tag>
-        <tag>Docker</tag>
-        <tag>Synology</tag>
-        <tag>Cloudflare</tag>
+        <tag>Genshin Impact</tag>
+        <tag>Grasscutter</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -168,36 +151,68 @@
       </categories>
       <tags>
         <tag>Bitwarden</tag>
-        <tag>Docker</tag>
-        <tag>Synology</tag>
         <tag>Vaultwarden</tag>
         <tag>Websocket</tag>
+        <tag>Synology</tag>
+        <tag>Docker</tag>
       </tags>
   </entry>
   <entry>
-    <title>本周在忙些什么（Y2024W02）</title>
-    <url>/posts/b3cfedb0/</url>
-    <content><![CDATA[<p>　　因为感觉自己总是忙的不可开交，但是因为各种事情都很细碎，所以有必要整理下自己到底在忙什么，时间都花在哪里了？让我们来看下本周在忙些什么呢？</p>
-  <span id="more"></span>
+    <title>Windows 11使用笔记、疑难杂症</title>
+    <url>/posts/c7f49c9e/</url>
+    <content><![CDATA[<p>博主在近日将自己的两台电脑分别升级到了Windows 11，本文将会是一个长期使用笔记以及所遭遇的疑难杂症解决方案等。操作系统产品的使用具有一定时效性，本文尽量保证及时更新。</p>
+<span id="more"></span>
 
-<h2 id="个人服务器"><a href="#个人服务器" class="headerlink" title="个人服务器"></a>个人服务器</h2><h3 id="flaresloverr"><a href="#flaresloverr" class="headerlink" title="flaresloverr"></a>flaresloverr</h3><p>　　早前一直遭遇 tekqart 的签到问题，一直没能解决，随着 flaresloverr 的更新，这个问题顺利解决了；<br>详情可以参考：<a href="https://github.com/wjf0214/qd-templates/discussions/45">品技(原91TVG) 模板问题反馈评论区 · wjf0214&#x2F;qd-templates · Discussion #45 (github.com)</a></p>
-<h3 id="FreshRSS"><a href="#FreshRSS" class="headerlink" title="FreshRSS"></a>FreshRSS</h3><p>　　更新到了 1.23.1，开启了邮箱验证功能，并且切换到了官方仓库；对于 RSS，还是一句话，不要订阅太多，你用RSS本来就是为了精准筛选信息，太多你来不及看的，千万不要本末倒置。</p>
-<h3 id="Headscale-derp服务器"><a href="#Headscale-derp服务器" class="headerlink" title="Headscale derp服务器"></a>Headscale derp服务器</h3><p>　　本周遇到的问题，单部署 Headscale，当客户端之间无法直接打洞直连时切换到官方的 derp 服务器，理论上是就近原则，但是实际切换非常谜，导致明明很近延迟却爆炸，因此自己部署了 derp 服务器，删除官方列表。</p>
-<h3 id="Memos"><a href="#Memos" class="headerlink" title="Memos"></a>Memos</h3><p>　　Memos 更新到了0.18.2，但是此版本好像不支持 markdown 表格了，看看后续版本吧 ，最近我总是拿来记录做菜的。</p>
-<h3 id="Bitwarden"><a href="#Bitwarden" class="headerlink" title="Bitwarden"></a>Bitwarden</h3><p>　　将第三方实现“Vaultwarden”更新到了最新，自己编译了最新的 web-vault v2024.1.0，做了少量的修改，新增的使用通行密钥登陆 web-vault，需要后续实现 。</p>
-<h2 id="信息安全"><a href="#信息安全" class="headerlink" title="信息安全"></a>信息安全</h2><p>　　删除了微软、英伟达（非CN）、群晖（非CN）的账户密码，改用通行密钥登陆。<br>轻度学习了下 GunPG 的使用，此前我只用于 Github 提交验证，现在也用于邮件加密。</p>
-<h2 id="电子邮件"><a href="#电子邮件" class="headerlink" title="电子邮件"></a>电子邮件</h2><p>　　开始使用 Thunderbird 作为邮件客户端，并且默认打开端到端加密，启用了 OpenPGP 加密。对于配置上，如果你使用 Gmail 的 IMAP，需要注意 SS&#x2F;SSR 是无法代理 IMAP 协议的，建议可以通过其他手段（比如 Socks5）。</p>
-<h2 id="游戏"><a href="#游戏" class="headerlink" title="游戏"></a>游戏</h2><p>　　本周也只玩了原神，2个号每天玩的细致一点需要2小时了，因此没有想法玩其他游戏，时间不够充裕。自己的号稻妻成就还差1个，不出意外两周内会完成。</p>
-<h2 id="Git-仓库"><a href="#Git-仓库" class="headerlink" title="Git 仓库"></a>Git 仓库</h2><p>　　实际上我只有一个 Scoop 自用仓库托管在 Github，本周也是常规更新和终于修复了 newline 的问题，要养成文件尾 newline 的好习惯，另外每次修改前一定要先拉取仓库，不要等到合并冲突再想起来这个事情。</p>
-<h2 id="剧集"><a href="#剧集" class="headerlink" title="剧集"></a>剧集</h2><p>　　看完了《帝王计划：怪兽遗产》，整体节奏挺好，作为《哥斯拉大战金刚2》的前置，质量我觉得是过关的，但是政治正确的各种要素拉满了，感觉没有必要。<br>还有一部正在看的剧是《繁花》，看了上海话版本，有些很久没听到的词汇感觉格外亲切，剧本身质量也很好，等看完再说说其他。</p>
+<h1 id="升级方式"><a href="#升级方式" class="headerlink" title="升级方式"></a>升级方式</h1><p>升级方式一般以下四种：</p>
+<ul>
+<li><p>全新安装，通过镜像、启动U盘等，都属于这一类；</p>
+</li>
+<li><p>Windows 10用户等待微软推送；</p>
+<blockquote>
+<p>版本必须为2004或者更高；</p>
+</blockquote>
+</li>
+<li><p>使用<a href="https://www.microsoft.com/zh-cn/software-download/windows11">Windows 11安装助手</a>进行升级；</p>
+</li>
+<li><p>购买预装Windows 11的电脑。</p>
+</li>
+</ul>
+<h1 id="疑难杂症"><a href="#疑难杂症" class="headerlink" title="疑难杂症"></a>疑难杂症</h1><h4 id="更新至Windows-11后，进入桌面就开始不停闪屏"><a href="#更新至Windows-11后，进入桌面就开始不停闪屏" class="headerlink" title="更新至Windows 11后，进入桌面就开始不停闪屏"></a>更新至Windows 11后，进入桌面就开始不停闪屏</h4><p>这种情况一般出现于由Win10直接升级至Win11进入桌面后出现，没有开始菜单，桌面不停刷新。解决此问题的方法为，使用快捷键”Ctrl+Shift+Esc”调出任务管理器，点击”文件”→”运行新任务”→输入”Control”并回车调出控制面板，点击”区域和时间”→”更改时区”→下拉菜单点击一下，确定即可。</p>
+<p>导致此问题的原因尚不明确。</p>
 ]]></content>
       <categories>
-        <category>Life</category>
+        <category>OS</category>
       </categories>
       <tags>
-        <tag>Server</tag>
-        <tag>Weekly</tag>
-        <tag>RSS</tag>
+        <tag>Windows 11</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在本地部署Memos以及使用Cloudflare Zero Trust进行外部访问</title>
+    <url>/posts/c99a4de6/</url>
+    <content><![CDATA[<p>　　Memos是一个轻量可以自己部署的碎片知识管理系统，有点类似于flomo。支持多标签、多用户、搜索、自定存储等功能。</p>
+<h1 id="在-Docker-中部署"><a href="#在-Docker-中部署" class="headerlink" title="在 Docker 中部署"></a>在 Docker 中部署</h1><p>　　本文使用Docker compose方式部署；</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&quot;3.0&quot;</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">memos:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">neosmemo/memos:latest</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">memos</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">/volume1/docker/memos:/var/opt/memos</span> <span class="comment"># 持久化路径:容器路径</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">5254</span><span class="string">:5230</span> <span class="comment"># 外部端口:容器端口</span></span><br></pre></td></tr></table></figure>
+
+<p>　　现在你可以运行<code>docker-compose up -d</code>来启动容器了，访问 <a href="http://localhost:5254/">http://localhost:5254/</a> 就可以访问memos的主页创建账户了。</p>
+<span id="more"></span>
+
+<h1 id="在-Cloudflare-开通-Zero-Trust-并且创建隧道"><a href="#在-Cloudflare-开通-Zero-Trust-并且创建隧道" class="headerlink" title="在 Cloudflare 开通 Zero Trust 并且创建隧道"></a>在 Cloudflare 开通 Zero Trust 并且创建隧道</h1><p>　　在群辉套件中心添加套件来源 <a href="https://packages.synocommunity.com/%EF%BC%8C%E5%B9%B6%E4%B8%94%E5%AE%89%E8%A3%85%E5%A5%97%E4%BB%B6">https://packages.synocommunity.com/，并且安装套件</a> Cloudflared。</p>
+<p><img src="https://s2.loli.net/2023/04/03/Ljk8oJGEbI9aWKv.png" alt="image-20230401234057185"></p>
+<p><img src="https://s2.loli.net/2023/04/03/Kza24VZYS73y8il.png" alt="image-20230403024320410"></p>
+<p>　　访问 <a href="https://dash.cloudflare.com/">https://dash.cloudflare.com/</a> 并且登录自己的账户，转到 Zero Trust → Access → Tunnels → Create a tunnel，复制自己 Tunnel token，启动群晖的套件，粘贴该 token。</p>
+<p>　　转到 Public Hostname ，然后 Add a public hostname ，添加自己域名和主机。</p>
+<p><img src="https://s2.loli.net/2023/04/03/hG8Oa97ZxrbSRg4.png" alt="image-20230403025156437"></p>
+<p>　　保存设置后网站就可以访问了。</p>
+]]></content>
+      <categories>
+        <category>Network</category>
+      </categories>
+      <tags>
+        <tag>Synology</tag>
+        <tag>Docker</tag>
+        <tag>Memos</tag>
+        <tag>Cloudflare</tag>
       </tags>
   </entry>
   <entry>
@@ -228,6 +243,42 @@
         <tag>Windows</tag>
         <tag>Passkey</tag>
         <tag>Webauthn</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>记录一次在Hexo Next主题添加Waline评论系统的过程和问题</title>
+    <url>/posts/6fa8453b/</url>
+    <content><![CDATA[<p>　　周日高强度上网冲浪，看到不少博客都有评论系统，就萌发了自己博客也要弄一个的想法，于是说干就干，开始上网找。<br>　　一开始也不知道要找什么，便先从Next主题官网阅读相关文档开始，在 <a href="https://theme-next.js.org/docs/third-party-services/comments">Comment System</a> 页还有导航页 <a href="https://theme-next.js.org/plugins/">Plugins</a> 内都找到了相关信息，良久后觉得Valine还挺适合，但是好像停更了，还有一些其他问题。最后一番摸索找到了Waline，查了下比较简约，可以在Vercel部署，那不就非常适合我吗？开干！</p>
+<span id="more"></span>
+
+<h2 id="在Vercel上部署服务端"><a href="#在Vercel上部署服务端" class="headerlink" title="在Vercel上部署服务端"></a>在Vercel上部署服务端</h2><blockquote>
+<p>直接参考<a href="https://waline.js.org/guide/deploy/vercel.html">官方文档</a> Vercel部署Waline</p>
+</blockquote>
+<p>　　部署完本体后，接着按照文档在Neon上创建数据库，完成后记得在左侧菜单中SQL Editor中用官方仓库的 <a href="https://github.com/walinejs/waline/blob/main/assets/waline.pgsql">waline.pgsql</a> 创建初始表，不少人少看了这一步，不建表后面会报错。<br>　　完成后需要回到Vercel中Waline的项目中Redeploy，但是这里我在后面遇到了第一个问题，就是时区不对影响了评论的时间，每条都晚8小时，默认用的是GMT时间。比较不幸的是Vercel的TZ环境变量是<a href="https://vercel.com/docs/environment-variables/reserved-environment-variables">保留变量</a>，用户不可以更改，因此我们改用另外一种办法。<br>　　在Vercel创建项目时，已经替你在GitHub上Fork官方的仓库，打开仓库中的<strong>index.cjs</strong>，在最前面加入<code>process.env.TZ = &#39;Asia/Shanghai&#39;;</code>，然后提交，一定要第一行，然后回到项目执行Redeploy，一般这时候因为你的仓库有新提交，Vercel那里也自动Redelopy了，完成后时区就是GMT+8了。<br>　　最后绑定自己的域名，然后访问 <a href="https://yourwalineaddress/ui">https://yourwalineaddress/ui</a> 注册管理员账号，并尽快开启两步验证保证安全性。</p>
+<h2 id="在Hexo-Next上安装插件和设置"><a href="#在Hexo-Next上安装插件和设置" class="headerlink" title="在Hexo Next上安装插件和设置"></a>在Hexo Next上安装插件和设置</h2><p>　　转到你博客的根目录下，安装@waline&#x2F;hexo-next插件。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd yourblog</span><br><span class="line">npm install @waline/hexo-next --save</span><br></pre></td></tr></table></figure>
+
+<p>　　安装完成后在博客根目录下的配置文件<code>_config.yml</code>中增加以下设置：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Waline 评论系统start https://www.npmjs.com/package/@waline/hexo-next</span><br><span class="line">waline:</span><br><span class="line">  enable: true</span><br><span class="line">  serverURL: https://yourwalineaddress</span><br><span class="line"></span><br><span class="line">  # Waline library CDN url, you can set this to your preferred CDN</span><br><span class="line">  # libUrl: https://unpkg.com/@waline/client@v3/dist/waline.umd.js</span><br><span class="line"></span><br><span class="line">  # Waline CSS styles CDN url, you can set this to your preferred CDN</span><br><span class="line">  cssUrl: https://unpkg.com/@waline/client@v3/dist/waline.css</span><br><span class="line"></span><br><span class="line">  # Custom locales 自定义区域设置</span><br><span class="line">  # locale:</span><br><span class="line">  #  placeholder:</span><br><span class="line"></span><br><span class="line">  # 如果为false，评论数将只显示在文章页面，而不是在主页</span><br><span class="line">  commentCount: false</span><br><span class="line"></span><br><span class="line">  # 浏览量统计，注意：您不应该同时启用`waline.pageview`和`leancloud_visitors`。 leancloud_visitors在主题文件夹中</span><br><span class="line">  pageview: false</span><br><span class="line"></span><br><span class="line">  lang: zh-CN</span><br><span class="line">  search: false #禁用表情包搜索</span><br><span class="line">  reaction: false #文章反应</span><br><span class="line">  imageUploader: false #图片上传</span><br><span class="line"></span><br><span class="line">  # Cloudflare turnstile设置，评论区验证</span><br><span class="line">  TURNSTILE_KEY: #Cloudflare turnstile key</span><br><span class="line">  TURNSTILE_SECRET: #Cloudflare turnstile secret</span><br><span class="line"></span><br><span class="line">  # Custom emoji</span><br><span class="line">  # emoji:</span><br><span class="line">  #   - https://unpkg.com/@waline/emojis@1.1.0/weibo</span><br><span class="line">  #   - https://unpkg.com/@waline/emojis@1.1.0/alus</span><br><span class="line">  #   - https://unpkg.com/@waline/emojis@1.1.0/bilibili</span><br><span class="line">  #   - https://unpkg.com/@waline/emojis@1.1.0/qq</span><br><span class="line">  #   - https://unpkg.com/@waline/emojis@1.1.0/tieba</span><br><span class="line">  #   - https://unpkg.com/@waline/emojis@1.1.0/tw-emoji</span><br><span class="line"></span><br><span class="line">  # Comment information, valid meta are nick, mail and link</span><br><span class="line">  # meta:</span><br><span class="line">  #   - nick</span><br><span class="line">  #   - mail</span><br><span class="line">  #   - link</span><br><span class="line"></span><br><span class="line">  # Set required meta field, e.g.: [nick] | [nick, mail] 未登录必填字段</span><br><span class="line">  requiredMeta:</span><br><span class="line">    - nick</span><br><span class="line"></span><br><span class="line">  # Word limit, no limit when setting to 0</span><br><span class="line">  # wordLimit: 0</span><br><span class="line"></span><br><span class="line">  # Whether enable login, can choose from &#x27;enable&#x27;, &#x27;disable&#x27; and &#x27;force&#x27;</span><br><span class="line">  # login: enable</span><br><span class="line"></span><br><span class="line">  # comment per page</span><br><span class="line">  # pageSize: 10</span><br><span class="line"># Waline 评论系统 end</span><br></pre></td></tr></table></figure>
+
+<p>有关于Cloudflare turnstile的设置，需要登录后在Dashboard左侧Application Security中Turnstile申请，请妥善保存Secret。之后前往Vercel项目中Environment Variables，新增<code>TURNSTILE_KEY</code>和<code>TURNSTILE_SECRET</code>两个变量，类型均为Secret，填入在Cloudflare申请到的值。</p>
+<h2 id="Hexo博客重新生成"><a href="#Hexo博客重新生成" class="headerlink" title="Hexo博客重新生成"></a>Hexo博客重新生成</h2><p>　　以上都完成后，在你的博客根目录下运行清理、重新构建、开启本地服务器预览一下效果：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+
+<p>　　发一下评论看下时间和效果是否都正常，如果一切都正常的，我遇到了后面一个问题，深色模式不生效的问题。</p>
+<h2 id="解决Waline在Next深色主题下没有生效的问题"><a href="#解决Waline在Next深色主题下没有生效的问题" class="headerlink" title="解决Waline在Next深色主题下没有生效的问题"></a>解决Waline在Next深色主题下没有生效的问题</h2><p>　　正常情况下，Next主题就像<a href="https://waline.js.org/guide/features/style.html">官方文档</a>所说的，使用<code>@media</code> 选择器通过 <code>prefers-color-scheme</code> 来根据设备颜色模式状态自动切换，我也没有去改动，理论上你只要在配置中加入<code>dark: &#39;auto&#39;</code>就可以生效了，但是我实际遇到的是集中方法都试过了，完全没有效果，我也不知道为什么，始终有个背景色被劫持了。<br>　　最后不得以采用直接修改配置中引用的waline.css，增加如下代码，可自行浏览器Inspect按需修改：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@media (prefers-color-scheme: dark) &#123;</span><br><span class="line"></span><br><span class="line">  :root &#123;</span><br><span class="line"></span><br><span class="line">    --waline-bg-color: #333333 !important;</span><br><span class="line"></span><br><span class="line">    --waline-color: #eeeeee !important;</span><br><span class="line"></span><br><span class="line">    --waline-border-color: #eeeeee !important;</span><br><span class="line"></span><br><span class="line">    --waline-disable-color: #eeeeee !important;</span><br><span class="line"></span><br><span class="line">    --waline-info-color: #eeeeee !important;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  .wl-editor,</span><br><span class="line"></span><br><span class="line">  .wl-editor:focus,</span><br><span class="line"></span><br><span class="line">  .wl-editor:active,</span><br><span class="line"></span><br><span class="line">  .wl-input,</span><br><span class="line"></span><br><span class="line">  .wl-input:focus &#123;</span><br><span class="line"></span><br><span class="line">    background-color: #333333 !important;</span><br><span class="line"></span><br><span class="line">    background: #333333 !important;</span><br><span class="line"></span><br><span class="line">    color: #eeeeee !important;</span><br><span class="line"></span><br><span class="line">    border-color: #eeeeee !important;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  .wl-btn:disabled &#123;</span><br><span class="line"></span><br><span class="line">    background: #3eaf64 !important;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  .wl-card .wl-meta &gt; span &#123;</span><br><span class="line"></span><br><span class="line">    background: #666 !important;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>　　浅色模式效果：<br><img src="https://i.iiii.im/file/47AQrgLM.png" alt="浅色模式效果"><br>　　深色模式效果：<br><img src="https://i.iiii.im/file/qKK5RlYV.png" alt="深色模式效果"></p>
+<p>　　总的来说，整体效果我还是挺满意的，这套系统也很易用。</p>
+]]></content>
+      <categories>
+        <category>Blog</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Next</tag>
+        <tag>Waline</tag>
       </tags>
   </entry>
   <entry>
@@ -359,80 +410,29 @@
       </tags>
   </entry>
   <entry>
-    <title>记录一次在Hexo Next主题添加Waline评论系统的过程和问题</title>
-    <url>/posts/6fa8453b/</url>
-    <content><![CDATA[<p>　　周日高强度上网冲浪，看到不少博客都有评论系统，就萌发了自己博客也要弄一个的想法，于是说干就干，开始上网找。<br>　　一开始也不知道要找什么，便先从Next主题官网阅读相关文档开始，在 <a href="https://theme-next.js.org/docs/third-party-services/comments">Comment System</a> 页还有导航页 <a href="https://theme-next.js.org/plugins/">Plugins</a> 内都找到了相关信息，良久后觉得Valine还挺适合，但是好像停更了，还有一些其他问题。最后一番摸索找到了Waline，查了下比较简约，可以在Vercel部署，那不就非常适合我吗？开干！</p>
-<span id="more"></span>
+    <title>本周在忙些什么（Y2024W02）</title>
+    <url>/posts/b3cfedb0/</url>
+    <content><![CDATA[<p>　　因为感觉自己总是忙的不可开交，但是因为各种事情都很细碎，所以有必要整理下自己到底在忙什么，时间都花在哪里了？让我们来看下本周在忙些什么呢？</p>
+  <span id="more"></span>
 
-<h2 id="在Vercel上部署服务端"><a href="#在Vercel上部署服务端" class="headerlink" title="在Vercel上部署服务端"></a>在Vercel上部署服务端</h2><blockquote>
-<p>直接参考<a href="https://waline.js.org/guide/deploy/vercel.html">官方文档</a> Vercel部署Waline</p>
-</blockquote>
-<p>　　部署完本体后，接着按照文档在Neon上创建数据库，完成后记得在左侧菜单中SQL Editor中用官方仓库的 <a href="https://github.com/walinejs/waline/blob/main/assets/waline.pgsql">waline.pgsql</a> 创建初始表，不少人少看了这一步，不建表后面会报错。<br>　　完成后需要回到Vercel中Waline的项目中Redeploy，但是这里我在后面遇到了第一个问题，就是时区不对影响了评论的时间，每条都晚8小时，默认用的是GMT时间。比较不幸的是Vercel的TZ环境变量是<a href="https://vercel.com/docs/environment-variables/reserved-environment-variables">保留变量</a>，用户不可以更改，因此我们改用另外一种办法。<br>　　在Vercel创建项目时，已经替你在GitHub上Fork官方的仓库，打开仓库中的<strong>index.cjs</strong>，在最前面加入<code>process.env.TZ = &#39;Asia/Shanghai&#39;;</code>，然后提交，一定要第一行，然后回到项目执行Redeploy，一般这时候因为你的仓库有新提交，Vercel那里也自动Redelopy了，完成后时区就是GMT+8了。<br>　　最后绑定自己的域名，然后访问 <a href="https://yourwalineaddress/ui">https://yourwalineaddress/ui</a> 注册管理员账号，并尽快开启两步验证保证安全性。</p>
-<h2 id="在Hexo-Next上安装插件和设置"><a href="#在Hexo-Next上安装插件和设置" class="headerlink" title="在Hexo Next上安装插件和设置"></a>在Hexo Next上安装插件和设置</h2><p>　　转到你博客的根目录下，安装@waline&#x2F;hexo-next插件。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd yourblog</span><br><span class="line">npm install @waline/hexo-next --save</span><br></pre></td></tr></table></figure>
-
-<p>　　安装完成后在博客根目录下的配置文件<code>_config.yml</code>中增加以下设置：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Waline 评论系统start https://www.npmjs.com/package/@waline/hexo-next</span><br><span class="line">waline:</span><br><span class="line">  enable: true</span><br><span class="line">  serverURL: https://yourwalineaddress</span><br><span class="line"></span><br><span class="line">  # Waline library CDN url, you can set this to your preferred CDN</span><br><span class="line">  # libUrl: https://unpkg.com/@waline/client@v3/dist/waline.umd.js</span><br><span class="line"></span><br><span class="line">  # Waline CSS styles CDN url, you can set this to your preferred CDN</span><br><span class="line">  cssUrl: https://unpkg.com/@waline/client@v3/dist/waline.css</span><br><span class="line"></span><br><span class="line">  # Custom locales 自定义区域设置</span><br><span class="line">  # locale:</span><br><span class="line">  #  placeholder:</span><br><span class="line"></span><br><span class="line">  # 如果为false，评论数将只显示在文章页面，而不是在主页</span><br><span class="line">  commentCount: false</span><br><span class="line"></span><br><span class="line">  # 浏览量统计，注意：您不应该同时启用`waline.pageview`和`leancloud_visitors`。 leancloud_visitors在主题文件夹中</span><br><span class="line">  pageview: false</span><br><span class="line"></span><br><span class="line">  lang: zh-CN</span><br><span class="line">  search: false #禁用表情包搜索</span><br><span class="line">  reaction: false #文章反应</span><br><span class="line">  imageUploader: false #图片上传</span><br><span class="line"></span><br><span class="line">  # Cloudflare turnstile设置，评论区验证</span><br><span class="line">  TURNSTILE_KEY: #Cloudflare turnstile key</span><br><span class="line">  TURNSTILE_SECRET: #Cloudflare turnstile secret</span><br><span class="line"></span><br><span class="line">  # Custom emoji</span><br><span class="line">  # emoji:</span><br><span class="line">  #   - https://unpkg.com/@waline/emojis@1.1.0/weibo</span><br><span class="line">  #   - https://unpkg.com/@waline/emojis@1.1.0/alus</span><br><span class="line">  #   - https://unpkg.com/@waline/emojis@1.1.0/bilibili</span><br><span class="line">  #   - https://unpkg.com/@waline/emojis@1.1.0/qq</span><br><span class="line">  #   - https://unpkg.com/@waline/emojis@1.1.0/tieba</span><br><span class="line">  #   - https://unpkg.com/@waline/emojis@1.1.0/tw-emoji</span><br><span class="line"></span><br><span class="line">  # Comment information, valid meta are nick, mail and link</span><br><span class="line">  # meta:</span><br><span class="line">  #   - nick</span><br><span class="line">  #   - mail</span><br><span class="line">  #   - link</span><br><span class="line"></span><br><span class="line">  # Set required meta field, e.g.: [nick] | [nick, mail] 未登录必填字段</span><br><span class="line">  requiredMeta:</span><br><span class="line">    - nick</span><br><span class="line"></span><br><span class="line">  # Word limit, no limit when setting to 0</span><br><span class="line">  # wordLimit: 0</span><br><span class="line"></span><br><span class="line">  # Whether enable login, can choose from &#x27;enable&#x27;, &#x27;disable&#x27; and &#x27;force&#x27;</span><br><span class="line">  # login: enable</span><br><span class="line"></span><br><span class="line">  # comment per page</span><br><span class="line">  # pageSize: 10</span><br><span class="line"># Waline 评论系统 end</span><br></pre></td></tr></table></figure>
-
-<p>有关于Cloudflare turnstile的设置，需要登录后在Dashboard左侧Application Security中Turnstile申请，请妥善保存Secret。之后前往Vercel项目中Environment Variables，新增<code>TURNSTILE_KEY</code>和<code>TURNSTILE_SECRET</code>两个变量，类型均为Secret，填入在Cloudflare申请到的值。</p>
-<h2 id="Hexo博客重新生成"><a href="#Hexo博客重新生成" class="headerlink" title="Hexo博客重新生成"></a>Hexo博客重新生成</h2><p>　　以上都完成后，在你的博客根目录下运行清理、重新构建、开启本地服务器预览一下效果：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-
-<p>　　发一下评论看下时间和效果是否都正常，如果一切都正常的，我遇到了后面一个问题，深色模式不生效的问题。</p>
-<h2 id="解决Waline在Next深色主题下没有生效的问题"><a href="#解决Waline在Next深色主题下没有生效的问题" class="headerlink" title="解决Waline在Next深色主题下没有生效的问题"></a>解决Waline在Next深色主题下没有生效的问题</h2><p>　　正常情况下，Next主题就像<a href="https://waline.js.org/guide/features/style.html">官方文档</a>所说的，使用<code>@media</code> 选择器通过 <code>prefers-color-scheme</code> 来根据设备颜色模式状态自动切换，我也没有去改动，理论上你只要在配置中加入<code>dark: &#39;auto&#39;</code>就可以生效了，但是我实际遇到的是集中方法都试过了，完全没有效果，我也不知道为什么，始终有个背景色被劫持了。<br>　　最后不得以采用直接修改配置中引用的waline.css，增加如下代码，可自行浏览器Inspect按需修改：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@media (prefers-color-scheme: dark) &#123;</span><br><span class="line"></span><br><span class="line">  :root &#123;</span><br><span class="line"></span><br><span class="line">    --waline-bg-color: #333333 !important;</span><br><span class="line"></span><br><span class="line">    --waline-color: #eeeeee !important;</span><br><span class="line"></span><br><span class="line">    --waline-border-color: #eeeeee !important;</span><br><span class="line"></span><br><span class="line">    --waline-disable-color: #eeeeee !important;</span><br><span class="line"></span><br><span class="line">    --waline-info-color: #eeeeee !important;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  .wl-editor,</span><br><span class="line"></span><br><span class="line">  .wl-editor:focus,</span><br><span class="line"></span><br><span class="line">  .wl-editor:active,</span><br><span class="line"></span><br><span class="line">  .wl-input,</span><br><span class="line"></span><br><span class="line">  .wl-input:focus &#123;</span><br><span class="line"></span><br><span class="line">    background-color: #333333 !important;</span><br><span class="line"></span><br><span class="line">    background: #333333 !important;</span><br><span class="line"></span><br><span class="line">    color: #eeeeee !important;</span><br><span class="line"></span><br><span class="line">    border-color: #eeeeee !important;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  .wl-btn:disabled &#123;</span><br><span class="line"></span><br><span class="line">    background: #3eaf64 !important;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  .wl-card .wl-meta &gt; span &#123;</span><br><span class="line"></span><br><span class="line">    background: #666 !important;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>　　浅色模式效果：<br><img src="https://i.iiii.im/file/47AQrgLM.png" alt="浅色模式效果"><br>　　深色模式效果：<br><img src="https://i.iiii.im/file/qKK5RlYV.png" alt="深色模式效果"></p>
-<p>　　总的来说，整体效果我还是挺满意的，这套系统也很易用。</p>
+<h2 id="个人服务器"><a href="#个人服务器" class="headerlink" title="个人服务器"></a>个人服务器</h2><h3 id="flaresloverr"><a href="#flaresloverr" class="headerlink" title="flaresloverr"></a>flaresloverr</h3><p>　　早前一直遭遇 tekqart 的签到问题，一直没能解决，随着 flaresloverr 的更新，这个问题顺利解决了；<br>详情可以参考：<a href="https://github.com/wjf0214/qd-templates/discussions/45">品技(原91TVG) 模板问题反馈评论区 · wjf0214&#x2F;qd-templates · Discussion #45 (github.com)</a></p>
+<h3 id="FreshRSS"><a href="#FreshRSS" class="headerlink" title="FreshRSS"></a>FreshRSS</h3><p>　　更新到了 1.23.1，开启了邮箱验证功能，并且切换到了官方仓库；对于 RSS，还是一句话，不要订阅太多，你用RSS本来就是为了精准筛选信息，太多你来不及看的，千万不要本末倒置。</p>
+<h3 id="Headscale-derp服务器"><a href="#Headscale-derp服务器" class="headerlink" title="Headscale derp服务器"></a>Headscale derp服务器</h3><p>　　本周遇到的问题，单部署 Headscale，当客户端之间无法直接打洞直连时切换到官方的 derp 服务器，理论上是就近原则，但是实际切换非常谜，导致明明很近延迟却爆炸，因此自己部署了 derp 服务器，删除官方列表。</p>
+<h3 id="Memos"><a href="#Memos" class="headerlink" title="Memos"></a>Memos</h3><p>　　Memos 更新到了0.18.2，但是此版本好像不支持 markdown 表格了，看看后续版本吧 ，最近我总是拿来记录做菜的。</p>
+<h3 id="Bitwarden"><a href="#Bitwarden" class="headerlink" title="Bitwarden"></a>Bitwarden</h3><p>　　将第三方实现“Vaultwarden”更新到了最新，自己编译了最新的 web-vault v2024.1.0，做了少量的修改，新增的使用通行密钥登陆 web-vault，需要后续实现 。</p>
+<h2 id="信息安全"><a href="#信息安全" class="headerlink" title="信息安全"></a>信息安全</h2><p>　　删除了微软、英伟达（非CN）、群晖（非CN）的账户密码，改用通行密钥登陆。<br>轻度学习了下 GunPG 的使用，此前我只用于 Github 提交验证，现在也用于邮件加密。</p>
+<h2 id="电子邮件"><a href="#电子邮件" class="headerlink" title="电子邮件"></a>电子邮件</h2><p>　　开始使用 Thunderbird 作为邮件客户端，并且默认打开端到端加密，启用了 OpenPGP 加密。对于配置上，如果你使用 Gmail 的 IMAP，需要注意 SS&#x2F;SSR 是无法代理 IMAP 协议的，建议可以通过其他手段（比如 Socks5）。</p>
+<h2 id="游戏"><a href="#游戏" class="headerlink" title="游戏"></a>游戏</h2><p>　　本周也只玩了原神，2个号每天玩的细致一点需要2小时了，因此没有想法玩其他游戏，时间不够充裕。自己的号稻妻成就还差1个，不出意外两周内会完成。</p>
+<h2 id="Git-仓库"><a href="#Git-仓库" class="headerlink" title="Git 仓库"></a>Git 仓库</h2><p>　　实际上我只有一个 Scoop 自用仓库托管在 Github，本周也是常规更新和终于修复了 newline 的问题，要养成文件尾 newline 的好习惯，另外每次修改前一定要先拉取仓库，不要等到合并冲突再想起来这个事情。</p>
+<h2 id="剧集"><a href="#剧集" class="headerlink" title="剧集"></a>剧集</h2><p>　　看完了《帝王计划：怪兽遗产》，整体节奏挺好，作为《哥斯拉大战金刚2》的前置，质量我觉得是过关的，但是政治正确的各种要素拉满了，感觉没有必要。<br>还有一部正在看的剧是《繁花》，看了上海话版本，有些很久没听到的词汇感觉格外亲切，剧本身质量也很好，等看完再说说其他。</p>
 ]]></content>
       <categories>
-        <category>Blog</category>
+        <category>Life</category>
       </categories>
       <tags>
-        <tag>Hexo</tag>
-        <tag>Next</tag>
-        <tag>Waline</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Debian 11 搭建 Grasscutter</title>
-    <url>/posts/85f3d684/</url>
-    <content><![CDATA[<p>Grasscutter是一个动漫游戏的服务端，本文仅供学习。</p>
-<h1 id="Debian-11的安装"><a href="#Debian-11的安装" class="headerlink" title="Debian 11的安装"></a>Debian 11的安装</h1><p>这一部分自行解决。</p>
-<h1 id="部署Grasscutter"><a href="#部署Grasscutter" class="headerlink" title="部署Grasscutter"></a>部署Grasscutter</h1><h2 id="1-安装MongoDB"><a href="#1-安装MongoDB" class="headerlink" title="1. 安装MongoDB"></a>1. 安装MongoDB</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">su -</span><br><span class="line">apt update</span><br><span class="line">apt install gnupg</span><br><span class="line">wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | apt-key add -</span><br><span class="line">echo &quot;deb http://repo.mongodb.org/apt/debian buster/mongodb-org/5.0 main&quot; | tee /etc/apt/sources.list.d/mongodb-org-5.0.list</span><br><span class="line">apt update</span><br><span class="line">apt install mongodb-org</span><br><span class="line">systemctl enable mongod --now</span><br></pre></td></tr></table></figure>
-
-<p>数据库文件位置：&#x2F;var&#x2F;lib&#x2F;mongodb</p>
-<p>日志文件位置：&#x2F;var&#x2F;log&#x2F;mongodb</p>
-<span id="more"></span>
-
-<h2 id="2-安装Open-jdk-17"><a href="#2-安装Open-jdk-17" class="headerlink" title="2. 安装Open jdk 17"></a>2. 安装Open jdk 17</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt install -y openjdk-17-jdk</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-拉取Grasscutter库（Dev分支）"><a href="#3-拉取Grasscutter库（Dev分支）" class="headerlink" title="3. 拉取Grasscutter库（Dev分支）"></a>3. 拉取Grasscutter库（Dev分支）</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/Grasscutters/Grasscutter -b development</span><br><span class="line">cd Grasscutter</span><br><span class="line">git clone https://github.com/Koko-boya/Grasscutter_Resources</span><br><span class="line">mkdir resources</span><br><span class="line">\cp -r Grasscutter_Resources/Resources/* resources</span><br></pre></td></tr></table></figure>
-
-<h2 id="4-构建"><a href="#4-构建" class="headerlink" title="4. 构建"></a>4. 构建</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">chmod +x gradlew</span><br><span class="line">./gradlew jar</span><br><span class="line">ls</span><br></pre></td></tr></table></figure>
-
-<p>构建完成后生成一个grasscutter-1.1.2.jar；</p>
-<p>因为更新频繁建议重命名为commit编号便于识别和管理；</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mv grasscutter-1.1.2.jar grasscutter-58df221.jar</span><br></pre></td></tr></table></figure>
-
-<h2 id="5-下载mitmproxy"><a href="#5-下载mitmproxy" class="headerlink" title="5. 下载mitmproxy"></a>5. 下载mitmproxy</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget https://snapshots.mitmproxy.org/8.0.0/mitmproxy-8.0.0-linux.tar.gz</span><br><span class="line">tar zxvf mitmproxy-8.0.0-linux.tar.gz</span><br><span class="line">nohup ./mitmdump -s proxy.py --ssl-insecure --listen-port 12345 --set block_global=false --set tls_version_client_min=UNBOUNDED</span><br></pre></td></tr></table></figure>
-
-<h2 id="6-运行服务端"><a href="#6-运行服务端" class="headerlink" title="6. 运行服务端"></a>6. 运行服务端</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">java -jar grasscutter-58df221.jar</span><br></pre></td></tr></table></figure>
-
-<p>首次运行可能会报错，按Ctrl-C退出后，编辑生成的config.json，填写自己的IP地址或者域名还有端口号，注意不要冲突，然后重新运行。</p>
-<h2 id="7-建立账户"><a href="#7-建立账户" class="headerlink" title="7. 建立账户"></a>7. 建立账户</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//account create &lt;用户名&gt; &lt;UID&gt;</span><br><span class="line">account create test 12345</span><br></pre></td></tr></table></figure>
-
-<p>其余命令可以参考项目Wiki。</p>
-<h2 id="8-登录服务器"><a href="#8-登录服务器" class="headerlink" title="8. 登录服务器"></a>8. 登录服务器</h2><p>个人电脑可以使用系统自带的http代理，也可以使用Clash for windows。</p>
-<h2 id="9-待补充（待续）"><a href="#9-待补充（待续）" class="headerlink" title="9. 待补充（待续）"></a>9. 待补充（待续）</h2><p>待补充。。。</p>
-]]></content>
-      <categories>
-        <category>Video Games</category>
-      </categories>
-      <tags>
-        <tag>Genshin Impact</tag>
-        <tag>Grasscutter</tag>
-        <tag>Linux</tag>
+        <tag>Server</tag>
+        <tag>Weekly</tag>
+        <tag>RSS</tag>
       </tags>
   </entry>
 </search>
