@@ -95,7 +95,7 @@ waline:
 # Waline 评论系统 end
 ```
 
-有关于Cloudflare turnstile的设置，需要登录后在Dashboard左侧Application Security中Turnstile申请，请妥善保存Secret。之后前往Vercel项目中Environment Variables，新增`TURNSTILE_KEY`和`TURNSTILE_SECRET`两个变量，类型均为Secret，填入在Cloudflare申请到的值。
+　　有关于Cloudflare turnstile的设置，需要登录后在Dashboard左侧Application Security中Turnstile申请，请妥善保存Secret。之后前往Vercel项目中Environment Variables，新增`TURNSTILE_KEY`和`TURNSTILE_SECRET`两个变量，类型均为Secret，填入在Cloudflare申请到的值。
 
 ## Hexo博客重新生成
 

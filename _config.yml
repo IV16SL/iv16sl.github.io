@@ -216,7 +216,7 @@ theme_config:
     # Font settings for <code> and code blocks.
     codes:
       external: true
-      family: "Maple Mono NF CN"
+      family: "Maple Mono Normal, Maple Mono NF CN"
 
   # Define custom file paths.
   # Create your custom files in site directory `source/_data` and uncomment needed files below.
@@ -260,7 +260,7 @@ theme_config:
   # Value before `||` delimiter is the target permalink, value after `||` delimiter is the name of Font Awesome icon.
   social:
     #GitHub: https://github.com/yourname || fab fa-github
-    E-Mail: mailto:j@huanjue.me || fa fa-envelope
+    E-Mail: mailto:hi@huanjue.me || fa fa-envelope
     #Weibo: https://weibo.com/gtxhuanjue || fab fa-weibo
     #Google: https://plus.google.com/yourname || fab fa-google
     X: https://x.com/gtxhuanjue || fab fa-x-twitter
