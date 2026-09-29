@@ -2,9 +2,8 @@
 title: 和 ChatGPT 对话怎么修改一个 CSS
 tags:
   - CSS
-  - 对话
   - ChatGPT
-categories: 人工智能
+categories: AI
 abbrlink: 76534bb9
 ---
 
@@ -157,11 +156,11 @@ abbrlink: 76534bb9
 　　好的，请提供一下具体的代码和效果，我来帮您检查一下。
 
 ## .status-text.public::before {
-  display: inline-block;
-  font-size: 24px;
-  content: "🌐";
-}
 
+display: inline-block;
+font-size: 24px;
+content: "🌐";
+}
 
 　　这段 CSS 代码可以将一个🌐图案添加到 `status-text` 类的元素前面。如果您添加了这段 CSS 代码之后，效果不符合您的预期，请提供更多关于您想要实现的效果的信息，我可以帮助您进行调整。
 
@@ -284,8 +283,9 @@ abbrlink: 76534bb9
 　　我希望这次的回答能够解决你的问题。请尝试应用代码并让我知道是否符合您的要求。
 
 ## .status-text.public::before {
-  display: inline-block;
-  content: "🌐";
+
+display: inline-block;
+content: "🌐";
 }
 
 先改称这样
@@ -318,6 +318,7 @@ abbrlink: 76534bb9
 　　这样可以确保只在包含 .status-text.public 类的元素中显示🌐图案，并且与文本内容紧密相连，避免出现空白。请尝试应用这个修改并让我知道是否符合您的要求。
 
 ## 现在源代码变成
+
 <span class="status-text public">
   ::before
   PUBLIC
@@ -370,6 +371,7 @@ abbrlink: 76534bb9
 　　这样可以确保只在包含 .status-text.public 类的元素中显示"🌐" 图案，并始终与元素文本内容紧密相连。请尝试应用这个修改并让我知道是否符合您的要求。
 
 ## 我现在改成了以下这样：
+
 ```
 
 .status-text.public::before {
@@ -389,7 +391,6 @@ abbrlink: 76534bb9
 }
 
 ```
-
 
 　　如果您想将🌐图案放在文本内容前面，并且图案与文本内容一起显示在 .status-text.public 元素中，可以采用以下代码：
 

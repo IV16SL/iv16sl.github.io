@@ -1,15 +1,13 @@
 ---
 title: Vaultwarden/Bitwardenrs启用两步验证和QQ邮箱代发验证码
-categories: 折腾
+categories: Security
 tags:
   - Bitwarden
-  - QQ邮箱
-  - 两部验证
+  - Email
+  - TOTP
 abbrlink: c7341afb
 date: 2021-10-11 22:16:04
 ---
-
-
 
 在使用密码托管服务时，我最初只需要简单的同步，能够供手机使用即可。所以在使用1Password的时候，一直使用的是单机版。随着时间的推移，自己也有多平台需要，这种方式渐渐变的不方便，由于不太想使用1Password的网络服务，在前个月把密码托管逐步迁移到了自建Bitwarden服务。经过将近2个月的使用，个人感受相当良好。虽然有些小问题，但都在可以接受的范围内。
 

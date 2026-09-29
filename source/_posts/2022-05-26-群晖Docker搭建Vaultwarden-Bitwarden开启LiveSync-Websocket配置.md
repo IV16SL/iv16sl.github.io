@@ -4,9 +4,9 @@ tags:
   - Bitwarden
   - Vaultwarden
   - Websocket
-  - 群晖
+  - Synology
   - Docker
-categories: 折腾
+categories: Security
 abbrlink: bc73beb2
 date: 2022-05-26 21:27:42
 ---
@@ -15,7 +15,7 @@ date: 2022-05-26 21:27:42
 
 　　对于不同客户端之间的实时同步，Bitwarden官方把这个功能叫做Live Sync，官方的博客中说这是基于Websocket技术来达成的功能；
 
-> Live sync works by using a powerful technology called [*WebSockets*](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API). Live sync is now available in all Bitwarden apps, including mobile (mobile uses a different technology called *Push Notifications*).
+> Live sync works by using a powerful technology called [_WebSockets_](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API). Live sync is now available in all Bitwarden apps, including mobile (mobile uses a different technology called _Push Notifications_).
 
 　　在移动平台端，这个功能被叫做Push notification；
 
@@ -99,14 +99,14 @@ synow3tool --gen-all && systemctl reload nginx
 
 # 测试效果
 
- 　　2个客户端，一个是Windows客户端，一个是安卓客户端；修改一个项目确认后查看是否实时同步，控制台也同时会有日志产生。
+　　2个客户端，一个是Windows客户端，一个是安卓客户端；修改一个项目确认后查看是否实时同步，控制台也同时会有日志产生。
 ![](https://s2.loli.net/2022/05/26/iCBWhMtd9Jmye6F.gif)
 
 # 参考链接
-[1]: https://bitwarden.com/blog/live-sync/	"LiveSyncBitwardenApps"
+
+[1]: https://bitwarden.com/blog/live-sync/ "LiveSyncBitwardenApps"
 [2]: https://github.com/andyzhshg/syno-acme/issues/66
 [3]: https://vaultwarden.discourse.group/t/need-explaining-websocket-and-push-notifications/87/9
 [4]: https://gist.github.com/nstanke/3949ae1c4706854d8f166d1fb3dadc81
 [5]: https://gist.github.com/eizedev/06a6727dc341745a4845fe04ccc97b05
 [6]: https://github.com/dani-garcia/vaultwarden/wiki/Enabling-WebSocket-notifications
-

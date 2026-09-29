@@ -1,10 +1,10 @@
 ---
 title: Debian 11 搭建 Grasscutter
 tags:
-  - 原神
   - Genshin Impact
   - Grasscutter
-categories: 折腾
+  - Linux
+categories: Video Games
 abbrlink: 85f3d684
 date: 2022-05-16 22:12:49
 ---

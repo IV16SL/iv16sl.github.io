@@ -4,7 +4,7 @@
 
 # Site
 title: 幻觉的博客
-subtitle: "你我皆是幻觉"
+subtitle: "宇宙中的一切皆是幻觉"
 description: ""
 keywords:
 author: 幻觉
@@ -180,7 +180,7 @@ theme_config:
   # ---------------------------------------------------------------
 
   font:
-    enable: false
+    enable: true
 
     # Uri of fonts host, e.g. https://fonts.googleapis.com (Default).
     host:
@@ -193,7 +193,7 @@ theme_config:
     # Global font settings used for all elements inside <body>.
     global:
       external: true
-      family: "Noto Sans CJK SC, Source Han Sans SC"
+      family: "OPPO Sans, Noto Sans CJK SC, Source Han Sans SC"
       size:
 
     # Font settings for site title (.site-title).
@@ -205,7 +205,7 @@ theme_config:
     # Font settings for headlines (<h1> to <h6>).
     headings:
       external: true
-      family:
+      family: "OPPO Sans, Noto Sans CJK SC, Source Han Sans SC"
       size:
 
     # Font settings for posts (.post-body).
@@ -216,7 +216,7 @@ theme_config:
     # Font settings for <code> and code blocks.
     codes:
       external: true
-      family: "PT Mono, Noto Sans CJK SC"
+      family: "Maple Mono NF CN"
 
   # Define custom file paths.
   # Create your custom files in site directory `source/_data` and uncomment needed files below.
@@ -317,8 +317,8 @@ theme_config:
     # Code Highlight theme
     # All available themes: https://theme-next.js.org/highlight/
     theme:
-      light: github
-      dark: github-dark
+      light: atom-one-light
+      dark: atom-one-dark
     prism:
       light: prism
       dark: prism-dark
@@ -377,6 +377,61 @@ mobile_layout_economy: true
 # ---------------------------------------------------------------
 # Site Information Settings
 # ---------------------------------------------------------------
+
+# Waline 评论系统start https://www.npmjs.com/package/@waline/hexo-next
+waline:
+  enable: true
+  serverURL: https://waline.huanjue.me
+
+  # Waline library CDN url, you can set this to your preferred CDN
+  # libUrl: https://unpkg.com/@waline/client@v3/dist/waline.umd.js
+
+  # Waline CSS styles CDN url, you can set this to your preferred CDN
+  cssUrl: /uploads/waline.css
+
+  # Custom locales 自定义区域设置
+  #locale:
+  #  placeholder: #评论框的默认文字
+
+  # 如果为false，评论数将只显示在文章页面，而不是在主页
+  commentCount: false
+
+  # 浏览量统计，注意：您不应该同时启用`waline.pageview`和`leancloud_visitors`。 leancloud_visitors在主题文件夹中
+  pageview: false
+
+  lang: zh-CN
+  search: false #禁用表情包搜索
+  reaction: false #文章反应
+  imageUploader: false #图片上传
+  # Custom emoji
+  # emoji:
+  #   - https://unpkg.com/@waline/emojis@1.1.0/weibo
+  #   - https://unpkg.com/@waline/emojis@1.1.0/alus
+  #   - https://unpkg.com/@waline/emojis@1.1.0/bilibili
+  #   - https://unpkg.com/@waline/emojis@1.1.0/qq
+  #   - https://unpkg.com/@waline/emojis@1.1.0/tieba
+  #   - https://unpkg.com/@waline/emojis@1.1.0/tw-emoji
+
+  # Comment information, valid meta are nick, mail and link
+  # meta:
+  #   - nick
+  #   - mail
+  #   - link
+
+  # Set required meta field, e.g.: [nick] | [nick, mail] 未登录必填字段
+  requiredMeta:
+    - nick
+
+  turnstileKey: 0x4AAAAAAEyR65row5zUXzfE
+  # Word limit, no limit when setting to 0
+  # wordLimit: 0
+
+  # Whether enable login, can choose from 'enable', 'disable' and 'force'
+  # login: enable
+
+  # comment per page
+  # pageSize: 10
+# Waline 评论系统 end
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment

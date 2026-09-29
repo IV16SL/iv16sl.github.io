@@ -4,7 +4,7 @@ tags:
   - Windows
   - Passkey
   - Webauthn
-categories: 折腾
+categories: OS
 abbrlink: 16a1180a
 ---
 

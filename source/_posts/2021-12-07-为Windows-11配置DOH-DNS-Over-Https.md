@@ -1,10 +1,11 @@
 ---
 title: 为Windows 11配置DOH(DNS Over Https)
-categories: 折腾
 tags:
   - Windows 11
   - DNS
   - DOH
+categories:
+  - OS
 abbrlink: 58192ec3
 date: 2021-12-07 09:22:58
 ---

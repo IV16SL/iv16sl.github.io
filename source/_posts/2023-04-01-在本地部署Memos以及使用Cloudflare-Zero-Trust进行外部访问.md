@@ -3,8 +3,9 @@ title: 在本地部署Memos以及使用Cloudflare Zero Trust进行外部访问
 tags:
   - Memos
   - Docker
-  - 群晖
-categories: 折腾
+  - Synology
+  - Cloudflare
+categories: Network
 abbrlink: c99a4de6
 date: 2023-04-01 23:08:50
 ---
@@ -24,7 +25,7 @@ services:
     volumes:
       - /volume1/docker/memos:/var/opt/memos # 持久化路径:容器路径
     ports:
-      - 5254:5230                            # 外部端口:容器端口
+      - 5254:5230 # 外部端口:容器端口
 ```
 
 　　现在你可以运行`docker-compose up -d`来启动容器了，访问 http://localhost:5254/ 就可以访问memos的主页创建账户了。
