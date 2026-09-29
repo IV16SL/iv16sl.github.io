@@ -1,3 +1,4 @@
+https://blog.huanjue.me/posts/a8ea8a87/
 https://blog.huanjue.me/posts/6fa8453b/
 https://blog.huanjue.me/posts/85f3d684/
 https://blog.huanjue.me/posts/16a1180a/
@@ -39,6 +40,10 @@ https://blog.huanjue.me/tags/ChatGPT/
 https://blog.huanjue.me/tags/Server/
 https://blog.huanjue.me/tags/Weekly/
 https://blog.huanjue.me/tags/RSS/
+https://blog.huanjue.me/tags/Equinoxes/
+https://blog.huanjue.me/tags/Solstices/
+https://blog.huanjue.me/tags/Perihelion/
+https://blog.huanjue.me/tags/Aphelion/
 https://blog.huanjue.me/categories/Security/
 https://blog.huanjue.me/categories/Video-Games/
 https://blog.huanjue.me/categories/OS/
@@ -46,3 +51,4 @@ https://blog.huanjue.me/categories/Network/
 https://blog.huanjue.me/categories/Blog/
 https://blog.huanjue.me/categories/AI/
 https://blog.huanjue.me/categories/Life/
+https://blog.huanjue.me/categories/Earth-s-Seasons/

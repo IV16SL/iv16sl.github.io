@@ -435,4 +435,61 @@
         <tag>RSS</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Earth&#39;s Seasons - Equinoxes, Solstices, Perihelion, and Aphelion (2027 UTC+8)</title>
+    <url>/posts/a8ea8a87/</url>
+    <content><![CDATA[<center><b>2027</b></center>
+<center><b>UTC+8</b></center>
+
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Phenomenon</strong></th>
+<th align="left"><strong>Date</strong></th>
+<th align="left"><strong>Time</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Perihelion</td>
+<td align="left">2027 January 3</td>
+<td align="left">10:33</td>
+</tr>
+<tr>
+<td align="left">Equinox</td>
+<td align="left">2027 March 21</td>
+<td align="left">04:25</td>
+</tr>
+<tr>
+<td align="left">Solstice</td>
+<td align="left">2027 June 21</td>
+<td align="left">22:11</td>
+</tr>
+<tr>
+<td align="left">Aphelion</td>
+<td align="left">2027 July 5</td>
+<td align="left">13:06</td>
+</tr>
+<tr>
+<td align="left">Equinox</td>
+<td align="left">2027 September 23</td>
+<td align="left">14:02</td>
+</tr>
+<tr>
+<td align="left">Solstice</td>
+<td align="left">2027 December 22</td>
+<td align="left">10:42</td>
+</tr>
+</tbody></table>
+<p>来源：<a href="https://aa.usno.navy.mil/calculated/seasons">USNO</a></p>
+]]></content>
+      <categories>
+        <category>Earth&#39;s Seasons</category>
+      </categories>
+      <tags>
+        <tag>Equinoxes</tag>
+        <tag>Solstices</tag>
+        <tag>Perihelion</tag>
+        <tag>Aphelion</tag>
+      </tags>
+  </entry>
 </search>
