@@ -454,6 +454,30 @@ document.addEventListener('page:loaded', () => {
   );
 });
 </script>
+<script>
+(function() {
+  var ICONS = {
+    light: { '16x16': '/images/favicon-16x16.png', '32x32': '/images/favicon-32x32.png' },
+    dark:  { '16x16': '/images/favicon-16x16-dark.png', '32x32': '/images/favicon-32x32-dark.png' }
+  };
+  function isDark() {
+    var h = document.documentElement;
+    if (h.classList.contains('dark')) return true;
+    if (h.getAttribute('data-theme') === 'dark') return true;
+    return matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function update() {
+    var set = ICONS[isDark() ? 'dark' : 'light'];
+    document.querySelectorAll('link[rel="icon"][sizes]').forEach(function(link) {
+      var u = set[link.getAttribute('sizes')];
+      if (u) link.href = u;
+    });
+  }
+  update();
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', update);
+  new MutationObserver(update).observe(document.documentElement, { attributes: true, attributeFilter: ['class', 'data-theme'] });
+})();
+</script>
 
 </body>
 </html>
