@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.huanjue.me/about/</loc>
+    
+    <lastmod>2026-10-29</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.huanjue.me/posts/15e4bc2f/</loc>
     
     <lastmod>2026-10-29</lastmod>
@@ -102,15 +111,6 @@
   
   <url>
     <loc>https://blog.huanjue.me/posts/b3cfedb0/</loc>
-    
-    <lastmod>2026-09-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.huanjue.me/about/</loc>
     
     <lastmod>2026-09-13</lastmod>
     
